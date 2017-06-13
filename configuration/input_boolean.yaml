@@ -1,0 +1,28 @@
+# PRESENCE
+vacation_mode:
+  name: Vacation Mode
+  initial: off
+  icon: mdi:airplane
+guest_mode:
+  name: Guest Mode
+  initial: off
+  icon: mdi:account-multiple
+
+# Group Presence Trackers
+bradhome:
+  name: Brad Home
+  initial: on
+  icon: mdi:account
+friendhome:
+  name: Friend Home
+  initial: off
+  icon: mdi:account-star
+guesthome:
+  name: Guest Home
+  initial: off
+  icon: mdi:account-plus
+
+alarmweekday:
+  name: Weekdays Only
+  initial: off
+  icon: mdi:calendar

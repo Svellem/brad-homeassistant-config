@@ -1,0 +1,39 @@
+#
+# All Lights On
+# 
+- name: All Lights On
+  entities:
+    switch.sink: on
+    light.entry:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+    light.tradfri_bulb_e26_opal_1000lm: on
+    light.tradfri_bulb_e12_ws_opal_400lm_2: on
+    light.tradfri_bulb_e12_ws_opal_400lm: on
+    light.fridge:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+    switch.aquarium: on
+    switch.edison_pendants: on
+    light.stove:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255    
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    switch.office: on
+    light.floor_lamp:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+    light.ge_12729_3way_dimmer_switch_level_11_0: on
+    switch.string_lights: on
+    light.ge_12729_3way_dimmer_switch_level_12_0: on
+    light.globes:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+    switch.work_lamp: on
+    switch.enerwave_zwnrsm2_switch_17_0_3: on
+

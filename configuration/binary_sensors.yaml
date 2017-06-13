@@ -1,0 +1,55 @@
+#
+# Motion Sensor via RPI GPIO
+#
+
+- platform: mqtt
+  state_topic: "PiNode/Motion/Dining/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Dining Motion"
+
+#
+# MOTION SENSORS VIA NODES
+#
+- platform: mqtt
+  state_topic: "ClosetNode/Motion/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Closet Motion"
+
+- platform: mqtt
+  state_topic: "KitchenNode/Motion/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Kitchen Motion"
+
+- platform: mqtt
+  state_topic: "KitchenNode/Door/Switch"
+  device_class: opening
+  payload_on: "1"
+  payload_off: "0"
+  name: "Crawl Space Door"
+
+- platform: mqtt
+  state_topic: "FrontDoorNode/Motion/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Entry Motion"
+
+- platform: mqtt
+  state_topic: "FrontDoorNode/Door/Switch"
+  device_class: opening
+  payload_on: "1"
+  payload_off: "0"
+  name: "Front Door"
+
+- platform: mqtt
+  state_topic: "AquariumNode/Window/Switch"
+  device_class: opening
+  payload_on: "1"
+  payload_off: "0"
+  name: "Left Window"

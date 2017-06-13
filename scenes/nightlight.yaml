@@ -1,0 +1,17 @@
+#
+# Night Light
+# 
+- name: Night Light
+  entities:
+    light.entry:
+      state: on
+      rgb_color: [255,0,0]
+      brightness: 5
+    light.fridge:
+      state: on
+      rgb_color: [255,0,0]
+      brightness: 5
+    light.stove:
+      state: on
+      rgb_color: [255,0,0]
+      brightness: 5    

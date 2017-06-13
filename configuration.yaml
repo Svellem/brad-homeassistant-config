@@ -1,0 +1,539 @@
+# BRAD's HA CONFIG
+# LIVING IN THE FUTURE
+#
+
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: 7
+  unit_system: imperial
+  time_zone: America/Los_Angeles
+  customize: !include configuration/customize.yaml
+
+#
+# Basic settings
+#
+recorder:
+frontend:
+http:
+  api_password: !secret http_password
+updater:
+discovery:
+history:
+sun:
+wemo:
+
+#
+# Custom Panels & UI
+#
+#panel_custom:
+#  - name: floorplan
+#    sidebar_title: Floorplan
+#    sidebar_icon: mdi:home
+#    url_path: floorplan
+#    config: !include floorplan.yaml
+
+#
+# Split configuration into separate files
+#
+scene: !include_dir_merge_list scenes
+input_select: !include configuration/input_select.yaml
+input_boolean: !include configuration/input_boolean.yaml
+input_slider: !include configuration/input_slider.yaml
+sensor: !include configuration/sensors.yaml
+binary_sensor: !include configuration/binary_sensors.yaml
+switch: !include configuration/switches.yaml
+automation: !include_dir_merge_list automation
+logbook: !include configuration/logbook.yaml
+shell_command: !include configuration/shell.yaml
+ios:
+plant: !include configuration/plants.yaml
+
+#
+# Tracking with: OwnTracks/HA app, Bluetooth, TP-Link
+#
+device_tracker:
+  - platform: owntracks
+    max_gps_accuracy: 200
+  - platform: bluetooth_tracker
+    track_new_devices: false
+    consider_home: 300
+  - platform: tplink
+    host: 192.168.0.1
+    username: !secret router_user
+    password: !secret router_pass
+    track_new_devices: false
+    consider_home: 300
+
+#
+# Set up Additional Platforms
+#
+tradfri:
+  host: 192.168.0.9
+  api_key: !secret ikea_key
+
+ifttt:
+  key: !secret ifttt_key
+
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 3600
+
+media_player:
+  - platform: mpd
+    name: pi
+    location: pi
+    host: 192.168.0.6
+    port: 6600
+  - platform: volumio
+    host: stereo.local
+    port: 3000
+  - platform: vlc
+    name: vlc_tts
+  - platform: plex
+
+mqtt:
+  broker: 192.168.0.6
+  port: 1883
+  client_id: home-assistant-1
+  keepalive: 60
+  username: hass
+  password: !secret mqtt_pass
+  protocol: 3.1
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+    qos: 1
+    retain: true
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+    qos: 1
+    retain: true
+
+#
+# Define Zones
+#
+zone:
+    name: Home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    radius: 75
+    icon: mdi:home
+zone 2:
+    name: Studio
+    latitude: !secret studio_latitude
+    longitude: !secret studio_longitude
+    radius: 100
+    icon: mdi:castle
+zone 3:
+    name: SF
+    latitude: 37.760929
+    longitude: -122.447416
+    radius: 6800
+    icon: mdi:bridge
+    passive: true
+
+#
+# Security Cameras
+#
+camera:
+  - platform: mjpeg
+    name: "Front Door"
+    username: frontdoor
+    password: !secret camera_frontdoor_pass
+    mjpeg_url: http://192.168.0.50/video.mjpg
+  - platform: mjpeg
+    name: "Window"
+    username: window
+    password: !secret camera_window_pass
+    mjpeg_url: http://192.168.0.51/video.mjpg
+#
+#  Webcams etc
+#
+  - platform: generic
+    name: "SF Radar"
+    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=MUX&brand=wui&num=1&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=1&rand=24789409&lat=0&lon=0&label=you
+  - platform: generic
+    name: "Car Location"
+    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.beacon_element.attributes.latitude }},{{ states.device_tracker.beacon_element.attributes.longitude }}&zoom=17&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.beacon_element.attributes.latitude }},{{ states.device_tracker.beacon_element.attributes.longitude }}
+    limit_refetch_to_url_change: true
+  - platform: generic
+    name: East Bay
+    still_image_url: http://static.lawrencehallofscience.org/scienceview/scienceview.berkeley.edu/html/view/view_assets/images/newview.jpg
+
+light:
+  - platform: limitlessled
+    bridges:
+      - host: 192.168.0.25
+        version: 5
+        port: 8899
+        groups:
+#         - number: 1
+#           name: Bedroom Lights
+         - number: 2
+           name: Globes
+         - number: 3
+           name: Floor Lamp
+         - number: 4
+           name: Stove
+      - host: 192.168.0.26
+        version: 5
+        port: 8899
+        groups:
+         - number: 1
+           name: Fridge
+         - number: 2
+           name: Entry
+         - number: 3
+           name: Office Pendant
+
+# EXPERIMENTAL ESP BULB
+  - platform: mqtt_json
+    name: 'Crawl Space'
+    state_topic: 'light/entry'
+    command_topic: 'light/entry/set'
+    color_temp: true
+    brightness: true
+    rgb: true
+    white_value: true
+    effect: false
+    optimistic: false
+
+zwave:
+  usb_path: /dev/ttyUSB0
+  config_path: /usr/local/lib/python3.4/dist-packages/python_openzwave/ozw_config
+  polling_interval: 30000
+  device_config:
+    light.ge_12729_3way_dimmer_switch_level_11_0:
+      refresh_value: true
+      delay: 5
+      polling_intensity: 1
+    light.ge_12729_3way_dimmer_switch_level_12_0:
+      refresh_value: true
+      delay: 5
+      polling_intensity: 1
+    switch.enerwave_zwnrsm2_switch_17_0_2:
+      refresh_value: true
+      polling_intensity: 1
+    switch.enerwave_zwnrsm2_switch_17_0_3:
+      refresh_value: true
+      polling_intensity: 1
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0:
+      refresh_value: true
+      polling_intensity: 1
+
+###########################
+## ORGANIZE INTO GROUPS  ##
+###########################
+
+group:
+  # REPLACE HOME PAGE
+  default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.Scenes
+      - group.Radio 
+      - group.AlarmClock
+      - camera.car_location
+#      - group.traveltimes
+#      - camera.east_bay
+  Lights:
+    view: yes
+    icon: mdi:flash
+    entities:
+      - group.Bathroom
+      - group.Bedroom
+      - group.Kitchen
+      - group.LivingRoom
+      - group.Office
+      - group.Overheads
+      - group.Globes
+      - group.Misc
+  # CLIMATE TAB
+  Climate:
+    view: yes
+    icon: mdi:thermometer
+    entities:
+      - camera.sf_radar
+      - group.Weather
+      - group.NodeWindow
+      - group.NodeBathroom
+      - group.NodeKitchen
+      - group.Temperatures
+  # MEDIA TAB
+  Media:
+    view: yes
+    icon: mdi:filmstrip
+    entities:
+      - group.Radio
+      - media_player.roku_3__4124cg078650
+      - group.Speakers
+      - group.Downloads
+  # MONITORING TAB
+  Cameras:
+    view: yes
+    icon: mdi:eye
+    entities:
+      - group.Motion
+      - group.Openings
+      - camera.front_door
+      - camera.east_bay
+      - camera.window
+  Information:
+    view: yes
+    icon: mdi:barley
+    entities:
+      - group.Plants
+      - group.PlantMoisture
+      - group.Aquarium
+  # SYSTEM TAB
+  System:
+    view: yes
+    icon: mdi:gauge
+    entities:
+      - group.SystemOptions
+      - group.Battery
+      - group.Synology
+      - group.Pi
+
+# TRACKED USERS
+  tracked_users:
+    view: no
+    name: Tracked Users
+    entities:
+      - input_boolean.bradhome 
+      - input_boolean.friendhome
+      - input_boolean.guesthome
+
+# SMALLER GROUPS FOR ABOVE TABS
+#
+
+# Alarm Clock
+  AlarmClock:
+    control: hidden
+    name: Alarm Clock
+    entities:
+      - automation.alarm_clock
+      - sensor.alarm_time
+      - input_slider.alarmhour
+      - input_slider.alarmminutes
+      - input_boolean.alarmweekday
+      - sensor.coffeemaker
+#      - input_select.alarmradiostation
+  Battery:
+    name: Battery Level
+    entities:
+      - sensor.battery_iphone
+      - sensor.battery_frontmotion
+      - sensor.battery_windowcam
+  Bathroom:
+    name: Bathroom
+    entities:
+      - switch.enerwave_zwnrsm2_switch_17_0_2
+      - switch.enerwave_zwnrsm2_switch_17_0_3
+  Globes:
+    entities:
+    - light.bedroom_lights
+    - light.globes
+    - light.floor_lamp
+  Overheads:
+    entities:
+      - light.ge_12729_3way_dimmer_switch_level_11_0
+      - light.ge_12729_3way_dimmer_switch_level_12_0
+  Plants:
+    entities:
+      - plant.rubber_plant
+      - plant.giant_philodendron
+      - plant.palm
+      - plant.projector_pothos
+      - plant.hanging_red_pothos
+      - plant.hanging_spider_plant
+      - plant.kitchen_pothos
+      - plant.small_philodendron
+      - plant.window_spider_plant
+  PlantMoisture:
+    name: Water Plants?
+    entities:
+      - sensor.rubber_plant_moisture
+      - sensor.giant_philodendron_moisture
+      - sensor.palm_moisture
+      - sensor.projector_pothos_moisture
+      - sensor.hanging_red_pothos_moisture
+      - sensor.hanging_spider_plant_moisture
+      - sensor.kitchen_pothos_moisture
+      - sensor.small_philodendron_moisture
+      - sensor.window_spider_plant_moisture      
+  Bedroom:
+    entities:
+    - light.entry
+    - light.tradfri_bulb_e12_ws_opal_400lm
+    - light.tradfri_bulb_e12_ws_opal_400lm_2
+    - light.tradfri_bulb_e26_opal_1000lm
+#    - light.bedroom_lights
+    - switch.bedroom_fan
+  Kitchen:
+    control: hidden
+    entities:
+    - switch.ge_12727_inwall_smart_switch_toggle_switch_13_0
+    - switch.edison_pendants
+    - switch.string_lights
+    - light.stove
+    - light.fridge
+    - switch.sink
+    - switch.coffeemaker
+  LivingRoom:
+    name: Living Room
+    entities:
+    - light.ge_12729_3way_dimmer_switch_level_12_0
+    - light.globes
+    - light.floor_lamp
+    - switch.aquarium
+  Office:
+   entities:
+    - switch.office
+    - light.office_pendant
+    - switch.work_lamp
+  LivingRoomLamps:
+    name: Living Room
+    entities:
+    - light.globes
+    - light.floor_lamp
+  Scenes:
+    control: hidden
+    entities:
+    - scene.day_dim_lights
+    - scene.evening_bright_lights
+    - scene.night_dim_lights
+    - scene.all_lights_off
+    - scene.all_lights_on
+  Speakers:
+    entities:
+    - switch.mpd_pi
+    - input_slider.radiovolume
+    - sensor.nowplaying_pi
+    - switch.volumio
+    - input_slider.stereovolume
+    - sensor.nowplaying_volumio
+  Synology:
+    name: NAS
+    entities: 
+    - sensor.synology_storage_free
+    - sensor.synology_storage
+  SystemOptions:
+    name: Home Options
+    entities:
+    - group.tracked_users
+    - input_boolean.vacation_mode
+    - input_boolean.guest_mode
+    - switch.flux
+  Motion:
+    entities:
+    - sensor.last_motion
+    - binary_sensor.entry_motion
+    - binary_sensor.closet_motion
+    - binary_sensor.ecolink_motion_sensor_sensor_14_0
+    - binary_sensor.kitchen_motion
+    - binary_sensor.dining_motion
+  Openings:
+    entities:
+    - binary_sensor.front_door
+    - binary_sensor.crawl_space_door
+    - binary_sensor.left_window
+  NodeBathroom:
+    entities:
+    - sensor.bathroom_temperature
+    - sensor.bathroom_humidity
+    - binary_sensor.bathroom_motion
+  NodeWindow:
+    entities:
+    - binary_sensor.far_window_motion
+    - binary_sensor.left_window
+    - sensor.window_air_temp
+    - sensor.humidity
+    - sensor.carbon_monoxide
+    - sensor.air_pressure
+    - sensor.window_spider_plant_light_intensity
+  NodeKitchen:
+    entities:
+    - sensor.kitchen_smoke
+    - sensor.kitchen_temperature
+    - sensor.kitchen_humidity
+    - binary_sensor.kitchen_motion
+    - binary_sensor.crawl_space_door
+  Aquarium:
+    entities:
+    - switch.aquarium
+    - binary_sensor.left_window 
+    - sensor.window_air_temp
+    - sensor.water_temperature
+  Misc:
+    - light.crawl_space
+    - switch.extra_plug
+  Pi:
+    name: HomeAssistant Pi
+    control: hidden
+    entities:
+      - sensor.since_last_boot
+      - sensor.ram_use
+      - sensor.cpu_use
+      - sensor.disk_use_
+      - switch.pi_shutdown
+      - switch.pi_reboot
+  PresenceLights:
+    entities:
+      - light.entry
+      - light.floor_lamp
+      - light.fridge
+      - light.globes
+      - light.office_pendant
+  Radio:
+    name: Radio
+    control: hidden
+    entities:
+      - input_slider.radiovolume
+      - switch.radio_npr
+      - switch.radio_kalx
+      - switch.radio_jazz
+      - switch.radio_metal
+      - switch.radio_kzsc
+  Weather:
+    entities:
+      - sun.sun
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_precip_probability 
+      - sensor.dark_sky_cloud_coverage
+  Temperatures:
+    entities:
+      - sensor.front_temperature
+      - sensor.giant_pothos_temperature
+      - sensor.hanging_red_pothos_temperature
+      - sensor.kitchen_pothos_temperature
+      - sensor.linear_unknown_type5442_id5431_temperature_15_1
+      - sensor.window_air_temp
+      - sensor.bathroom_temperature
+  TravelTimes:
+    name: Travel Times
+    entities:
+      - sensor.current_location_to_home
+      - sensor.current_location_to_studio
+      - sensor.home_to_16th_mission_bart
+      - sensor.home_to_richmond_Bart
+  Downloads:
+    entities:
+      - switch.transmission_turtle_mode
+      - sensor.transmission_status
+      - sensor.transmission_down_speed_kbps
+      - sensor.transmission_up_speed_kbps
+      - sensor.sabnzbd_status
+      - sensor.sabnzbd_speed
+      - sensor.sabnsbd_left
+      - sensor.sabnzbd_queue
+

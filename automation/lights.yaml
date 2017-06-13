@@ -1,0 +1,120 @@
+#
+#
+# AUTOMATIONS RELATED TO LIGHTS
+#
+#
+#
+
+# Closet Lights on when Motion Detected
+- alias: Closet Lights On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.closet_motion
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: light.tradfri_bulb_e12_ws_opal_400lm_2
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e12_ws_opal_400lm
+# Turn Closet LIghts off After 10 minutes no motion
+- alias: Closet Lights Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.closet_motion
+    to: 'off'
+    for:
+      minutes: 7
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e12_ws_opal_400lm
+
+
+# Bathroom Lights Turned on by Motion Sensor
+- alias: Bathroom Lights On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_sensor_sensor_14_0
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: switch.enerwave_zwnrsm2_switch_17_0_3
+    state: 'off'
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.enerwave_zwnrsm2_switch_17_0_3
+# Bathroom Lights & Fan Turned Off After No Motion 20 minutes
+- alias: Bathroom Lights & Fan Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_sensor_sensor_14_0
+    to: 'off'
+    for:
+      minutes: 20
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.enerwave_zwnrsm2_switch_17_0_3, switch.enerwave_zwnrsm2_switch_17_0_2
+
+# Crawl Space Lights On When Open
+- alias: Crawl Space Lights On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.crawl_space_door
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.crawl_space
+# Crawl Space Lights Off
+- alias: Crawl Space Lights Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.crawl_space_door
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.crawl_space
+
+#
+# Link Stove/Fridge light with Kitchen Switch
+#
+- alias: Turn on Kitchen Lights with Wall Switch
+  trigger:
+    - platform: state
+      entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch_13_0
+      to: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.kitchen_on
+# Then turn them off again when Kitchen Switch go off
+- alias: Turn off Kitchen Secondary
+  trigger:
+    - platform: state
+      entity_id: switch.ge_12727_inwall_smart_switch_toggle_switch_13_0
+      to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.stove, switch.sink, light.fridge, switch.edison_pendants, switch.string_lights
+
+#
+# Link Office Pendant with Office Switch
+#
+- alias: Turn on Pendant with Office Switch
+  trigger:
+    - platform: state
+      entity_id: switch.office
+      from: 'off'
+      to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: light.office_pendant
+# Then turn them off again when Office Switch go off
+- alias: Turn off Office Pendant with Switch
+  trigger:
+    - platform: state
+      entity_id: switch.office
+      from: 'on'
+      to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.office_pendant

@@ -1,0 +1,196 @@
+    sensor.kitchen_smoke:
+      icon: mdi:fire
+    sensor.kitchen_humidity:
+      icon: mdi:water-percent
+    sensor.front_temperature:
+      icon: mdi:thermometer
+    sensor.front_humidity:
+      icon: mdi:water-percent
+    sensor.bathroom_temperature:
+      icon: mdi:thermometer
+    sensor.bathroom_humidity:
+      icon: mdi:water-percent
+    plant.rubber_plant:
+      friendly_name: Rubber Plant
+    plant.giant_philodendron:
+      friendly_name: Giant Philodendron
+    plant.palm:
+      friendly_name: Palm
+    plant.projector_pothos:
+      friendly_name: Projector Pothos
+    plant.hanging_red_pothos:
+      friendly_name: Hanging Red Pothos
+    plant.hanging_spider_plant:
+      friendly_name: Hanging Spider Plant
+    plant.kitchen_pothos:
+      friendly_name: Kitchen Pothos
+    plant.small_philodendron: 
+      friendly_name: Small Philodendron
+    plant.window_spider_plant:
+      friendly_name: Window Spider Plant
+    switch.enerwave_zwnrsm2_switch_17_0_3:
+      friendly_name: Bath Light
+      icon: mdi:lightbulb
+    switch.enerwave_zwnrsm2_switch_17_0_2:
+      friendly_name: Bath Fan
+      icon: mdi:fan
+    plant.giant_pothos:
+      friendly_name: Giant Pothos
+    sensor.giant_pothos_temperature:
+      friendly_name: Office Temp
+      icon: mdi:thermometer
+    sensor.hanging_red_pothos_temperature:
+      friendly_name: Living Room Temp
+      icon: mdi:thermometer
+    sensor.kitchen_pothos_temperature:
+      friendly_name: Kitchen Temp
+      icon: mdi:thermometer
+    sensor.window_spider_plant_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Window Spider Plant"
+    sensor.giant_pothos_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Giant Pothos"
+    sensor.hanging_red_pothos_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Hanging Red Pothos"
+    sensor.kitchen_pothos_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Kitchen Pothos"
+    sensor.small_philodendron_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Small Philodendron"
+    sensor.rubber_plant_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Rubber Plant"
+    sensor.giant_philodendron_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Giant Philodendron"
+    sensor.hanging_spider_plant_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Hanging Spider Plant"
+    sensor.palm_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Palm"
+    sensor.projector_pothos_moisture:
+      icon: mdi:water-percent
+      friendly_name: "Projector Pothos"
+    sensor.window_spider_plant_temperature:
+      friendly_name: Window Temp 2
+    sensor.window_spider_plant_light_intensity:
+      friendly_name: Window Light Intensity
+    sensor.last_motion:
+      icon: mdi:map-marker
+    binary_sensor.ecolink_motion_sensor_sensor_14_0:
+      friendly_name: Bathroom Motion
+      device_class: motion
+    binary_sensor.table_motion:
+      friendly_name: Table Motion
+      device_class: motion
+    light.tradfri_bulb_e26_opal_1000lm:
+      friendly_name: Bedroom Light
+    light.tradfri_bulb_e12_ws_opal_400lm_2:
+      friendly_name: Closet Lamp 1
+    light.tradfri_bulb_e12_ws_opal_400lm:
+      friendly_name: Closet Lamp 2
+    light.ge_12729_3way_dimmer_switch_level_11_0:
+      friendly_name: Front Lights
+    light.ge_12729_3way_dimmer_switch_level_12_0:
+      friendly_name: Back Lights
+    switch.edison_pendants:
+      icon: mdi:ceiling-light
+    switch.sink:
+      icon: mdi:lightbulb-on
+    switch.work_lamp:
+      icon: mdi:lamp
+    light.office_pendant:
+      icon: mdi:ceiling-light
+    switch.string_lights:
+      icon: mdi:led-on
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0:
+      friendly_name: Kitchen Wall Switch
+      icon: mdi:toggle-switch
+    switch.bedroom_fan:
+      icon: mdi:fan
+    sensor.air_pressure:
+      icon: mdi:gauge
+    sensor.carbon_monoxide:
+      icon: mdi:skull
+    sensor.battery_windowcam:
+      friendly_name: Window Camera
+      icon: mdi:cellphone-iphone
+    sensor.current_location_to_home:
+      icon: mdi:train
+    sensor.current_location_to_studio:
+      icon: mdi:car
+    sensor.home_to_16th_mission_bart:
+      icon: mdi:train
+    sensor.home_to_richmond_bart:
+      icon: mdi:train
+    sensor.air_temperature:
+      icon: mdi:thermometer
+    sensor.humidity:
+      icon: mdi:water-percent
+    sensor.betta_temperature:
+      icon: mdi:thermometer
+    sensor.water_temperature:
+      icon: mdi:thermometer
+    sensor.alarm_time:
+      icon: mdi:timer
+    sensor.synology_storage:
+      icon: mdi:harddisk
+    sensor.synology_storage_free:
+      icon: mdi:harddisk
+    sensor.battery_frontmotion:
+      icon: mdi:battery-charging
+    sensor.battery_iphone:
+      friendly_name: Brad's iPhone
+      icon: mdi:battery-charging
+    sensor.transmission_down_speed_kbps:
+      icon: mdi:arrow-down-bold-circle-outline
+    sensor.transmission_up_speed_kbps:
+      icon: mdi:arrow-up-bold-circle-outline
+    sensor.sabnzbd_speed:
+      icon: mdi:arrow-down-bold-circle-outline
+    sensor.sabnzbd_queue:
+      icon: mdi:clock
+    switch.mpd_pi:
+      icon: mdi:speaker
+    switch.volumio:
+      icon: mdi:speaker
+    switch.radio_npr:
+      icon: mdi:radio
+    switch.radio_kalx:
+      icon: mdi:school
+    switch.radio_jazz:
+      icon: mdi:saxophone
+    switch.radio_metal:
+      icon: mdi:skull
+    switch.radio_kzsc:
+      icon: mdi:barley
+    device_tracker.beacon_element:
+      icon: mdi:car
+    switch.pi_shutdown:
+      icon: mdi:power
+    switch.pi_reboot:
+      icon: mdi:restart
+    switch.aquarium:
+      friendly_name: Aquarium Light
+      icon: mdi:cube
+    group.Overheads:
+      icon: mdi:lightbulb
+    switch.closet_lights:
+      icon: mdi:lightbulb
+    group.LivingRoomLamps:
+      icon: mdi:lightbulb
+    switch.office:
+      friendly_name: Office Switch
+      icon: mdi:lightbulb
+    input_boolean.alarmclock:
+      icon: mdi:alarm-check
+    automation.alarm_clock:
+      icon: mdi:alarm
+    light.floor_lamp:
+      icon: mdi:alarm-light
+    light.fridge:
+      icon: mdi:ceiling-light

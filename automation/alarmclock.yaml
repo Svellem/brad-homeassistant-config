@@ -1,0 +1,149 @@
+#
+# Morning Routine Related
+#
+#
+# Morning Alarm Coffee
+# Not sure if better way to do this, but use same trigger/conditions as alarm clock
+# Coffee condition is in the action
+# If all true (same conditions as alarm) it runs action with condition for coffee
+- alias: 'Make Coffee?'
+  trigger:
+    platform: template
+    # need to figure out how to start this before alarm_time.state so sequence ends at that time
+    value_template: '{{ states.sensor.time.state  ==  states.sensor.alarm_time.state  }}'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'on'
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'off'
+  action:
+    # To sync with Alarm Clock sequence...
+    # Start Coffee 4 minutes in
+    - delay: 00:04:00
+    - condition: state
+      entity_id: sensor.coffeemaker
+      state: 'Ready'
+    - service: homeassistant.turn_on
+      entity_id: switch.coffeemaker
+
+
+#
+# ALARM CLOCK
+# copied from:
+# https://github.com/master-kenobi/ha-alarmclock
+- alias: 'Alarm Clock'
+  trigger:
+    platform: template
+    # delay is in seconds (600=10 minutes)
+    value_template: '{{ states.sensor.time.state  ==  states.sensor.alarm_time.state  }}'
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: input_boolean.alarmweekday
+            state: 'on'
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+      - condition: state
+        entity_id: input_boolean.alarmweekday
+        state: 'off'
+#
+# ALARM ACTION GOES HERE!!
+  action:
+    # 10 minute sequence
+    #
+    # Step one: Begin fade in
+    # 0 MIN SEQ
+    - service: light.turn_on
+      data:
+        entity_id: light.floor_lamp, light.globes, light.fridge, light.stove
+        brightness: 255
+        rgb_color: [255,255,255]
+        transition: 600 # 15 minutes total
+
+    # wait 3 minutes whiles those fade in
+    - delay: 00:03:00
+    # 3 MIN SEQ
+
+    #
+    # Make sure Transmission turtle mode is on to free bandwidth for radio
+    #
+    - service: homeassistant.turn_on
+      entity_id: switch.transmission_turtle_mode
+
+    # Start fading in bedroom lights
+    - service: light.turn_on
+      data:
+        entity_id: light.bedroom_lights, light.entry
+        brightness: 255
+        rgb_color: [255,255,255]
+        transition: 420  # 7 minutes
+    - delay: 00:02:00
+    # 5 MIN SEQ
+
+    # TURN ON NPR
+    # raise volume 10% each minute
+    # volume will be my max (.8) at same time lights are 100%
+    #
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 20
+    # turn radio on
+    - service: switch.turn_on
+      entity_id: switch.radio_npr
+    - delay: 00:00:45
+    # wait one minute, raise by .1
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 30
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 40
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 50
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 60
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 70
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 80
+    # ~10 (??)  MINUTES PAST WHEN ALARM WAS SET
+    # Turn on closet/kitchen/bathroom
+    - service: switch.turn_on
+      entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, switch.ge_12727_inwall_smart_switch_toggle_switch_13_0, switch.sink, switch.enerwave_zwnrsm2_switch_17_0_3, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm

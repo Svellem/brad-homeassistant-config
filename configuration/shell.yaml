@@ -1,0 +1,6 @@
+#
+# SHELL COMMANDS
+#
+  changeradiovolume: 'mpc volume {{ states.input_slider.radiovolume.state | int }}'
+  changestereovolume: 'mpc -h 192.168.0.7 volume {{ states.input_slider.stereovolume.state | int }}'
+  triggertimelapse: '/home/homeassistant/.homeassistant/shell/timelapse.sh'

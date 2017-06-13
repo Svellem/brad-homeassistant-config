@@ -1,0 +1,46 @@
+#
+# Night Time Dim Lights
+# 
+- name: Evening Bright Lights
+  entities:
+    switch.sink: on
+    light.entry:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+      transition: 30
+    light.stove:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 200
+      transition: 120
+    light.ge_12729_3way_dimmer_switch_level_11_0:
+      state: on
+      brightness: 75
+    light.fridge:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 200
+      transition: 120
+    light.floor_lamp:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 200
+      transition: 120
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    light.globes:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 200
+      transition: 120
+    switch.edison_pendants: on
+    light.office_pendant:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 200
+      transition: 120
+    light.ge_12729_3way_dimmer_switch_level_12_0:
+      state: on
+      brightness: 65  
+    switch.string_lights: on
+    light.tradfri_bulb_e12_ws_opal_400lm_2    

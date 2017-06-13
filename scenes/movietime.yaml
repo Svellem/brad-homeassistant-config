@@ -1,0 +1,86 @@
+#
+# Player goes from 'idle' to 'playing' turn off all the lights
+# 
+- name: Start Movie
+  entities:
+    light.ge_12729_3way_dimmer_switch_level_11_0: off
+    light.tradfri_bulb_e12_ws_opal_400lm: off
+    light.tradfri_bulb_e12_ws_opal_400lm_2: off
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: off
+    light.floor_lamp:
+      state: off
+      transition: 8
+    switch.work_lamp: off
+    light.ge_12729_3way_dimmer_switch_level_12_0: off
+    light.tradfri_bulb_e26_opal_1000lm: off
+    switch.enerwave_zwnrsm2_switch_17_0_2: off
+    light.globes:
+      state: off
+      transition: 8
+    switch.enerwave_zwnrsm2_switch_17_0_3: off
+    light.entry:
+      state: off
+      transition: 8
+    switch.office: off
+    light.fridge:
+      state: off
+      transition: 8
+    light.stove:
+      state: off
+      transition: 8
+    switch.aquarium: off
+    light.office_pendant:
+      state: off
+      transition: 8
+    switch.string_lights: off
+    switch.sink: off
+    
+# If player goes from playing to pause, dim the lights for bathroom/kitchen
+- name: Movie Paused
+  entities:
+    light.globes:
+      state: on
+      transition: 2
+      brightness: 50
+    light.floor_lamp:
+      state: on
+      transition: 2
+      brightness: 50
+    light.office_pendant:
+      state: on
+      transition: 2
+      brightness: 50
+    switch.enerwave_zwnrsm2_switch_17_0_3: on
+    light.entry:
+      state: on
+      transition: 2
+      brightness: 50
+    light.fridge:
+      state: on
+      transition: 2
+      brightness: 50
+
+# If player goes from paused to playing, do pause movie in reverse
+- name: Movie Resumed
+  entities:
+    light.globes:
+      state: off
+      transition: 2
+    light.floor_lamp:
+      state: off
+      transition: 2
+    light.office_pendant:
+      state: off
+      transition: 2
+    switch.enerwave_zwnrsm2_switch_17_0_3: off
+    light.entry:
+      state: off
+      transition: 2
+    light.fridge:
+      state: off
+      transition: 2
+    light.tradfri_bulb_e26_opal_1000lm: off
+    light.tradfri_bulb_e12_ws_opal_400lm: off
+    light.tradfri_bulb_e12_ws_opal_400lm_2: off
+    switch.string_lights: off
+    switch.sink: off

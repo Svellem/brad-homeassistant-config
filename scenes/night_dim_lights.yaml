@@ -1,0 +1,47 @@
+#
+# Night Time Dim Lights
+# 
+- name: Night Dim Lights
+  entities:
+    switch.extra_lamp: on
+    light.entry:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 125
+      transition: 30
+    switch.kitchen_lights: on
+    light.stove:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 100
+      transition: 120
+    light.fridge:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 100
+      transition: 120
+    switch.closet_lights: off
+    light.floor_lamp:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 125
+      transition: 120
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    light.globes:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 125
+      transition: 120
+    switch.string_lights: off
+    light.office_pendant:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 125
+      transition: 120
+    light.ge_12729_3way_dimmer_switch_level_12_0: off
+    light.bedroom_lights:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 75
+      transition: 30
+    light.ge_12729_3way_dimmer_switch_level_11_0: off

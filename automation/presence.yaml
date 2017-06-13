@@ -1,0 +1,152 @@
+#
+# Turn on evening lighting if someone is home at SUNSET
+#
+- alias: 'Sunset Transition'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:40:00"
+  condition:
+    condition: state
+    entity_id: group.tracked_users
+    state: 'on'
+  action:
+    service: scene.turn_on
+    entity_id: scene.evening_bright_lights
+
+#
+# Turn on lights when someone comes home
+#
+- alias: 'Welcome Home - Day'
+  trigger:
+    platform: state
+    entity_id: group.tracked_users
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: sun
+      after: sunrise
+    - condition: sun
+      before: sunset
+  action:
+    - service: scene.turn_on
+      entity_id: scene.day_dim_lights
+    - service: homeassistant.turn_on
+      entity_id: switch.transmission_turtle_mode
+# Same thing but differnet scene for evening 
+- alias: 'Welcome Home - Evening'
+  trigger:
+    platform: state
+    entity_id: group.tracked_users
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: sun
+      after: sunset
+    - condition: sun
+      after: sunrise
+#    - condition: time
+#      before: '22:00:00'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.night_dim_lights
+    - service: homeassistant.turn_on
+      entity_id: switch.transmission_turtle_mode
+
+# Multi-tracker automations for brad
+# using input_boolean.bradhome for presence
+# which is inside group.tracked_users
+#
+# Trackers used:
+# - device_tracker.bradwenner_bradphone - iOS HA app & OwnTracks
+#     ^ should also be getting updated by the TP-Link component via MAC
+#     ^ check again and make sure it's not putting it in a separate device_tracker
+# - device_tracker.bradphone_2 - Bluetooth (only updates 'home') 
+#
+- alias: 'Brad Away'
+  condition:
+    condition: state
+    entity_id: input_boolean.bradhome
+    state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.bradwenner_bradphone
+      state: 'not_home'
+      # stop turning shit off when I walk Duncan
+      for:
+        minutes: 10
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.bradhome
+
+- alias: 'Brad Home'
+  condition:
+    condition: state
+    entity_id: input_boolean.bradhome
+    state: 'off'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.bradwenner_bradphone
+      state: 'home'
+    - platform: state
+      entity_id: device_tracker.bradphone_2
+      state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.bradhome
+#
+# Guest Presence works the same way as above
+# input_boolean.guesthome is used to track
+# BUT input_boolean.guest_mode is used as a condition to firing
+# So only when guest mode is toggled in HA will use this update
+
+- alias: 'Guest Away'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guesthome
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.guestphone
+      state: 'not_home'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.guesthome
+
+- alias: 'Guest Home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guesthome
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.guestphone
+      state: 'home'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.guesthome
+
+#
+# TURN EVERYTHING OFF WHEN NO ONE IS HOME
+#
+# IF no one is home, turn off the lights and bandwidth throttles
+# If no one is home & NPR is playing, turn off NPR
+- alias: See Ya Later
+  trigger:
+    platform: state
+    entity_id: group.tracked_users
+    state: 'off'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.all_lights_off
+

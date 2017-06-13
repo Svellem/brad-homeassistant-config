@@ -1,0 +1,38 @@
+#
+# Goodnight Scripts
+# Fade all lights off for 30 minutes
+# 
+- name: Goodnight
+  entities:
+    switch.sink: off
+    light.entry:
+      state: off
+      transition: 1800
+    light.tradfri_bulb_e12_ws_opal_400lm: off
+    light.tradfri_bulb_e12_ws_opal_400lm_2: off
+    light.fridge:
+      state: off
+      transition: 1800
+    switch.aquarium: off
+    light.stove:
+      state: off
+      transition: 1800
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: off
+    switch.office: off
+    switch.work_lamp: off
+    switch.edison_pendants: off
+    light.floor_lamp:
+      state: off
+      transition: 1800
+    light.ge_12729_3way_dimmer_switch_level_12_0: off
+    light.ge_12729_3way_dimmer_switch_level_11_0: off
+    light.tradfri_bulb_e26_opal_1000lm: off
+    light.globes:
+      state: off
+      transition: 1800
+    switch.transmission_turtle_mode: off
+    light.office_pendant:
+      state: off
+      transition: 1800
+    switch.mpd_pi: off
+    switch.string_lights: off

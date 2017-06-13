@@ -1,0 +1,31 @@
+#
+# Automations based on Dash buttons
+#
+# Events are sent thrown Dasher
+# https://github.com/maddox/dasher
+# http://www.bruhautomation.com/single-post/2016/11/22/How-To-Use-an-Amazon-Dash-with-IFTTT-and-Home-Assistant
+#
+
+
+- alias: 'Bed Button Pressed - Daytime'
+  trigger:
+    platform: event
+    event_type: bed_button_pressed
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'above_horizon'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.day_dim_lights
+- alias: 'Bed Button Pressed - Night'
+  trigger:
+    platform: event
+    event_type: bed_button_pressed
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.all_lights_off

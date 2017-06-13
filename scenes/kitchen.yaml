@@ -1,0 +1,15 @@
+- name: Kitchen On
+  entities:
+    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    switch.sink: on
+    light.stove:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 255
+    switch.extra_lamp: on
+    light.fridge:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 180
+    switch.string_lights: on
+    switch.edison_pendants: on

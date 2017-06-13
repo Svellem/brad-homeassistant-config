@@ -1,0 +1,391 @@
+#
+#
+# SENSORS!!!!!!!!
+
+#
+# Last Seen Motion Sensor
+#
+- platform: template
+  sensors:
+    last_motion:
+      friendly_name: 'Last Motion'
+      value_template: >
+        {%- set sensors = [states.binary_sensor.dining_motion, states.binary_sensor.entry_motion, states.binary_sensor.front_door, states.binary_sensor.closet_motion, states.binary_sensor.kitchen_motion, states.binary_sensor.ecolink_motion_sensor_sensor_14_0] %}
+        {% for sensor in sensors %}
+          {% if as_timestamp(sensor.last_changed) == as_timestamp(sensors | map(attribute='last_changed') | max) %}
+            {{ sensor.name }}
+          {% endif %}
+        {% endfor %}
+#
+# MIFLORA!!
+#
+
+- platform: miflora
+  mac: "C4:7C:8D:63:3A:5D"
+  name: Giant Philodendron
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:63:3A:4D"
+  name: Rubber Plant
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:60:E5:11"
+  name: Palm
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:2A:51"
+  name: Projector Pothos
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:71:49"
+  name: Hanging Spider Plant
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:71:68"
+  name: Giant Pothos
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:7B:7D"
+  name: Window Spider Plant
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:78:5B"
+  name: Small Philodendron
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:73:E8"
+  name: Hanging Red Pothos
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+- platform: miflora
+  mac: "C4:7C:8D:62:73:BD"
+  name: Kitchen Pothos
+  force_update: true
+  median: 1
+  monitored_conditions:
+    - moisture
+    - light
+    - temperature
+    - battery
+    - conductivity
+
+#
+# ESP8266 NODES
+#
+# Motion Sensors are in binary_sensors.yaml
+
+#
+# KITCHEN NODE
+- platform: mqtt
+  state_topic: "KitchenNode/Air/Smoke"
+  qos: 0
+  name: "Kitchen Smoke"
+  unit_of_measurement: "ppm"
+- platform: mqtt
+  state_topic: "KitchenNode/Air/Temperature"
+  qos: 0
+  name: "Kitchen Temperature"
+  unit_of_measurement: "°F"
+- platform: mqtt
+  state_topic: "KitchenNode/Air/Humidity"
+  qos: 0
+  name: "Kitchen Humidity"
+  unit_of_measurement: "%"
+
+#
+# FRONT DOOR NODE
+#
+- platform: mqtt
+  state_topic: "FrontDoorNode/Air/Temperature"
+  name: "Entry Temperature"
+  qos: 0
+  unit_of_measurement: "°F"
+- platform: mqtt
+  state_topic: "FrontdoorNode/Air/Humidity"
+  name: "Entry Humidity"
+  qos: 0
+  unit_of_measurement: "%"
+
+# AQUARIUM NODE
+# TEMP
+- platform: mqtt
+  state_topic: "AquariumNode/Air/Temperature"
+  name: "Window Air Temp"
+  qos: 0
+  unit_of_measurement: "°F"
+- platform: mqtt
+  state_topic: "AquariumNode/Air/Humidity"
+  name: "Humidity"
+  qos: 0
+  unit_of_measurement: "%"
+- platform: mqtt
+  state_topic: "AquariumNode/Water/Temperature"
+  name: "Water Temperature"
+  qos: 0
+  unit_of_measurement: "°F"
+- platform: mqtt
+  state_topic: "AquariumNode/Air/Pressure"
+  name: "Air Pressure"
+  qos: 0
+  unit_of_measurement: "inHg"
+- platform: mqtt
+  state_topic: "AquariumNode/Air/CarbonMonoxide"
+  name: "Carbon Monoxide"
+  qos: 0
+  unit_of_measurement: "??"
+
+- platform: google_travel_time
+  name: Current Location to Home
+  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  origin: device_tracker.bradwenner_bradphone
+  destination: zone.home
+  options:
+    mode: transit
+- platform: google_travel_time
+  name: Current Location to Studio
+  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  origin: device_tracker.bradwenner_bradphone
+  destination: 3403 Piedmont Avenue, Oakland, CA 94606
+- platform: google_travel_time
+  name: Home to 16th Mission BART
+  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  origin: 261 10th Street, Oakland, CA 94607
+  destination: 16th Street Mission BART, San Francisco, CA
+  options:
+    mode: transit
+- platform: google_travel_time
+  name: Home to Richmond BART
+  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  origin: 261 10th Street, Oakland, CA 94607
+  destination: Richmond BART, Richmond, CA
+  options:
+    mode: transit
+
+- platform: darksky
+  api_key: 530472e7a0d81e0dd06e6eb99c413ebd
+  monitored_conditions:
+      - summary
+      - hourly_summary
+      - precip_intensity
+      - precip_probability
+      - temperature
+      - cloud_cover
+      - temperature_max
+      - temperature_min
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'time_date'
+    - 'time_utc'
+
+# Brad's Battery Level
+- platform: template
+  sensors:
+    battery_iphone:
+      unit_of_measurement: '%'
+      value_template: >-
+            {%- if states.device_tracker.bradwenner_bradphone.attributes.battery %}
+                {{ states.device_tracker.bradwenner_bradphone.attributes.battery }}
+            {% else %}
+                {{ states.sensor.battery_iphone.state }}
+            {%- endif %}
+
+- platform: template
+  sensors:
+    battery_frontmotion:
+      friendly_name: 'Bathroom Motion Battery'
+      unit_of_measurement: '%'
+      value_template: '{{ states.zwave.ecolink_motion_sensor_14.attributes.battery_level }}'
+
+
+# For Alarm Clock
+- platform: template
+  sensors:
+    alarm_time:
+      friendly_name: 'Time'
+      value_template: '{{ "%0.02d:%0.02d" | format(states("input_slider.alarmhour") | int, states("input_slider.alarmminutes") | int) }}'
+
+# Coffee Maker State Sensor
+- platform: template
+  sensors:
+    coffeemaker:
+      friendly_name: 'Coffee Status'
+      value_template: '{{ states.switch.coffeemaker.attributes.state_detail }}'
+      icon_template: mdi:coffee-outline
+
+# Playing on Pi
+- platform: template
+  sensors:
+    nowplaying_pi:
+      friendly_name: ' '
+      value_template: >-
+          {%- if is_state("media_player.pi", "off") %}
+              Off
+          {% elif is_state("media_player.pi", "paused") %}
+              Paused
+          {% elif is_state("media_player.pi", "playing") %}
+              {{ states.media_player.pi.attributes.media_title }}
+          {% else  %}
+              Failed
+          {%- endif %}
+      icon_template: >-
+          {%- if is_state("media_player.pi", "off") %}
+              mdi:stop-circle-outline
+          {% elif is_state("media_player.pi", "paused") %}
+              mdi:pause-circle-outline
+          {% elif is_state("media_player.pi", "playing") %}
+              mdi:play-circle-outline
+          {% else  %}
+              mdi:volume-off
+          {%- endif %}
+
+# Playing on Volumio
+- platform: template
+  sensors:
+    nowplaying_volumio:
+      friendly_name: ' '
+      value_template: >-
+          {%- if is_state("media_player.volumio", "off") %}
+              Off
+          {% elif is_state("media_player.volumio", "paused") %}
+              Paused
+          {% elif is_state("media_player.volumio", "idle") %}
+              mdi:stop-circle-outline 
+          {% elif is_state("media_player.volumio", "playing") %}
+              {{ states.media_player.volumio.attributes.media_artist }} - {{ states.media_player.volumio.attributes.media_title }}
+          {% else  %}
+              Failed
+          {%- endif %}
+      icon_template: >-
+          {%- if is_state("media_player.volumio", "off") %}
+              mdi:stop-circle-outline
+          {% elif is_state("media_player.volumio", "idle") %}
+              mdi:stop-circle-outline
+          {% elif is_state("media_player.volumio", "paused") %}
+              mdi:pause-circle-outline
+          {% elif is_state("media_player.volumio", "playing") %}
+              mdi:play-circle-outline
+          {% else  %}
+              mdi:volume-off
+          {%- endif %}
+
+#
+# FILEZ FILEZ FILEZ
+#
+- platform: transmission
+  host: 192.168.0.5
+  username: admin
+  password: admin
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
+# Reformat the speed sensors to be in Kbp/s
+- platform: template
+  sensors:
+    transmission_down_speed_kbps:
+      value_template: '{{ states.sensor.transmission_down_speed.state | multiply(1024) }}'
+      friendly_name: 'Transmission Down Speed'
+      unit_of_measurement: 'kB/s'
+    transmission_up_speed_kbps:
+      value_template: '{{ states.sensor.transmission_up_speed.state | multiply(1024) }}'
+      friendly_name: 'Transmission Up Speed'
+      unit_of_measurement: 'kB/s'
+# MORE FILEZ
+- platform: sabnzbd
+  host: 192.168.0.5
+  api_key: d79b4a1a341893ea1236e4a53c971c4c
+  monitored_variables:
+    - 'current_status'
+    - 'speed'
+    - 'queue_size'
+    - 'queue_remaining'
+    - 'disk_size' # Use these for stats on Synology
+    - 'disk_free' # Yep
+# Rewrite disk_size/disk_free for Synology (in TB)
+- platform: template
+  sensors:
+      synology_storage:
+        value_template: '{{ states.sensor.sabnzbd_disk.state | multiply(0.001024) | round(2)  }}'
+        friendly_name: 'Synology Disk Size'
+        unit_of_measurement: 'TB'
+      synology_storage_free:
+        value_template: '{{ states.sensor.sabnzbd_disk_free.state | multiply(0.001024) | round(2)  }}'
+        friendly_name: 'Synology Free Space'
+        unit_of_measurement: 'TB'
+
+#
+# SYSTEM SENSORS
+#
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: processor_use
+    - type: since_last_boot
