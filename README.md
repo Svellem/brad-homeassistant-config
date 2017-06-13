@@ -69,6 +69,10 @@ Running HA version: 0.44.1
   
 
 ## TODO
+* Notifications
+  * Close window when forecast says rain
+  * Notify if aquarium water goes below temp
+* Hardware - get a thermostat
 * Swap the LimitlessLED lights from the MiLight bridge to [esp8266 DIY bridge](https://github.com/sidoh/esp8266_milight_hub)
 * TTS
 * Re-setup homebridge
