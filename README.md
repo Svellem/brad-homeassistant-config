@@ -7,19 +7,19 @@ Running HA version: 0.44.1
 
 ## Hardware
 * Lights
-  * LimitlessLED - RGB Bulbs using MiLight WiFi Bridge x2
+  * LimitlessLED - [Milight RGB Bulbs](http://amzn.to/2slpT2W) using [MiLight WiFi Bridge](http://amzn.to/2roEQ59) x2
   * Ikea Tradfri - several bulbs via gateway
   * ESP8266 bulb with [AiLight firmware](https://github.com/stelgenhof/AiLight) - TESTING
 * Wall Switches
-  * GE Z-Wave 12727 Wall Toggle Switch x1
-  * GE Z-Wave 12729 Wall Toggle Dimmer Switch x2
+  * [GE Z-Wave 12727 Wall Toggle Switch](http://amzn.to/2rnVCBs) x1
+  * [GE Z-Wave 12729 Wall Toggle Dimmer Switch](http://amzn.to/2spiWil) x2
   * Enerwave Z-Wave ZWN-RSM2 Dual In-Wall Relay x1
 * Smart Devices
-  * WEMO Mr. Coffee
-  * Withings Body Scale
+  * [WEMO Mr. Coffee](http://amzn.to/2sysDuG)
+  * [Withings Body Scale](http://amzn.to/2spNwIQ)
   * Fitbit
 * Switches
-  * TP-Link HS100
+  * [TP-Link HS100 Smart Switch](http://amzn.to/2sq1bQb)
   * [Sonoff Switches](https://www.itead.cc/sonoff-wifi-wireless-switch.html) running [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant) firmware
 * Media Players
   * [Volumio](https://volumio.org/) Raspberry Pi streaming player for stereo
@@ -27,9 +27,9 @@ Running HA version: 0.44.1
   * MPD - plays radio through speaker on HA Raspberry Pi
   * VLC - for TTS (not implemented yet)
 * Sensors
-  * Wemos D1 Mini (esp8266) nodes with sensors for motion, temps, etc. via MQTT
+  * [Wemos D1 Mini](http://amzn.to/2sydVU8) (esp8266) nodes with sensors for motion, temps, etc. via MQTT
   * Mi Flora plant sensors x9
-  * Z-Wave Motion Sensor (battery powered)
+  * [Z-Wave Motion Sensor](http://amzn.to/2symNta) (battery powered)
 * Other Hardware
   * old iPhones with IPCam app
   * Synology DS413j - NAS
