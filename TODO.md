@@ -1,6 +1,9 @@
 # TODO
 * ~~Fix timelapse shell script~~
   * Did it work? Compile with ffmpeg and see
+  * If it worked, publish timelapse somewhere (Twitter?)
+  * Automate lights so no reflections while shooting the timelapse
+  * Publish timelapse script to github
 * Motion sensors
   * Kitchen & Entry are being flaky (not turning off, why? Could fix with automation)
   * Add another to HA Pi
