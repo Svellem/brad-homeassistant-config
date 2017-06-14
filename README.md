@@ -72,7 +72,8 @@ Running HA version: 0.44.1
   
 
 ## TODO
-* Fix timelapse shell script
+* ~~Fix timelapse shell script~~
+  * Did it work? Compile with ffmpeg and see
 * Motion sensors
   * Kitchen & Entry are being flaky (not turning off, why? Could fix with automation)
   * Add another to HA Pi
@@ -81,7 +82,14 @@ Running HA version: 0.44.1
 * Notifications
   * Close window when forecast says rain
   * Notify if aquarium water goes below temp
-* Add FloorPlan
+* ~~Add FloorPlan~~
+  * Work on studio.svg
+  * Get motion working perfect, then
+  * Add lights
+  * Add switches
+  * Add coffee status
+  * Add temperatures
+  * Add plant status
 * Add Custom UI for brightness sliders on lights (tried before couldn't get it to work..)
 * Control bathroom fan via humidity
 * Hardware - get a thermostat
