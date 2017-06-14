@@ -31,6 +31,7 @@ Running HA version: 0.44.1
   * Mi Flora plant sensors x9
   * [Z-Wave Motion Sensor](http://amzn.to/2symNta) (battery powered)
 * Other Hardware
+  * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
   * old iPhones with IPCam app
   * Synology DS413j - NAS
   
@@ -72,8 +73,20 @@ Running HA version: 0.44.1
 * Notifications
   * Close window when forecast says rain
   * Notify if aquarium water goes below temp
+* Add FloorPlan
+* Add Custom UI for brightness sliders on lights (tried before couldn't get it to work..)
+* Control bathroom fan via humidity
 * Hardware - get a thermostat
 * Swap the LimitlessLED lights from the MiLight bridge to [esp8266 DIY bridge](https://github.com/sidoh/esp8266_milight_hub)
 * TTS
 * Re-setup homebridge
 * Add IR control of projector
+* Aquarium
+  * Convert esp8266 node to Arduino Uno
+  * underwater camera
+  * Add water level sensor
+  * add relays to control pumps
+  * add water leak sensors
+  * program LED light show (night lights, sunset/sunrise transitions)
+* Plants
+  * Add water sensor to kitchen pothos on esp8266 node, move that MiFlora sensor somewhere else
