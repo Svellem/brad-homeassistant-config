@@ -1,0 +1,36 @@
+      name: Floorplan
+      image: /local/custom_ui/floorplan/studio.svg
+      stylesheet: /local/custom_ui/floorplan/floorplan.css
+
+      last_motion_entity: sensor.last_motion
+      last_motion_class: last-motion
+
+      groups:
+        - name: Motion
+          entities:
+            - binary_sensor.front_motion
+            - binary_sensor.kitchen_motion
+            - binary_sensor.closet_motion
+            - binary_sensor.dining_motion
+            - binary_sensor.left_window
+            - binary_sensor.front_door
+            - binary_sensor.ecolink_motion_sensor_sensor_14_0
+          states:
+            - state: 'off'
+              class: 'info-background'
+            - state: 'on'
+              class: 'warning-background'
+          state_transitions:
+            - name: On to off
+              from_state: 'on'
+              to_state: 'off'
+              duration: 10
+        - name: Openings
+          entities:
+            - binary_sensor.left_window
+            - binary_sensor.front_door
+          states: 
+            - state: 'off'
+              class: 'opening-closed'
+            - state: 'on'
+              class: 'opening-open'               

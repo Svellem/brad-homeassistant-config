@@ -15,3 +15,7 @@
       state: on
       rgb_color: [255,0,0]
       brightness: 5    
+    light.dining_floor_lamp:
+      state: on
+      rgb_color: [255,0,0]
+      brightness: 5

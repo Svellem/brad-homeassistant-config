@@ -6,7 +6,6 @@
       state: on
       rgb_color: [255,255,255]
       brightness: 255
-    switch.extra_lamp: on
     light.fridge:
       state: on
       rgb_color: [255,255,255]

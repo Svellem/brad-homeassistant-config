@@ -76,7 +76,7 @@
     # 0 MIN SEQ
     - service: light.turn_on
       data:
-        entity_id: light.floor_lamp, light.globes, light.fridge, light.stove
+        entity_id: light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.stove
         brightness: 255
         rgb_color: [255,255,255]
         transition: 600 # 15 minutes total

@@ -3,6 +3,9 @@
 # 
 - name: Start Movie
   entities:
+    light.dining_floor_lamp:
+      state: off
+      transition: 8
     light.ge_12729_3way_dimmer_switch_level_11_0: off
     light.tradfri_bulb_e12_ws_opal_400lm: off
     light.tradfri_bulb_e12_ws_opal_400lm_2: off

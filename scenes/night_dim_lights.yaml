@@ -2,8 +2,13 @@
 # Night Time Dim Lights
 # 
 - name: Night Dim Lights
-  entities:
-    switch.extra_lamp: on
+  entities: 
+    light.dining_floor_lamp:
+      state: on
+      rgb_color: [255,255,255]
+      brightness: 125
+      transition: 30
+    switch.sink: on
     light.entry:
       state: on
       rgb_color: [255,255,255]

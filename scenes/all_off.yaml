@@ -4,6 +4,7 @@
 # 
 - name: All Lights Off
   entities:
+    light.dining_floor_lamp: off
     switch.sink: off
     light.entry:
       state: off

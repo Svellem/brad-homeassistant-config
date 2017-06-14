@@ -103,6 +103,8 @@
       icon: mdi:lightbulb-on
     switch.work_lamp:
       icon: mdi:lamp
+    light.dining_floor_lamp:
+      icon: mdi:lamp
     light.office_pendant:
       icon: mdi:ceiling-light
     switch.string_lights:

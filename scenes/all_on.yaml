@@ -3,6 +3,7 @@
 # 
 - name: All Lights On
   entities:
+    light.dining_floor_lamp: on
     switch.sink: on
     light.entry:
       state: on

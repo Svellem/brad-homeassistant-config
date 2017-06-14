@@ -27,12 +27,12 @@ wemo:
 #
 # Custom Panels & UI
 #
-#panel_custom:
-#  - name: floorplan
-#    sidebar_title: Floorplan
-#    sidebar_icon: mdi:home
-#    url_path: floorplan
-#    config: !include floorplan.yaml
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include configuration/floorplan.yaml
 
 #
 # Split configuration into separate files
@@ -171,8 +171,8 @@ light:
         version: 5
         port: 8899
         groups:
-#         - number: 1
-#           name: Bedroom Lights
+         - number: 1
+           name: Dining Floor Lamp
          - number: 2
            name: Globes
          - number: 3
@@ -391,6 +391,7 @@ group:
     - light.ge_12729_3way_dimmer_switch_level_12_0
     - light.globes
     - light.floor_lamp
+    - light.dining_floor_lamp
     - switch.aquarium
   Office:
    entities:

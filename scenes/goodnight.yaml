@@ -4,6 +4,9 @@
 # 
 - name: Goodnight
   entities:
+    light.dining_floor_lamp:
+      state: off
+      transition: 1800
     switch.sink: off
     light.entry:
       state: off
