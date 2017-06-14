@@ -17,6 +17,7 @@ plex.conf
 tradfri.conf
 pyozw.sqlite
 .*
+.gitignore
 !/.gitignore
 ip_bans.yaml
 zwcfg_0x014d0166.xml

@@ -1,6 +1,7 @@
 # TODO
 * ~~Fix timelapse shell script~~
-  * Did it work? Compile with ffmpeg and see
+  * ~~Did it work? Compile with ffmpeg and see~~
+  * Captures, ffmpeg command is no longer working for whatever reason
 * Motion sensors
   * Kitchen & Entry are being flaky (not turning off, why? Could fix with automation)
   * Add another to HA Pi

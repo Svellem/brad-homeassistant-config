@@ -198,33 +198,33 @@
 
 - platform: google_travel_time
   name: Current Location to Home
-  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  api_key: !secret googletravel_key
   origin: device_tracker.bradwenner_bradphone
   destination: zone.home
   options:
     mode: transit
 - platform: google_travel_time
   name: Current Location to Studio
-  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
+  api_key: !secret googletravel_key
   origin: device_tracker.bradwenner_bradphone
-  destination: 3403 Piedmont Avenue, Oakland, CA 94606
+  destination: zone.studio
 - platform: google_travel_time
   name: Home to 16th Mission BART
-  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
-  origin: 261 10th Street, Oakland, CA 94607
+  api_key: !secret googletravel_key
+  origin: zone.home
   destination: 16th Street Mission BART, San Francisco, CA
   options:
     mode: transit
 - platform: google_travel_time
   name: Home to Richmond BART
-  api_key: AIzaSyBCkXol_egxEUYbqbM0gIW-VUNT6YI0vxg
-  origin: 261 10th Street, Oakland, CA 94607
+  api_key: !secret googletravel_key
+  origin: zone.home
   destination: Richmond BART, Richmond, CA
   options:
     mode: transit
 
 - platform: darksky
-  api_key: 530472e7a0d81e0dd06e6eb99c413ebd
+  api_key: !secret darksky_api
   monitored_conditions:
       - summary
       - hourly_summary
@@ -338,9 +338,9 @@
 # FILEZ FILEZ FILEZ
 #
 - platform: transmission
-  host: 192.168.0.5
-  username: admin
-  password: admin
+  host: !secret host_synology
+  username: !secret transmission_user
+  password: !secret transmission_pass
   monitored_variables:
     - 'current_status'
     - 'download_speed'
@@ -358,7 +358,7 @@
       unit_of_measurement: 'kB/s'
 # MORE FILEZ
 - platform: sabnzbd
-  host: 192.168.0.5
+  host: !secret host_synology
   api_key: d79b4a1a341893ea1236e4a53c971c4c
   monitored_variables:
     - 'current_status'
