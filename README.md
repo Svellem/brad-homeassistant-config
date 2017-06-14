@@ -47,6 +47,7 @@ Running HA version: 0.44.1
   * If Fitbit logs new sleep but no alarm is set, wake house up
   * Withings weigh in before bed 9pm - 12am, start goodnight sequence
 * Lights
+  * Flux - adjust color temp based on time (currently Tradfri lights only)
   * Sunset - 40m before sunset, turn on evening lights
   * Day - during day turn on day dim lights and throttle Transmission
   * Evening - turn on dim lights if I come home after 10pm
@@ -60,6 +61,7 @@ Running HA version: 0.44.1
   * Dim house lights when Plex starts playing
   * Turn on bathroom lights & lamp when movie pausd
   * Fade house lights up when Plex stops
+  * Turns off bandwidth throttling for Transmission/sabnzbd when I'm away from home
 * Notifications
   * Alarm - send weather summary and image from window camera when alarm goes off
   * Security - send image from front door camera if no one's home and door opens
@@ -70,6 +72,12 @@ Running HA version: 0.44.1
   
 
 ## TODO
+* Fix timelapse shell script
+* Motion sensors
+  * Kitchen & Entry are being flaky (not turning off, why? Could fix with automation)
+  * Add another to HA Pi
+  * Add one for Office to control lights
+  * Add one to RetroPi for living room
 * Notifications
   * Close window when forecast says rain
   * Notify if aquarium water goes below temp
@@ -82,6 +90,7 @@ Running HA version: 0.44.1
 * Re-setup homebridge
 * Add IR control of projector
 * Aquarium
+  * Add motion sensor
   * Convert esp8266 node to Arduino Uno
   * underwater camera
   * Add water level sensor
