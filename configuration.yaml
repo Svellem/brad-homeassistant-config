@@ -337,7 +337,7 @@ group:
       - switch.enerwave_zwnrsm2_switch_17_0_3
   Globes:
     entities:
-    - light.bedroom_lights
+    - light.tradfri_bulb_e26_opal_1000lm
     - light.globes
     - light.floor_lamp
   Overheads:
