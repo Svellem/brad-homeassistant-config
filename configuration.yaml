@@ -10,7 +10,21 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Los_Angeles
   customize: !include configuration/customize.yaml
-
+  customize_glob:
+    plant.*:
+      custom_ui_state_card: custom-ui
+      extra_badge:
+        attribute: moisture
+        unit: "%"
+    light.*:
+      custom_ui_state_card: custom-ui
+      state_card_mode: single-line
+      hide_control: true
+      stretch_slider: true
+      slider_theme:
+        min: 0
+        max: 255
+        off_when_min: true
 #
 # Basic settings
 #
@@ -251,7 +265,6 @@ group:
       - group.LivingRoom
       - group.Office
       - group.Overheads
-      - group.Globes
       - group.Misc
   # CLIMATE TAB
   Climate:
@@ -261,7 +274,6 @@ group:
       - camera.sf_radar
       - group.Weather
       - group.NodeWindow
-      - group.NodeBathroom
       - group.NodeKitchen
       - group.Temperatures
   # MEDIA TAB
@@ -335,11 +347,6 @@ group:
     entities:
       - switch.enerwave_zwnrsm2_switch_17_0_2
       - switch.enerwave_zwnrsm2_switch_17_0_3
-  Globes:
-    entities:
-    - light.tradfri_bulb_e26_opal_1000lm
-    - light.globes
-    - light.floor_lamp
   Overheads:
     entities:
       - light.ge_12729_3way_dimmer_switch_level_11_0
