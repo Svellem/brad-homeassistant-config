@@ -1,3 +1,5 @@
+    sensor.solar_angle:
+      icon: mdi:triangle-outline
     sensor.kitchen_smoke:
       icon: mdi:fire
     sensor.kitchen_humidity:

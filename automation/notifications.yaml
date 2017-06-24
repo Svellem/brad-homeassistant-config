@@ -1,6 +1,25 @@
 #
 # NOTIFICATIONS!!!
 #
+
+#
+# A 9am Notification to...
+# KILL KILL KILL
+#
+- alias: 'Notify - Full Moon'
+  trigger:
+    platform: time
+    at: '09:00:00'
+  condition:
+    platform: state
+    entity_id: sensor.moon
+    state: "Full moon"
+  action:
+    - service: notify.ios_bradwenner_bradphone
+      data:
+        title: "Hail Satan"
+        message: "Tonight is the Full Moon"
+
 # Morning Notifications
 # Same Trigger as Alarm, but only if I am home
 - alias: 'Notify - Morning Notifications for Brad'
@@ -34,7 +53,7 @@
     # IF SO, PROCEED
     - service: notify.ios_bradwenner_bradphone
       data:
-        title: "{{ states.sensor.date.state }}"
+        title: "{{ states.sensor.friendly_date.state }}"
         message: "{{ states.sensor.dark_sky_summary.state }} and {{ states.sensor.dark_sky_temperature.state }}°F out today. Chance of Rain is {{ states.sensor.dark_sky_precip_probability.state }}%."
         data:
           attachment:
@@ -70,7 +89,7 @@
 - alias: 'Notify - Evening Coffee Reminder'
   trigger:
     platform: time
-    after: '22:30:00'
+    at: '22:30:00'
   condition:
     - condition: state
       entity_id: input_boolean.bradhome

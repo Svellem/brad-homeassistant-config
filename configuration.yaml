@@ -9,13 +9,8 @@ homeassistant:
   elevation: 7
   unit_system: imperial
   time_zone: America/Los_Angeles
-  customize: !include configuration/customize.yaml
+  customize: !include config/customize.yaml
   customize_glob:
-    plant.*:
-      custom_ui_state_card: custom-ui
-      extra_badge:
-        attribute: moisture
-        unit: "%"
     light.*:
       custom_ui_state_card: custom-ui
       state_card_mode: single-line
@@ -46,22 +41,23 @@ panel_custom:
     sidebar_title: Floorplan
     sidebar_icon: mdi:home
     url_path: floorplan
-    config: !include configuration/floorplan.yaml
+    config: !include config/floorplan.yaml
 
 #
 # Split configuration into separate files
 #
+zone: !include config/zones.yaml
 scene: !include_dir_merge_list scenes
-input_boolean: !include configuration/input_boolean.yaml
-input_slider: !include configuration/input_slider.yaml
-sensor: !include configuration/sensors.yaml
-binary_sensor: !include configuration/binary_sensors.yaml
-switch: !include configuration/switches.yaml
+input_boolean: !include config/input_boolean.yaml
+input_slider: !include config/input_slider.yaml
+sensor: !include config/sensors.yaml
+binary_sensor: !include config/binary_sensors.yaml
+switch: !include config/switches.yaml
 automation: !include_dir_merge_list automation
-logbook: !include configuration/logbook.yaml
-shell_command: !include configuration/shell.yaml
+logbook: !include config/logbook.yaml
+shell_command: !include config/shell.yaml
 ios:
-plant: !include configuration/plants.yaml
+plant: !include config/plants.yaml
 
 #
 # Tracking with: OwnTracks/HA app, Bluetooth, TP-Link
@@ -79,6 +75,12 @@ device_tracker:
     track_new_devices: false
     consider_home: 300
 
+#
+# Turn this on for Alexa
+#
+emulated_hue:
+  type: alexa
+  listen_port: 8300
 #
 # Set up Additional Platforms
 #
@@ -128,29 +130,6 @@ mqtt:
     retain: true
 
 #
-# Define Zones
-#
-zone:
-    name: Home
-    latitude: !secret home_latitude
-    longitude: !secret home_longitude
-    radius: 75
-    icon: mdi:home
-zone 2:
-    name: Studio
-    latitude: !secret studio_latitude
-    longitude: !secret studio_longitude
-    radius: 100
-    icon: mdi:castle
-zone 3:
-    name: SF
-    latitude: 37.760929
-    longitude: -122.447416
-    radius: 6800
-    icon: mdi:bridge
-    passive: true
-
-#
 # Security Cameras
 #
 camera:
@@ -193,16 +172,16 @@ light:
            name: Floor Lamp
          - number: 4
            name: Stove
-      - host: 192.168.0.26
-        version: 5
-        port: 8899
-        groups:
-         - number: 1
-           name: Fridge
-         - number: 2
-           name: Entry
-         - number: 3
-           name: Office Pendant
+#      - host: 192.168.0.26
+#        version: 5
+#        port: 8899
+#        groups:
+#         - number: 1
+#           name: Fridge
+#         - number: 2
+#           name: Entry
+#         - number: 3
+#           name: Office Pendant
 
 # EXPERIMENTAL ESP BULB
   - platform: mqtt_json
@@ -282,7 +261,7 @@ group:
     icon: mdi:filmstrip
     entities:
       - group.Radio
-      - media_player.roku_3__4124cg078650
+      - media_player.roku_4124cg078650
       - group.Speakers
       - group.Downloads
   # MONITORING TAB
@@ -405,6 +384,13 @@ group:
     - switch.office
     - light.office_pendant
     - switch.work_lamp
+  Grocery_Zone:
+    name: Near Grocery
+    entities:
+    - zone.whole_foods
+    - zone.sprouts_market
+    - zone.grocery_outlet
+    - zone.lucky_grocery
   LivingRoomLamps:
     name: Living Room
     entities:
@@ -510,7 +496,10 @@ group:
       - switch.radio_kzsc
   Weather:
     entities:
+      - sensor.friendly_date
       - sun.sun
+      - sensor.solar_angle
+      - sensor.moon
       - sensor.dark_sky_temperature
       - sensor.dark_sky_summary
       - sensor.dark_sky_daily_high_temperature

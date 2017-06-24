@@ -43,7 +43,7 @@
 - alias: Aquarium Goodnight
   trigger:
     platform: time
-    after: "22:00:00"
+    at: "22:00:00"
   action:
     service: homeassistant.turn_off
     entity_id: switch.aquarium

@@ -32,6 +32,7 @@
       state: off
       transition: 8
     switch.aquarium: off
+    switch.edison_pendants: off
     light.office_pendant:
       state: off
       transition: 8
@@ -62,6 +63,10 @@
       state: on
       transition: 2
       brightness: 50
+    light.dining_floor_lamp:
+      state: on
+      transition: 2
+      brightness: 50      
 
 # If player goes from paused to playing, do pause movie in reverse
 - name: Movie Resumed
@@ -87,3 +92,6 @@
     light.tradfri_bulb_e12_ws_opal_400lm_2: off
     switch.string_lights: off
     switch.sink: off
+    light.dining_floor_lamp:
+      state: off
+      transition: 2

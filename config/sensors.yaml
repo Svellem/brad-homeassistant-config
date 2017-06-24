@@ -235,6 +235,14 @@
       - temperature_max
       - temperature_min
 
+# Sun elevation
+- platform: template
+  sensors:
+    solar_angle:
+      value_template: '{{ states.sun.sun.attributes.elevation }}'
+      friendly_name: 'Sun angle'
+      unit_of_measurement: 'degrees'
+
 - platform: time_date
   display_options:
     - 'time'
@@ -402,3 +410,15 @@
     - type: memory_use_percent
     - type: processor_use
     - type: since_last_boot
+
+- platform: moon
+
+#
+# Friendly Date
+# Thursday June 10th, 2017
+#
+- platform: template
+  sensors:
+    friendly_date:
+      friendly_name: "Today's Date"
+      value_template: "{{ now().strftime('%A %B %e, %Y') }}"

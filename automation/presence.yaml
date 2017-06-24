@@ -45,8 +45,6 @@
       after: sunset
     - condition: sun
       after: sunrise
-#    - condition: time
-#      before: '22:00:00'
   action:
     - service: scene.turn_on
       entity_id: scene.night_dim_lights
