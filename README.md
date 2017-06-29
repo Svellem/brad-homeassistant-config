@@ -70,5 +70,6 @@ Running HA version: 0.44.1
   * Reminder - Full moon 
   * System - Notify if disk use gets high
   * System - Notify if new HA version available
+  * System - Notify when critical smart home device goes offline for more than 5 minutes
 * Timelapse - record JPEGs of sunrise/sunset
  
