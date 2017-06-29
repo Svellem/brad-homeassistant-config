@@ -3,7 +3,7 @@
 
 My HA is an Hassbian install on a Raspberry Pi 3 with an Aeotec Z-Wave stick.
 
-Running HA version: 0.44.1
+Running HA version: 0.47.1
 
 ## Hardware
 * Lights
