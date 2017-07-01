@@ -1,7 +1,7 @@
 # Home Assistant Configuration
 [Home Assistant](http://homeassistant.io) configuration files.
 
-My HA is an Hassbian install on a Raspberry Pi 3 with an Aeotec Z-Wave stick.
+My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbee USB stick](http://amzn.to/2u8XVGm).
 
 Running HA version: 0.47.1
 
