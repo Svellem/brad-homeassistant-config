@@ -3,6 +3,36 @@
 #
 
 #
+# Alert: Critical Device Offline
+# Condition: Once an Hour
+#
+- alias: 'Notify - Critical Device Offline'
+  trigger:
+    - platform: state
+      entity_id: sensor.ikeatradfri_online, sensor.milighthub_online, sensor.synology_online, sensor.espmilight_online
+      from: 'Online'
+      to: 'Offline'
+      for:
+        minutes: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: >
+          {% if states.automation.notify__critical_device_offline.last_triggered is not none %}
+            {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.notify__critical_device_offline.attributes.last_triggered) | int > 3600 %} true {% else %} false
+            {% endif %}
+          {% else %}
+          false
+          {% endif %}
+  action:
+    service: notify.ios_bradwenner_bradphone
+    data:
+      title: "System Message"
+      message: "{{trigger.to_state.attributes.friendly_name}} has gone offline. Check status to restore functionality."
+
+
+#
 # A 9am Notification to...
 # KILL KILL KILL
 #
@@ -11,9 +41,9 @@
     platform: time
     at: '09:00:00'
   condition:
-    platform: state
+    condition: state
     entity_id: sensor.moon
-    state: "Full moon"
+    state: 'Full moon'
   action:
     - service: notify.ios_bradwenner_bradphone
       data:
@@ -50,11 +80,15 @@
     - condition: state
       entity_id: input_boolean.bradhome
       state: 'on'
+    # ONLY IF ALARM IS ON
+    - condition: state
+      entity_id: automation.alarm_clock
+      state: 'off'
     # IF SO, PROCEED
     - service: notify.ios_bradwenner_bradphone
       data:
         title: "{{ states.sensor.friendly_date.state }}"
-        message: "{{ states.sensor.dark_sky_summary.state }} and {{ states.sensor.dark_sky_temperature.state }}°F out today. Chance of Rain is {{ states.sensor.dark_sky_precip_probability.state }}%."
+        message: "{{ states.sensor.dark_sky_summary.state }} and {{ states.sensor.dark_sky_temperature.state }}°F out today. \n Chance of Rain is {{ states.sensor.dark_sky_precip_probability.state }}%. \n Moon is {{ states.sensor.moon.state }}."
         data:
           attachment:
             url: !secret camera_window_jpg

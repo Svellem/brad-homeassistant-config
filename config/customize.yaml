@@ -1,3 +1,22 @@
+    zone.home:
+      beacon:
+        uuid: FDA50693-A4E2-4FB1-AFCF-C6EB07647825
+        major: 10004
+        minor: 5379
+    sensor.ikeatradfri_online:
+      icon: mdi:lightbulb-outline
+    sensor.synology_online:
+      icon: mdi:cube-outline
+    sensor.espmilight_online:
+      icon: mdi:chip
+    sensor.milighthub_online:
+      icon: mdi:lightbulb-outline
+    sensor.windowcam_online:
+      icon: mdi:camcorder
+    sensor.frontdoorcam_online:
+      icon: mdi:camcorder
+    sensor.friendly_date:
+      icon: mdi:calendar
     sensor.solar_angle:
       icon: mdi:triangle-outline
     sensor.kitchen_smoke:
@@ -30,12 +49,14 @@
       friendly_name: Small Philodendron
     plant.window_spider_plant:
       friendly_name: Window Spider Plant
-    switch.enerwave_zwnrsm2_switch_17_0_3:
+    switch.bathroom_light:
       friendly_name: Bath Light
       icon: mdi:lightbulb
-    switch.enerwave_zwnrsm2_switch_17_0_2:
+      emulated_hue: true
+    switch.bathroom_fan:
       friendly_name: Bath Fan
       icon: mdi:fan
+      emulated_hue: true
     plant.giant_pothos:
       friendly_name: Giant Pothos
     sensor.giant_pothos_temperature:
@@ -83,7 +104,7 @@
       friendly_name: Window Light Intensity
     sensor.last_motion:
       icon: mdi:map-marker
-    binary_sensor.ecolink_motion_sensor_sensor_14_0:
+    binary_sensor.bathroom_motion:
       friendly_name: Bathroom Motion
       device_class: motion
     binary_sensor.table_motion:
@@ -91,31 +112,42 @@
       device_class: motion
     light.tradfri_bulb_e26_opal_1000lm:
       friendly_name: Bedroom Light
+      emulated_hue: true
+      emulated_hue_name: Bedroom
     light.tradfri_bulb_e12_ws_opal_400lm_2:
       friendly_name: Closet Lamp 1
     light.tradfri_bulb_e12_ws_opal_400lm:
       friendly_name: Closet Lamp 2
-    light.ge_12729_3way_dimmer_switch_level_11_0:
+    light.front_overheads:
       friendly_name: Front Lights
-    light.ge_12729_3way_dimmer_switch_level_12_0:
+    light.back_overheads:
       friendly_name: Back Lights
     switch.edison_pendants:
       icon: mdi:ceiling-light
+      emulated_hue: true
     switch.sink:
       icon: mdi:lightbulb-on
+      emulated_hue: True
     switch.work_lamp:
       icon: mdi:lamp
+      emulated_hue: true
     light.dining_floor_lamp:
       icon: mdi:lamp
+      emulated_hue: true
     light.office_pendant:
       icon: mdi:ceiling-light
+      emulated_hue: true
     switch.string_lights:
       icon: mdi:led-on
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0:
-      friendly_name: Kitchen Wall Switch
+      emulated_hue: true
+    switch.kitchen_switch:
+      friendly_name: Kitchen Switch
       icon: mdi:toggle-switch
+      emulated_hue: true
+      emulated_hue_name: Kitchen
     switch.bedroom_fan:
       icon: mdi:fan
+      emulated_hue: True
     sensor.air_pressure:
       icon: mdi:gauge
     sensor.carbon_monoxide:
@@ -164,6 +196,8 @@
       icon: mdi:speaker
     switch.radio_npr:
       icon: mdi:radio
+      emulated_hue: true
+      emulated_hue_name: NPR
     switch.radio_kalx:
       icon: mdi:school
     switch.radio_jazz:
@@ -181,12 +215,15 @@
     switch.aquarium:
       friendly_name: Aquarium Light
       icon: mdi:cube
+      emulated_hue: true
+      emulated_hue_name: Aquarium
     group.Overheads:
       icon: mdi:lightbulb
-    switch.closet_lights:
-      icon: mdi:lightbulb
+      emulated_hue: true
     group.LivingRoomLamps:
       icon: mdi:lightbulb
+      emulated_hue: true
+      emulated_hue_name: Globes
     switch.office:
       friendly_name: Office Switch
       icon: mdi:lightbulb
@@ -196,5 +233,40 @@
       icon: mdi:alarm
     light.floor_lamp:
       icon: mdi:alarm-light
+      emulated_hue: true
+    light.stove:
+      emulated_hue: True
     light.fridge:
       icon: mdi:ceiling-light
+      emulated_hue: true
+
+# Just for Alexa
+    group.Bathroom:
+      emulated_hue: true
+    group.LivingRoom:
+      emulated_hue: true
+    group.Office:
+      emulated_hue: true
+    scene.all_lights_off:
+      emulated_hue: true
+      emulated_hue_name: Kill Switch
+    scene.all_lights_on:
+      emulated_hue: true
+      emulated_hue_name: All Lights
+    scene.day_dim_lights:
+      emulated_hue: true
+    scene.evening_bright_lights:
+      emulated_hue: true
+      emulated_hue_name: Evening Lights
+    scene.goodnight:
+      emulated_hue: true
+      emulated_hue_name: Goodnight Sequence
+    scene.night_dim_lights:
+      emulated_hue: true
+      emulated_hue_name: Dim Lights
+    scene.night_light:
+      emulated_hue: true
+      emulated_hue_name: Night Light
+    switch.coffeemaker:
+      emulated_hue: true
+      emulated_hue_name: Coffee

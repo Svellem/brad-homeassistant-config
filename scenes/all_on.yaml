@@ -22,19 +22,19 @@
       state: on
       rgb_color: [255,255,255]
       brightness: 255    
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    switch.kitchen_lights: on
     switch.office: on
     light.floor_lamp:
       state: on
       rgb_color: [255,255,255]
       brightness: 255
-    light.ge_12729_3way_dimmer_switch_level_11_0: on
+    light.back_overheads: on
     switch.string_lights: on
-    light.ge_12729_3way_dimmer_switch_level_12_0: on
+    light.front_overheads: on
     light.globes:
       state: on
       rgb_color: [255,255,255]
       brightness: 255
     switch.work_lamp: on
-    switch.enerwave_zwnrsm2_switch_17_0_3: on
+    switch.bathroom_light: on
 

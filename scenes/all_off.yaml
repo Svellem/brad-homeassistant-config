@@ -19,14 +19,13 @@
     light.stove:
       state: off
       transition: 10
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: off
     switch.office: off
     light.floor_lamp:
       state: off
       transition: 10
-    light.ge_12729_3way_dimmer_switch_level_12_0: off
+    light.back_overheads: off
     switch.edison_pendants: off
-    light.ge_12729_3way_dimmer_switch_level_11_0: off
+    light.front_overheads: off
     light.globes:
       state: off
     switch.transmission_turtle_mode: off
@@ -36,5 +35,5 @@
     switch.mpd_pi: off
     switch.string_lights: off
     switch.kitchen_lights: off
-    switch.enerwave_zwnrsm2_switch_17_0_3: off
+    switch.bathroom_light: off
     switch.work_lamp: off

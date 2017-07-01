@@ -19,7 +19,7 @@
       rgb_color: [255,255,255]
       brightness: 200
       transition: 120
-    light.ge_12729_3way_dimmer_switch_level_11_0:
+    light.front_overheads:
       state: on
       brightness: 75
     light.fridge:
@@ -32,7 +32,7 @@
       rgb_color: [255,255,255]
       brightness: 200
       transition: 120
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    switch.switch.kitchen_lights: on
     light.globes:
       state: on
       rgb_color: [255,255,255]
@@ -44,7 +44,7 @@
       rgb_color: [255,255,255]
       brightness: 200
       transition: 120
-    light.ge_12729_3way_dimmer_switch_level_12_0:
+    light.back_overheads:
       state: on
       brightness: 65  
     switch.string_lights: on

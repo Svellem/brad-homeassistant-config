@@ -35,3 +35,12 @@
       - automation.publish_window_light_level_to_thingspeak
       - automation.publish_plants_to_thingspeak
       - binary_sensor.ecolink_pir_motion_sensor_sensor_14_0
+      - binary_sensor.dining_motion
+      - binary_sensor.entry_motion
+      - binary_sensor.kitchen_motion
+      - binary_sensor.closet_motion
+      - sensor.last_motion
+      - light.tradfri_bulb_e12_ws_opal_400lm
+      - light.tradfri_bulb_e12_ws_opal_400lm_2
+    domains:
+      - zwave

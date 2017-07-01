@@ -20,15 +20,19 @@
     light.stove:
       state: off
       transition: 1800
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: off
+    switch.kitchen_lights: on
     switch.office: off
     switch.work_lamp: off
     switch.edison_pendants: off
     light.floor_lamp:
       state: off
       transition: 1800
-    light.ge_12729_3way_dimmer_switch_level_12_0: off
-    light.ge_12729_3way_dimmer_switch_level_11_0: off
+    light.back_overheads:
+      state: off
+      transition: 1800
+    light.front_overheads:
+      state: off
+      transition: 1800
     light.tradfri_bulb_e26_opal_1000lm: off
     light.globes:
       state: off

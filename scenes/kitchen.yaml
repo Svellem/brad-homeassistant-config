@@ -1,6 +1,6 @@
 - name: Kitchen On
   entities:
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0: on
+    switch.kitchen_lights: on
     switch.sink: on
     light.stove:
       state: on

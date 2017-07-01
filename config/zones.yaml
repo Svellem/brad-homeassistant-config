@@ -23,6 +23,18 @@
 # FUTURE: When near grocery store, send groery list, webcam of fridge photo, etc.
 #
 
+- name: Howden Market
+  latitude: 37.8197876
+  longitude: -122.2936726
+  radius: 50
+  icon: mdi:cart-outline
+
+- name: KP Asian Market
+  latitude: 37.816567
+  longitude: -122.2670651
+  radius: 50
+  icon: mdi:cart-outline
+
 - name: Whole Foods
   latitude: 37.8128521
   longitude: -122.2609735

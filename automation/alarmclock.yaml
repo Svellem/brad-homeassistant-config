@@ -79,7 +79,7 @@
         entity_id: light.entry, light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.stove
         brightness: 255
         rgb_color: [255,255,255]
-        transition: 600 # 15 minutes total
+        transition: 600 # 10 minutes total
 
     #
     # Make sure Transmission turtle mode is on to free bandwidth for radio
@@ -103,7 +103,7 @@
     - service: input_slider.select_value
       data_template:
         entity_id: input_slider.radiovolume
-        value: 20
+        value: 30
     - delay: 00:00:45
     # turn radio on
     - service: switch.turn_on
@@ -148,6 +148,6 @@
     # ~10 (??)  MINUTES PAST WHEN ALARM WAS SET
     # Turn on closet/kitchen/bathroom
     - service: switch.turn_on
-      entity_id: switch.sink, switch.enerwave_zwnrsm2_switch_17_0_3, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
+      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
     - service: light.turn_on
       entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e26_opal_1000lm

@@ -74,6 +74,15 @@ device_tracker:
     password: !secret router_pass
     track_new_devices: false
     consider_home: 300
+# for smart home devices
+  - platform: ping
+    hosts:
+      ikeatradfri: 192.168.0.9
+      milighthub: 192.168.0.25
+      windowcam: 192.168.0.51
+      synology: 192.168.0.5
+      frontdoorcam: 192.168.0.50
+      espmilight: 192.168.0.20
 
 #
 # Turn this on for Alexa
@@ -81,6 +90,8 @@ device_tracker:
 emulated_hue:
   type: alexa
   listen_port: 8300
+  expose_by_default: false
+
 #
 # Set up Additional Platforms
 #
@@ -160,6 +171,12 @@ camera:
 light:
   - platform: limitlessled
     bridges:
+      - host: 192.168.0.20
+        version: 5
+        port: 8001
+        groups:
+         - number: 1
+           name: Fridge
       - host: 192.168.0.25
         version: 5
         port: 8899
@@ -172,6 +189,7 @@ light:
            name: Floor Lamp
          - number: 4
            name: Stove
+
 #      - host: 192.168.0.26
 #        version: 5
 #        port: 8899
@@ -195,26 +213,30 @@ light:
     effect: false
     optimistic: false
 
+zigbee:
+  device: /dev/ttyUSB1
+
 zwave:
   usb_path: /dev/ttyUSB0
+  new_entity_ids: true
   config_path: /usr/local/lib/python3.4/dist-packages/python_openzwave/ozw_config
   polling_interval: 30000
   device_config:
-    light.ge_12729_3way_dimmer_switch_level_11_0:
+    light.back_overheads:
       refresh_value: true
       delay: 5
       polling_intensity: 1
-    light.ge_12729_3way_dimmer_switch_level_12_0:
+    light.front_overheads:
       refresh_value: true
       delay: 5
       polling_intensity: 1
-    switch.enerwave_zwnrsm2_switch_17_0_2:
+    switch.bathroom_light:
       refresh_value: true
       polling_intensity: 1
-    switch.enerwave_zwnrsm2_switch_17_0_3:
+    switch.bathroom_fan:
       refresh_value: true
       polling_intensity: 1
-    switch.ge_12727_inwall_smart_switch_toggle_switch_13_0:
+    switch.kitchen_lights:
       refresh_value: true
       polling_intensity: 1
 
@@ -252,6 +274,7 @@ group:
     entities:
       - camera.sf_radar
       - group.Weather
+      - group.Space
       - group.NodeWindow
       - group.NodeKitchen
       - group.Temperatures
@@ -261,7 +284,7 @@ group:
     icon: mdi:filmstrip
     entities:
       - group.Radio
-      - media_player.roku_4124cg078650
+      - media_player.roku_3__4124cg078650
       - group.Speakers
       - group.Downloads
   # MONITORING TAB
@@ -288,7 +311,7 @@ group:
     entities:
       - group.SystemOptions
       - group.Battery
-      - group.Synology
+      - group.Devices
       - group.Pi
 
 # TRACKED USERS
@@ -324,12 +347,22 @@ group:
   Bathroom:
     name: Bathroom
     entities:
-      - switch.enerwave_zwnrsm2_switch_17_0_2
-      - switch.enerwave_zwnrsm2_switch_17_0_3
+      - switch.bathroom_light
+      - switch.bathroom_fan
+  Devices:
+    name: Devices
+    entities:
+      - sensor.synology_online
+      - sensor.synology_storage_free
+      - sensor.ikeatradfri_online
+      - sensor.milighthub_online
+      - sensor.espmilight_online
+      - sensor.windowcam_online
+      - sensor.frontdoorcam_online
   Overheads:
     entities:
-      - light.ge_12729_3way_dimmer_switch_level_11_0
-      - light.ge_12729_3way_dimmer_switch_level_12_0
+      - light.front_overheads
+      - light.back_overheads
   Plants:
     entities:
       - plant.rubber_plant
@@ -364,7 +397,7 @@ group:
   Kitchen:
     control: hidden
     entities:
-    - switch.ge_12727_inwall_smart_switch_toggle_switch_13_0
+    - switch.kitchen_lights
     - switch.edison_pendants
     - switch.string_lights
     - light.stove
@@ -374,7 +407,7 @@ group:
   LivingRoom:
     name: Living Room
     entities:
-    - light.ge_12729_3way_dimmer_switch_level_12_0
+    - light.back_overheads
     - light.globes
     - light.floor_lamp
     - light.dining_floor_lamp
@@ -404,6 +437,10 @@ group:
     - scene.night_dim_lights
     - scene.all_lights_off
     - scene.all_lights_on
+  Space:
+    - sun.sun
+    - sensor.solar_angle
+    - sensor.moon
   Speakers:
     entities:
     - switch.mpd_pi
@@ -412,11 +449,6 @@ group:
     - switch.volumio
     - input_slider.stereovolume
     - sensor.nowplaying_volumio
-  Synology:
-    name: NAS
-    entities: 
-    - sensor.synology_storage_free
-    - sensor.synology_storage
   SystemOptions:
     name: Home Options
     entities:
@@ -429,7 +461,7 @@ group:
     - sensor.last_motion
     - binary_sensor.entry_motion
     - binary_sensor.closet_motion
-    - binary_sensor.ecolink_motion_sensor_sensor_14_0
+    - binary_sensor.bathroom_motion
     - binary_sensor.kitchen_motion
     - binary_sensor.dining_motion
   Openings:
@@ -437,27 +469,17 @@ group:
     - binary_sensor.front_door
     - binary_sensor.crawl_space_door
     - binary_sensor.left_window
-  NodeBathroom:
-    entities:
-    - sensor.bathroom_temperature
-    - sensor.bathroom_humidity
-    - binary_sensor.bathroom_motion
   NodeWindow:
     entities:
-    - binary_sensor.far_window_motion
-    - binary_sensor.left_window
     - sensor.window_air_temp
     - sensor.humidity
     - sensor.carbon_monoxide
     - sensor.air_pressure
-    - sensor.window_spider_plant_light_intensity
   NodeKitchen:
     entities:
     - sensor.kitchen_smoke
     - sensor.kitchen_temperature
     - sensor.kitchen_humidity
-    - binary_sensor.kitchen_motion
-    - binary_sensor.crawl_space_door
   Aquarium:
     entities:
     - switch.aquarium
@@ -497,22 +519,19 @@ group:
   Weather:
     entities:
       - sensor.friendly_date
-      - sun.sun
-      - sensor.solar_angle
-      - sensor.moon
       - sensor.dark_sky_temperature
       - sensor.dark_sky_summary
       - sensor.dark_sky_daily_high_temperature
       - sensor.dark_sky_daily_low_temperature
       - sensor.dark_sky_precip_probability 
       - sensor.dark_sky_cloud_coverage
+      - sensor.yr_fog
   Temperatures:
     entities:
       - sensor.front_temperature
       - sensor.giant_pothos_temperature
       - sensor.hanging_red_pothos_temperature
       - sensor.kitchen_pothos_temperature
-      - sensor.linear_unknown_type5442_id5431_temperature_15_1
       - sensor.window_air_temp
       - sensor.bathroom_temperature
   TravelTimes:
