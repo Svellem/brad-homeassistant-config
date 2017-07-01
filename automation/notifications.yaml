@@ -82,8 +82,8 @@
                   - thu
                   - fri
           - condition: state
-              entity_id: input_boolean.alarmweekday
-              state: 'off'
+            entity_id: input_boolean.alarmweekday
+            state: 'off'
   action:
     - service: notify.ios_bradwenner_bradphone
       data:
