@@ -31,6 +31,7 @@ Running HA version: 0.47.1
   * Mi Flora plant sensors x9
   * [Z-Wave Motion Sensor](http://amzn.to/2symNta) (battery powered)
 * Other Hardware
+  * [Echo Dot](http://amzn.to/2ubdoVC) Voice control
   * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
   * old iPhones with IPCam app
   * Synology DS413j - NAS
@@ -66,7 +67,9 @@ Running HA version: 0.47.1
   * Alarm - send weather summary and image from window camera when alarm goes off
   * Security - send image from front door camera if no one's home and door opens
   * Reminder - If I'm home at 10:30pm and coffee isn't ready but alarm is set, remind me
+  * Reminder - Full moon 
   * System - Notify if disk use gets high
   * System - Notify if new HA version available
+  * System - Notify when critical smart home device goes offline for more than 5 minutes
 * Timelapse - record JPEGs of sunrise/sunset
  
