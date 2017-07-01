@@ -29,7 +29,7 @@
     service: notify.ios_bradwenner_bradphone
     data:
       title: "System Message"
-      message: "{{trigger.to_state.attributes.friendly_name}} has gone offline. Check status to restore functionality."
+      message: "{{ trigger.to_state.attributes.friendly_name }} has gone offline. Check status to restore functionality."
 
 
 #

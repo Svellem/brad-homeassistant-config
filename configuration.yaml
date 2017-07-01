@@ -176,12 +176,6 @@ light:
         port: 8001
         groups:
          - number: 1
-           name: Fridge
-      - host: 192.168.0.25
-        version: 5
-        port: 8899
-        groups:
-         - number: 1
            name: Dining Floor Lamp
          - number: 2
            name: Globes
@@ -189,17 +183,16 @@ light:
            name: Floor Lamp
          - number: 4
            name: Stove
-
-#      - host: 192.168.0.26
-#        version: 5
-#        port: 8899
-#        groups:
-#         - number: 1
-#           name: Fridge
-#         - number: 2
-#           name: Entry
-#         - number: 3
-#           name: Office Pendant
+      - host: 192.168.0.20
+        version: 5
+        port: 8002
+        groups:
+         - number: 1
+           name: Fridge
+         - number: 2
+           name: Entry
+         - number: 3
+           name: Office Pendant
 
 # EXPERIMENTAL ESP BULB
   - platform: mqtt_json
