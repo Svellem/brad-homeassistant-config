@@ -33,13 +33,14 @@
 
 
 #
-# A 9am Notification to...
+# One hour after sunset...
 # KILL KILL KILL
 #
 - alias: 'Notify - Full Moon'
   trigger:
-    platform: time
-    at: '09:00:00'
+    platform: sun
+    event: sunset
+    offset: "01:00:00"
   condition:
     condition: state
     entity_id: sensor.moon
@@ -48,7 +49,7 @@
     - service: notify.ios_bradwenner_bradphone
       data:
         title: "Hail Satan"
-        message: "Tonight is the Full Moon"
+        message: "Rejoice, the full moon is upon us."
 
 # Morning Notifications
 # Same Trigger as Alarm, but only if I am home
@@ -58,33 +59,32 @@
     # delay is in seconds (600=10 minutes)
     value_template: '{{ states.sensor.time.state  ==  states.sensor.alarm_time.state  }}'
   condition:
-    condition: or
+    condition: and
     conditions:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.alarmweekday
-            state: 'on'
-          - condition: time
-            weekday:
-              - mon
-              - tue
-              - wed
-              - thu
-              - fri
       - condition: state
-        entity_id: input_boolean.alarmweekday
-        state: 'off'
+        entity_id: input_boolean.bradhome
+        state: 'on'
+      - condition: state
+        entity_id: automation.alarm_clock
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.alarmweekday
+                state: 'on'
+              - condition: time
+                weekday:
+                  - mon
+                  - tue
+                  - wed
+                  - thu
+                  - fri
+          - condition: state
+              entity_id: input_boolean.alarmweekday
+              state: 'off'
   action:
-    # ONLY IF I'M HOME
-    - condition: state
-      entity_id: input_boolean.bradhome
-      state: 'on'
-    # ONLY IF ALARM IS ON
-    - condition: state
-      entity_id: automation.alarm_clock
-      state: 'off'
-    # IF SO, PROCEED
     - service: notify.ios_bradwenner_bradphone
       data:
         title: "{{ states.sensor.friendly_date.state }}"

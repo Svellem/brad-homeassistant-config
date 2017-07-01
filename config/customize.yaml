@@ -140,7 +140,7 @@
     switch.string_lights:
       icon: mdi:led-on
       emulated_hue: true
-    switch.kitchen_switch:
+    switch.kitchen_lights:
       friendly_name: Kitchen Switch
       icon: mdi:toggle-switch
       emulated_hue: true

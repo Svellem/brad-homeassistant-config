@@ -32,7 +32,7 @@
       rgb_color: [255,255,255]
       brightness: 200
       transition: 120
-    switch.switch.kitchen_lights: on
+    switch.kitchen_lights: on
     light.globes:
       state: on
       rgb_color: [255,255,255]
