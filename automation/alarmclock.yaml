@@ -6,6 +6,7 @@
 # Not sure if better way to do this, but use same trigger/conditions as alarm clock
 # Coffee condition is in the action
 # If all true (same conditions as alarm) it runs action with condition for coffee
+
 - alias: 'Make Coffee?'
   trigger:
     platform: template
@@ -87,6 +88,13 @@
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
 
+    # Turn on Commute Time panel in default_view
+    - service: group.set_visibility
+      entity_id: group.traveltimes
+      data:
+        visible: True
+
+
     # Start fading in bedroom lights
     # Tradfri doesn't do transitions yet, so currently calling it in dim here
     - service: light.turn_on
@@ -151,3 +159,13 @@
       entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
     - service: light.turn_on
       entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e26_opal_1000lm
+
+#
+# 3 hours after alarm goes off, remove travel times for default_view
+#
+    - delay: 03:00:00
+    # Turn on Commute Time panel in default_view
+    - service: group.set_visibility
+      entity_id: group.traveltimes
+      data:
+        visible: False

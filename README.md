@@ -5,6 +5,8 @@ My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbe
 
 Running HA version: 0.47.1
 
+[![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
+
 ## Hardware
 * Lights
   * LimitlessLED - [Milight RGB Bulbs](http://amzn.to/2slpT2W) using [MiLight WiFi Bridge](http://amzn.to/2roEQ59) x2

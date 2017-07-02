@@ -9,4 +9,4 @@
   alarm_sound_doorchime: 'play --volume .25 /home/homeassistant/.homeassistant/media/sounds_alarm/door_open.wav'
   alarm_sound_disarmed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_disarmed.mp3'
   alarm_sound_armed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_being_armed.mp3'
-
+  alarm_sound_pending: 'play --volume .15 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_pending_beep.wav'

@@ -44,6 +44,17 @@ homeassistant:
         - sensor.frontdoorcam_online
     group.openingsbadges:
       state_card_mode: badges
+    group.transmissionbadges:
+      state_card_mode: badges
+      badges_list:
+        - sensor.transmission_down_speed_kbps
+        - sensor.transmission_up_speed_kbps      
+    group.sabnzbdbadges:
+      state_card_mode: badges
+      badges_list:
+      - sensor.sabnzbd_speed
+      - sensor.sabnzbd_left
+      - sensor.sabnzbd_queue
     group.temperaturebadges:
       state_card_mode: badges
     group.environmentbadges:
@@ -304,7 +315,7 @@ group:
       - group.AlarmClock
       - camera.car_location
       - group.Alarm
-#      - group.traveltimes
+      - group.traveltimes
 #      - camera.east_bay
   Lights:
     view: yes
@@ -609,10 +620,15 @@ group:
     entities:
       - switch.transmission_turtle_mode
       - sensor.transmission_status
+      - group.transmissionbadges
+      - sensor.sabnzbd_status
+      - group.sabnzbdbadges
+  transmissionbadges:
+    entities:
       - sensor.transmission_down_speed_kbps
       - sensor.transmission_up_speed_kbps
-      - sensor.sabnzbd_status
+  sabnzbdbadges:
+    entities:
       - sensor.sabnzbd_speed
-      - sensor.sabnsbd_left
+      - sensor.sabnzbd_left
       - sensor.sabnzbd_queue
-

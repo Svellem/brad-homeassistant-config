@@ -1,0 +1,16 @@
+#
+# Turn on/off UI elements
+#
+
+# alarmclock.yaml: Commute times shown by alarm, turned off 3 hours after
+
+# Turn Visibility Off for These Groups at HA start
+- alias: 'UI Groups Off by Default'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: group.set_visibility
+      entity_id: group.traveltimes
+      data:
+        visible: False
