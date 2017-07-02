@@ -7,46 +7,45 @@
       state: on
       rgb_color: [255,255,255]
       brightness: 125
-      transition: 30
+      transition: 60
     switch.sink: on
     light.entry:
-      state: on
-      rgb_color: [255,255,255]
-      brightness: 125
-      transition: 30
+      state: off
+      transition: 60
     light.stove:
       state: on
       rgb_color: [255,255,255]
       brightness: 100
-      transition: 120
+      transition: 60
     light.fridge:
       state: on
       rgb_color: [255,255,255]
-      brightness: 100
-      transition: 120
+      brightness: 40
+      transition: 60
     light.floor_lamp:
       state: on
       rgb_color: [255,255,255]
-      brightness: 125
-      transition: 120
+      brightness: 80
+      transition: 60
     switch.kitchen_lights: on
     light.globes:
-      state: on
-      rgb_color: [255,255,255]
-      brightness: 125
-      transition: 120
+      state: off
+      brightness: 30
+      transition: 60
     switch.string_lights: off
     light.office_pendant:
-      state: on
+      state: o
       rgb_color: [255,255,255]
-      brightness: 125
-      transition: 120
+      brightness: 50
+      transition: 60
     light.back_overheads:
       state: on
+      brightness: 20
       transition: 120
     light.tradfri_bulb_e26_opal_1000lm:
       state: on
-      brightness: 70
+      brightness: 40
     light.front_overheads:
       state: on
-      transition: 120
+      brightness: 20
+      transition: 60

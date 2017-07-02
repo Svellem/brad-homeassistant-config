@@ -1,0 +1,99 @@
+#
+# Audible Notifications
+#
+
+# If door opens while I'm home and 'armed home' is set
+- alias: 'Alarm Announce - Door Open'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'open'
+  condition:
+    - condition: state
+      entity_id: group.tracked_users
+      state: 'on'
+    - condition: state
+      entity_id: alarm_control_panel.loft_alarm
+      state: 'armed home'
+  action:
+    service: shell_command.alarm_sound_doorchime
+
+# If alarm changes from 'disarmed' to 'pending' announce 
+# Only announce if I'm home to hear it
+- alias: 'Alarm Announce - Pending Arm'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.loft_alarm
+      from: 'disarmed'
+      to: 'pending'
+  condition:
+    - condition: state
+      entity_id: group.tracked_users
+      state: 'on'
+  action:
+    service: shell_command.alarm_sound_armed
+    
+# If alarm is disarmed, announce
+# Only if I'm home to hear it
+- alias: 'Alarm Announce - Disarmed'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.loft_alarm
+      to: 'disarmed'
+  condition:
+    - condition: state
+      entity_id: group.tracked_users
+      state: 'on'
+  action:
+    service: shell_command.alarm_sound_disarmed
+
+#
+# Change Alarm Status based on presence
+# Arm Away when I leave, Arm Home when I arrive home
+#
+# Turning on guest_mode disables these
+# So status stays what I leave it even if I come/go
+#
+
+# If tracked_users leave and no guests are here, arm away
+- alias: 'Alarm - House Empty, Arm Away'
+  trigger:
+    - platform: state
+      entity_id: group.tracked_users
+      to: 'off'
+  condition:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.loft_alarm
+          state: 'disarmed'
+        - condition: state
+          entity_id: alarm_control_panel.loft_alarm
+          state: 'armed home'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.alarm_arm_away
+
+- alias: 'Alarm - Arm Home'
+  trigger:
+    - platform: state
+      entity_id: group.tracked_users
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.loft_alarm
+          state: 'armed away'
+        - condition: state
+          entity_id: alarm_control_panel.loft_alarm
+          state: 'disarmed'
+  action:
+    - service: script.turn_on
+      entity_id: script.alarm_arm_home

@@ -1,4 +1,3 @@
-#
 # BRAD's HA CONFIG
 # LIVING IN THE FUTURE
 #
@@ -10,13 +9,6 @@ homeassistant:
   elevation: 7
   unit_system: imperial
   time_zone: America/Los_Angeles
-
-#
-# CUSTOMIZE UI COMPONENTS
-#
-# Prolific use of custom-ui component
-# https://github.com/andrey-git/home-assistant-custom-ui
-# 
   customize: !include config/customize.yaml
   customize_glob:
     "*.*":
@@ -26,24 +18,12 @@ homeassistant:
       badges_list:
         - alarm_control_panel.loft_alarm
         - group.tracked_users
-    group.pibadges:
-      state_card_mode: badges
-      badges_list:
-        - sensor.ram_use
-        - sensor.cpu_use
-        - sensor.disk_use_
-        - sensor.disk_free_
-    group.devicebadges:
-      state_card_mode: badges
-      badges_list:
-        - sensor.synology_online
-        - sensor.ikeatradfri_online
-        - sensor.milighthub_online
-        - sensor.espmilight_online
-        - sensor.windowcam_online
-        - sensor.frontdoorcam_online
     group.openingsbadges:
       state_card_mode: badges
+    group.onlinedevicebadges:
+      state_card_mode: badges
+      badges_list:
+        - 
     group.temperaturebadges:
       state_card_mode: badges
     group.environmentbadges:
@@ -413,8 +393,13 @@ group:
   Devices:
     name: Devices
     entities:
-      - group.devicebadges
+      - sensor.synology_online
       - sensor.synology_storage_free
+      - sensor.ikeatradfri_online
+      - sensor.milighthub_online
+      - sensor.espmilight_online
+      - sensor.windowcam_online
+      - sensor.frontdoorcam_online
   devicebadges:
     entities:
       - sensor.synology_online
@@ -550,17 +535,13 @@ group:
     name: HomeAssistant Pi
     control: hidden
     entities:
-      - group.pibadges
       - sensor.since_last_boot
-      - script.restart_ha
-      - switch.pi_shutdown
-      - switch.pi_reboot
-  pibadges:
-    entities:
       - sensor.ram_use
       - sensor.cpu_use
       - sensor.disk_use_
-      - sensor.disk_free_
+      - script.restart_ha
+      - switch.pi_shutdown
+      - switch.pi_reboot
   PresenceLights:
     entities:
       - light.entry

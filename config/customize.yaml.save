@@ -1,3 +1,4 @@
+    script.
     group.tracked_users:
       icon: mdi:home-modern
     sun.sun:
@@ -36,6 +37,10 @@
       icon: mdi:thermometer
     sensor.front_humidity:
       icon: mdi:water-percent
+    sensor.bathroom_temperature:
+      icon: mdi:thermometer
+    sensor.bathroom_humidity:
+      icon: mdi:water-percent
     plant.rubber_plant:
       friendly_name: Rubber Plant
     plant.giant_philodendron:
@@ -64,28 +69,17 @@
       emulated_hue: true
     plant.giant_pothos:
       friendly_name: Giant Pothos
-    sensor.entry_temperature:
-      group:
-        group.temperaturebadges:
-          friendly_name: Entry
     sensor.giant_pothos_temperature:
       friendly_name: Office Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Office
     sensor.hanging_red_pothos_temperature:
       friendly_name: Living Room Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Living Room
     sensor.kitchen_pothos_temperature:
       friendly_name: Kitchen Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Kitchen
+    sensor.window_spider_plant_temperature:
+      friendly_name: Window Temp 2
     sensor.window_spider_plant_light_intensity:
       friendly_name: Window Light Intensity
     sensor.last_motion:
@@ -93,6 +87,9 @@
       show_last_changed: true
     binary_sensor.bathroom_motion:
       friendly_name: Bathroom Motion
+      device_class: motion
+    binary_sensor.table_motion:
+      friendly_name: Table Motion
       device_class: motion
     light.tradfri_bulb_e26_opal_1000lm:
       friendly_name: Bedroom Light

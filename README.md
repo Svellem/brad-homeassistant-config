@@ -37,6 +37,12 @@ Running HA version: 0.47.1
   * Synology DS413j - NAS
   
 ## Automations
+* Alarm
+  * Alarm Away - when no one is home
+  * Alarm Home - when coming home
+  * Announce Disarm
+  * Announce when being Armed
+  * Announce when Armed Home & Door Opens
 * Alarm Clock
   * Make Morning Coffee when Alarm goes off
   * Alarm Clock - turn on lights and radio to wake me up

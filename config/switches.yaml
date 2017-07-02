@@ -121,12 +121,12 @@
 # SHUT OFF PI
     pi_shutdown:
       friendly_name: Shut Down
-      command_state: ""
-      command_off: "/sbin/poweroff"
+      command_state: ''
+      command_off: "sudo /sbin/poweroff"
     pi_reboot:
       friendly_name: Reboot
-      command_state: ""
-      command_off: "/sbin/reboot"
+      command_state: ''
+      command_off: "sudo /sbin/reboot"
 
 #
 # Transmission on/off

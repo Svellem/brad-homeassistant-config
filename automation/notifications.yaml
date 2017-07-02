@@ -9,7 +9,7 @@
 - alias: 'Notify - Critical Device Offline'
   trigger:
     - platform: state
-      entity_id: sensor.ikeatradfri_online, sensor.milighthub_online, sensor.synology_online, sensor.espmilight_online
+      entity_id: sensor.ikeatradfri_online, sensor.synology_online, sensor.espmilight_online
       from: 'Online'
       to: 'Offline'
       for:
@@ -94,28 +94,6 @@
             url: !secret camera_window_jpg
             content-type: jpeg
             hide-thumbnail: false
-
-- alias: 'Notify - Front Door Alert'
-  trigger:
-    platform: state
-    entity_id: binary_sensor.front_door
-    to: 'on'
-  condition:
-    - condition: state
-      entity_id: group.tracked_users
-      state: 'off'
-    - condition: state
-      entity_id: input_boolean.guest_mode
-      state: 'off'
-  action:
-    service: notify.ios_bradwenner_bradphone
-    data:
-      title: "Security Alert"
-      data:
-        attachment:
-          url: !secret camera_frontdoor_jpg
-          content-type: jpeg
-          hide-thumbnail: false   
 
 # Remind me to Refill Coffee
 # At 10:30p, if I'm home, if Alarm is set, if Coffee is 'RefillWater'+

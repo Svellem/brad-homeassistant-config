@@ -1,0 +1,24 @@
+#
+# Buttons for UI
+#
+alarm_arm_home:
+  alias: Alarm Arm Home
+  sequence:
+    - service: alarm_control_panel.alarm_arm_home
+alarm_arm_away:
+  alias: Alarm Arm Away
+  sequence:
+    - service: alarm_control_panel.alarm_arm_away
+alarm_disarm:
+  alias: Alarm Disarm
+  sequence:
+    - service: alarm_control_panel.alarm_disarm 
+
+alarm_pending_arm:
+  alias: Alarm Pending Arm
+  sequence:
+    - service: homeassistant.turn_off
+      entity_id: switch.mpd_pi
+    - service: media_player.media_play
+      entity_id: media_player.vlc_tts
+  

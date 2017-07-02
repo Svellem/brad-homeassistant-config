@@ -4,3 +4,9 @@
   changeradiovolume: 'mpc volume {{ states.input_slider.radiovolume.state | int }}'
   changestereovolume: 'mpc -h 192.168.0.7 volume {{ states.input_slider.stereovolume.state | int }}'
   triggertimelapse: '/home/homeassistant/.homeassistant/shell/timelapse.sh'
+
+# Sound Effects
+  alarm_sound_doorchime: 'play --volume .25 /home/homeassistant/.homeassistant/media/sounds_alarm/door_open.wav'
+  alarm_sound_disarmed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_disarmed.mp3'
+  alarm_sound_armed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_being_armed.mp3'
+
