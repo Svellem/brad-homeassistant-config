@@ -2,48 +2,10 @@
 # Morning Routine Related
 #
 #
-# Morning Alarm Coffee
-# Not sure if better way to do this, but use same trigger/conditions as alarm clock
-# Coffee condition is in the action
-# If all true (same conditions as alarm) it runs action with condition for coffee
-
-- alias: 'Make Coffee?'
-  trigger:
-    platform: template
-    # need to figure out how to start this before alarm_time.state so sequence ends at that time
-    value_template: '{{ states.sensor.time.state  ==  states.sensor.alarm_time.state  }}'
-  condition:
-    condition: or
-    conditions:
-      - condition: and
-        conditions:
-          - condition: state
-            entity_id: input_boolean.alarmweekday
-            state: 'on'
-          - condition: time
-            weekday:
-              - mon
-              - tue
-              - wed
-              - thu
-              - fri
-      - condition: state
-        entity_id: input_boolean.alarmweekday
-        state: 'off'
-  action:
-    # To sync with Alarm Clock sequence...
-    # Start Coffee 4 minutes in
-    - delay: 00:04:00
-    - condition: state
-      entity_id: sensor.coffeemaker
-      state: 'Ready'
-    - service: homeassistant.turn_on
-      entity_id: switch.coffeemaker
-
 
 #
 # ALARM CLOCK
-# copied from:
+# based on:
 # https://github.com/master-kenobi/ha-alarmclock
 - alias: 'Alarm Clock'
   trigger:
@@ -68,104 +30,6 @@
       - condition: state
         entity_id: input_boolean.alarmweekday
         state: 'off'
-#
-# ALARM ACTION GOES HERE!!
   action:
-    # 10 minute sequence
-    #
-    # Step one: Begin fade in
-    # 0 MIN SEQ
-    - service: light.turn_on
-      data:
-        entity_id: light.entry, light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.stove
-        brightness: 255
-        rgb_color: [255,255,255]
-        transition: 600 # 10 minutes total
-
-    #
-    # Make sure Transmission turtle mode is on to free bandwidth for radio
-    #
-    - service: homeassistant.turn_on
-      entity_id: switch.transmission_turtle_mode
-
-    # Turn on Commute Time panel in default_view
-    - service: group.set_visibility
-      entity_id: group.traveltimes
-      data:
-        visible: True
-
-
-    # Start fading in bedroom lights
-    # Tradfri doesn't do transitions yet, so currently calling it in dim here
-    - service: light.turn_on
-      data:
-        entity_id: light.tradfri_bulb_e26_opal_1000lm
-        brightness: 125
-    - delay: 00:02:00
-    # 5 MIN SEQ
-
-    # TURN ON NPR
-    # raise volume 10% each minute
-    # volume will be my max (.8) at same time lights are 100%
-    #
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 30
-    - delay: 00:00:45
-    # turn radio on
-    - service: switch.turn_on
-      entity_id: switch.radio_npr
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 20
-    - delay: 00:00:45
-    # wait one minute, raise by .1
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 30
-    - delay: 00:00:45
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 40
-    - delay: 00:00:45
-
-    # Start fading in bedroom lights
-    # Tradfri doesn't do transitions yet, so currently calling it in dim here
-    - service: light.turn_on
-      data:
-        entity_id: light.tradfri_bulb_e26_opal_1000lm
-        brightness: 255
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 50
-    - delay: 00:00:45
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 60
-    - delay: 00:00:45
-    - service: input_slider.select_value
-      data_template:
-        entity_id: input_slider.radiovolume
-        value: 70
-    # ~10 (??)  MINUTES PAST WHEN ALARM WAS SET
-    # Turn on closet/kitchen/bathroom
-    - service: switch.turn_on
-      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
-    - service: light.turn_on
-      entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e26_opal_1000lm
-
-#
-# 3 hours after alarm goes off, remove travel times for default_view
-#
-    - delay: 03:00:00
-    # Turn on Commute Time panel in default_view
-    - service: group.set_visibility
-      entity_id: group.traveltimes
-      data:
-        visible: False
+    - service: script.turn_on
+      entity_id: script.alarmclock

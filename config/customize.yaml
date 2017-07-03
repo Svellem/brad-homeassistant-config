@@ -1,3 +1,9 @@
+    input_boolean.guesthome:
+      show_last_changed: true 
+    input_boolean.bradhome:
+      show_last_changed: true
+    sensor.breaches_bradbradwennercom:
+      friendly_name: Pwned?
     device_tracker.bradwenner_bradphone:
       friendly_name: bradphone
     device_tracker.bradwenner_ios:
@@ -161,7 +167,7 @@
     sensor.battery_frontmotion:
       icon: mdi:battery-charging
     sensor.battery_iphone:
-      friendly_name: Brad's iPhone
+      friendly_name: iPhone Battery
     sensor.transmission_status:
       show_last_changed: true
     sensor.sabnzbd_status:

@@ -3,6 +3,13 @@
 # SENSORS!!!!!!!!
 
 #
+# Have I Been Pwned?
+#
+- platform: haveibeenpwned
+  email:
+    - !secret myemail
+
+#
 # Better Templates for Tracking Critical Smart Home Devices
 #
 

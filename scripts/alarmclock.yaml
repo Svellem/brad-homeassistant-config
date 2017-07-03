@@ -1,0 +1,124 @@
+#
+# Alarm Clock Scripts
+#
+
+morning_coffee:
+  alias: Make Morning Coffee
+  sequence:
+    # Kill script if coffee maker isn't ready
+    - condition: state
+      entity_id: sensor.coffeemaker
+      state: 'Ready'
+    # To sync with Alarm Clock sequence...
+    # Start Coffee 4 minutes in
+    - delay: 00:04:00
+    - service: homeassistant.turn_on
+      entity_id: switch.coffeemaker
+
+#
+# 10 MINUTE ALARM SEQUENCE
+#
+# 0M Fade in lights, turn off torrents
+# 3M Turn on bedroom lights
+# 5M NPR comes on quietly, slowly transitions
+# 8M Bedroom light on 100%
+# 9.5M NPR at full volume
+# 10M Turn on all other lights
+#
+alarm_clock:
+  alias: Alarm Sequence
+  sequence:
+  # First things first... make coffee?
+    - service: script.turn_on
+      entity_id: script.morning_coffee
+
+  # 10 MINUTE SEQUENCE
+    - service: light.turn_on
+      data:
+        entity_id: light.entry, light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.st$
+        brightness: 255
+        rgb_color: [255,255,255]
+        transition: 600 # 10 minutes transition
+
+    # Throttle Transmission
+    - service: homeassistant.turn_on
+      entity_id: switch.transmission_turtle_mode
+
+#    # Turn on Commute Time panel in default_view
+#    - service: group.set_visibility
+#      entity_id: group.traveltimes
+#      data:
+#        visible: True
+
+    # Let lights fade in 3 minutes
+    - delay: 00:03:00
+
+   # Start fading in bedroom lights
+    # Tradfri doesn't do transitions yet, so currently calling it in dim here
+    - service: light.turn_on
+      data:
+        entity_id: light.tradfri_bulb_e26_opal_1000lm
+        brightness: 125
+    - delay: 00:02:00
+
+    # 5 MINUTES INTO SEQUENCE
+
+    # TURN ON NPR
+    # raise volume 10% each minute
+    # volume will be my max (.8) at same time lights are 100%
+    #
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 30
+    - delay: 00:00:45
+    # turn radio on
+    - service: switch.turn_on
+      entity_id: switch.radio_npr
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 20
+    - delay: 00:00:45
+    # wait one minute, raise by .1
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 30
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 40
+    - delay: 00:00:45
+    # Start fading in bedroom lights
+    # Tradfri doesn't do transitions yet, so currently calling it in dim here
+    - service: light.turn_on
+      data:
+        entity_id: light.tradfri_bulb_e26_opal_1000lm
+        brightness: 255
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 50
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 60
+    - delay: 00:00:45
+    - service: input_slider.select_value
+      data_template:
+        entity_id: input_slider.radiovolume
+        value: 70
+
+    # 9.5 MINUTES INTO SEQUENCE
+    #
+    # Finish up, turn everything else on
+    # Turn on closet/kitchen/bathroom
+    - service: switch.turn_on
+      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
+    - service: light.turn_on
+      entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e12_ws_opal_400lm_2
+
+

@@ -1,0 +1,7 @@
+day_period:
+  name: Day Period
+  options:
+    - Morning
+    - Afternoon
+    - Evening
+    - Night

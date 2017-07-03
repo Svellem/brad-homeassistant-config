@@ -26,7 +26,7 @@ homeassistant:
       badges_list:
         - alarm_control_panel.loft_alarm
         - group.tracked_users
-        - input_boolean.bradhome
+        - input_boolean.guest_mode
     group.bradsdevicesbadges:
       state_card_mode: badges
       badges_list:
@@ -94,11 +94,11 @@ homeassistant:
 # Basic settings
 #
 recorder:
+  purge_days: 3
 frontend:
 http:
   api_password: !secret http_password
 updater:
-discovery:
 history:
 sun:
 wemo:
@@ -121,6 +121,7 @@ scene: !include_dir_merge_list scenes
 script: !include_dir_merge_named scripts
 input_boolean: !include config/input_boolean.yaml
 input_slider: !include config/input_slider.yaml
+input_select: !include config/input_select.yaml
 sensor: !include config/sensors.yaml
 binary_sensor: !include config/binary_sensors.yaml
 switch: !include config/switches.yaml
@@ -143,16 +144,16 @@ alarm_control_panel:
 device_tracker:
   - platform: owntracks
     max_gps_accuracy: 200
-#  - platform: bluetooth_tracker
-#    track_new_devices: false
-#    consider_home: 300
+  - platform: bluetooth_tracker
+    track_new_devices: true
+    consider_home: 300
 #  - platform: tplink
 #    host: 192.168.0.1
 #    username: !secret router_user
 #    password: !secret router_pass
 #    track_new_devices: false
 #    consider_home: 300
-# for smart home devices
+# for smart home devices, etc.
   - platform: ping
     hosts:
       ikeatradfri: 192.168.0.9
@@ -160,6 +161,7 @@ device_tracker:
       synology: 192.168.0.5
       frontdoorcam: 192.168.0.50
       espmilight: 192.168.0.20
+      bradlaptop: 192.168.0.10
 
 #
 # Turn this on for Alexa
@@ -388,7 +390,7 @@ group:
     name: Tracked Users
     entities:
       - input_boolean.bradhome 
-
+      - input_boolean.guesthome
 # SMALLER GROUPS FOR ABOVE TABS
 #
 
@@ -406,7 +408,7 @@ group:
     entities:
       - alarm_control_panel.loft_alarm
       - group.tracked_users
-      - input_boolean.bradhome
+      - input_boolean.guest_mode
 # Alarm Clock
   AlarmClock:
     control: hidden
@@ -427,12 +429,15 @@ group:
     name: "Brad's Devices"
     entities:
       - group.bradsdevicesbadges
+      - input_boolean.bradhome
       - sensor.battery_iphone
+      - sensor.breaches_bradbradwennercom
   bradsdevicesbadges:
     entities:
       - device_tracker.bradwenner_bradphone
       - device_tracker.bradwenner_ios
       - device_tracker.bradwenner_owntracks
+      - devie_tracker.bradlaptop
   Devices:
     name: Devices
     entities:
