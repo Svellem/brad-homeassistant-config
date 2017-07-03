@@ -24,15 +24,46 @@
   trigger:
     - platform: state
       entity_id: alarm_control_panel.loft_alarm
-      from: 'disarmed'
       to: 'pending'
   condition:
     - condition: state
       entity_id: group.tracked_users
       state: 'on'
   action:
-    service: shell_command.alarm_sound_armed
-    
+    - service: homeassistant.turn_off
+      entity_id: switch.mpd_pi
+    # "Alarm is being armed..." 2s
+    - service: shell_command.alarm_sound_armed
+    # Beep.. beep. beep.. turn off after done pending state
+    - service: script.turn_on
+      entity_id: script.alarm_pending_loop
+
+# If alarm changes from 'pending' to 'armed home'
+# Turn off pending loop, then announce it
+# Not dependent on tracked_users in order to kill loop after I leave
+#
+- alias: 'Alarm Announce - Armed Home'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.loft_alarm
+      to: 'armed_home'
+  action:
+    - delay: "00:00:01"
+    - service: shell_command.alarm_sound_alarm_is_armed_home
+
+# If alarm changes from 'pending' to 'armed away'
+# Turn off pending loop, then announce it
+#
+- alias: 'Alarm Announce - Armed Away'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.loft_alarm
+      to: 'armed_away'
+  action:
+    - delay: "00:00:01"
+    - service: shell_command.alarm_sound_alarm_is_armed    
+
+
 # If alarm is disarmed, announce
 # Only if I'm home to hear it
 - alias: 'Alarm Announce - Disarmed'
@@ -45,7 +76,16 @@
       entity_id: group.tracked_users
       state: 'on'
   action:
-    service: shell_command.alarm_sound_disarmed
+    - delay: "00:00:01"
+    - service: shell_command.alarm_sound_disarmed
+    
+
+#
+#
+# Alarm Triggers
+#
+#
+
 
 #
 # Change Alarm Status based on presence
@@ -62,14 +102,6 @@
       entity_id: group.tracked_users
       to: 'off'
   condition:
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: alarm_control_panel.loft_alarm
-          state: 'disarmed'
-        - condition: state
-          entity_id: alarm_control_panel.loft_alarm
-          state: 'armed home'
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
@@ -86,14 +118,6 @@
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: alarm_control_panel.loft_alarm
-          state: 'armed away'
-        - condition: state
-          entity_id: alarm_control_panel.loft_alarm
-          state: 'disarmed'
   action:
     - service: script.turn_on
       entity_id: script.alarm_arm_home

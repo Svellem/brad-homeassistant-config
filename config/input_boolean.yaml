@@ -13,14 +13,6 @@ bradhome:
   name: Brad Home
   initial: on
   icon: mdi:account
-friendhome:
-  name: Friend Home
-  initial: off
-  icon: mdi:account-star
-guesthome:
-  name: Guest Home
-  initial: off
-  icon: mdi:account-plus
 
 alarmweekday:
   name: Weekdays Only

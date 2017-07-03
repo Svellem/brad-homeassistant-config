@@ -13,7 +13,7 @@ alarmminutes:
   max: 59
   step: 5
 radiovolume:
-  name: Volume
+  name: Pi Speaker
   min: 25
   max: 100
   initial: 40

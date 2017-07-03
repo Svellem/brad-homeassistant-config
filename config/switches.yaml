@@ -118,15 +118,6 @@
       command_state: "/home/homeassistant/shell/stereo_state.sh"
 #     value_template: "{{ is_state('media_player.stereo', 'playing') }}"
       friendly_name: Stereo
-# SHUT OFF PI
-    pi_shutdown:
-      friendly_name: Shut Down
-      command_state: ''
-      command_off: "sudo /sbin/poweroff"
-    pi_reboot:
-      friendly_name: Reboot
-      command_state: ''
-      command_off: "sudo /sbin/reboot"
 
 #
 # Transmission on/off

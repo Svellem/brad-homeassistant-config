@@ -26,6 +26,13 @@ homeassistant:
       badges_list:
         - alarm_control_panel.loft_alarm
         - group.tracked_users
+        - input_boolean.bradhome
+    group.bradsdevicesbadges:
+      state_card_mode: badges
+      badges_list:
+        - device_tracker.bradwenner_bradphone
+        - device_tracker.bradwenner_ios
+        - device_tracker.bradwenner_owntracks
     group.pibadges:
       state_card_mode: badges
       badges_list:
@@ -66,15 +73,16 @@ homeassistant:
         - binary_sensor.closet_motion
         - binary_sensor.kitchen_motion
         - binary_sensor.dining_motion
-    light.*:
-      custom_ui_state_card: custom-ui
-      state_card_mode: single-line
-      hide_control: true
-      stretch_slider: true
-      slider_theme:
-        min: 0
-        max: 255
-        off_when_min: true
+# No idea why this isn't working..
+#    light.*:
+#      custom_ui_state_card: custom-ui
+#      state_card_mode: single-line
+#      hide_control: true
+#      stretch_slider: true
+#      slider_theme:
+#        min: 0
+#        max: 255
+#        off_when_min: true
     plant.*:
       custom_ui_state_card: custom-ui
       show_last_changed: true
@@ -129,20 +137,21 @@ alarm_control_panel:
     trigger_time: 120
 
 #
-# Tracking with: OwnTracks/HA app, Bluetooth, TP-Link
+# Tracking with: OwnTracks/HA app, 
+# on hold to simplify - Bluetooth, TP-Link
 #
 device_tracker:
   - platform: owntracks
     max_gps_accuracy: 200
-  - platform: bluetooth_tracker
-    track_new_devices: false
-    consider_home: 300
-  - platform: tplink
-    host: 192.168.0.1
-    username: !secret router_user
-    password: !secret router_pass
-    track_new_devices: false
-    consider_home: 300
+#  - platform: bluetooth_tracker
+#    track_new_devices: false
+#    consider_home: 300
+#  - platform: tplink
+#    host: 192.168.0.1
+#    username: !secret router_user
+#    password: !secret router_pass
+#    track_new_devices: false
+#    consider_home: 300
 # for smart home devices
   - platform: ping
     hosts:
@@ -368,8 +377,8 @@ group:
     view: yes
     icon: mdi:gauge
     entities:
+      - group.BradsDevices
       - group.SystemOptions
-      - group.Battery
       - group.Devices
       - group.Pi
 
@@ -379,8 +388,6 @@ group:
     name: Tracked Users
     entities:
       - input_boolean.bradhome 
-      - input_boolean.friendhome
-      - input_boolean.guesthome
 
 # SMALLER GROUPS FOR ABOVE TABS
 #
@@ -399,6 +406,7 @@ group:
     entities:
       - alarm_control_panel.loft_alarm
       - group.tracked_users
+      - input_boolean.bradhome
 # Alarm Clock
   AlarmClock:
     control: hidden
@@ -410,17 +418,21 @@ group:
       - input_slider.alarmminutes
       - input_boolean.alarmweekday
       - sensor.coffeemaker
-  Battery:
-    name: Battery Level
-    entities:
-      - sensor.battery_iphone
-      - sensor.battery_frontmotion
-      - sensor.battery_windowcam
   Bathroom:
     name: Bathroom
     entities:
       - switch.bathroom_light
       - switch.bathroom_fan
+  BradsDevices:
+    name: "Brad's Devices"
+    entities:
+      - group.bradsdevicesbadges
+      - sensor.battery_iphone
+  bradsdevicesbadges:
+    entities:
+      - device_tracker.bradwenner_bradphone
+      - device_tracker.bradwenner_ios
+      - device_tracker.bradwenner_owntracks
   Devices:
     name: Devices
     entities:
@@ -465,7 +477,6 @@ group:
     - light.tradfri_bulb_e12_ws_opal_400lm
     - light.tradfri_bulb_e12_ws_opal_400lm_2
     - light.tradfri_bulb_e26_opal_1000lm
-#    - light.bedroom_lights
     - switch.bedroom_fan
   Kitchen:
     control: hidden
@@ -497,11 +508,6 @@ group:
     - zone.sprouts_market
     - zone.grocery_outlet
     - zone.lucky_grocery
-  LivingRoomLamps:
-    name: Living Room
-    entities:
-    - light.globes
-    - light.floor_lamp
   Scenes:
     control: hidden
     entities:
@@ -572,13 +578,6 @@ group:
       - sensor.cpu_use
       - sensor.disk_use_
       - sensor.disk_free_
-  PresenceLights:
-    entities:
-      - light.entry
-      - light.floor_lamp
-      - light.fridge
-      - light.globes
-      - light.office_pendant
   Radio:
     name: Radio
     control: hidden

@@ -59,10 +59,9 @@
 # which is inside group.tracked_users
 #
 # Trackers used:
-# - device_tracker.bradwenner_bradphone - iOS HA app & OwnTracks
-#     ^ should also be getting updated by the TP-Link component via MAC
-#     ^ check again and make sure it's not putting it in a separate device_tracker
-# - device_tracker.bradphone_2 - Bluetooth (only updates 'home') 
+# - device_tracker.bradwenner_bradphone - (? MQTT)
+#   device_tracker.bradwenner_ios - iOS
+#   device_tracker.bradwenner_owntracks - OwnTracks
 #
 - alias: 'Brad Away'
   condition:
@@ -71,9 +70,9 @@
     state: 'on'
   trigger:
     - platform: state
-      entity_id: device_tracker.bradwenner_bradphone
-      state: 'not_home'
-      # stop turning shit off when I walk Duncan
+      entity_id: device_tracker.bradwenner_bradphone, device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks
+      to: 'not_home'
+      # stop turning shit off when I walk the dog
       for:
         minutes: 10
   action:
@@ -87,56 +86,11 @@
     state: 'off'
   trigger:
     - platform: state
-      entity_id: device_tracker.bradwenner_bradphone
-      state: 'home'
-    - platform: state
-      entity_id: device_tracker.bradphone_2
-      state: 'home'
+      entity_id: device_tracker.bradwenner_bradphone, device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks
+      to: 'home'
   action:
     - service: homeassistant.turn_on
       entity_id: input_boolean.bradhome
-#
-# Guest Presence works the same way as above
-# input_boolean.guesthome is used to track
-# BUT input_boolean.guest_mode is used as a condition to firing
-# So only when guest mode is toggled in HA will use this update
-
-- alias: 'Guest Away'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.guesthome
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'on'
-  trigger:
-    - platform: state
-      entity_id: device_tracker.guestphone
-      state: 'not_home'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.guesthome
-
-- alias: 'Guest Home'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.guesthome
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'on'
-  trigger:
-    - platform: state
-      entity_id: device_tracker.guestphone
-      state: 'home'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.guesthome
-
 #
 # TURN EVERYTHING OFF WHEN NO ONE IS HOME
 #
@@ -146,8 +100,7 @@
   trigger:
     platform: state
     entity_id: group.tracked_users
-    state: 'off'
+    to: 'off'
   action:
     - service: scene.turn_on
       entity_id: scene.all_lights_off
-

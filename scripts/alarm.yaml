@@ -14,36 +14,22 @@ alarm_disarm:
   sequence:
     - service: alarm_control_panel.alarm_disarm 
 
-# Call this to start the audio notifications for 'pending' alarm
-# 
-alarm_pending_arm:
-  alias: Alarm Pending Arm
-  sequence:
-    - service: homeassistant.turn_off
-      entity_id: switch.mpd_pi
-    # "Alarm is being armed..." 2s
-    - service: shell_command.alarm_sound_armed
-    - delay: "00:00:02"
-    # Beep.. beep. beep.. turn off after done pending state
-    - service: script.turn_on
-      data:
-        entity_id: script.alarm_pending_loop   
-
+# Sound loop for 'pending'
 alarm_pending_loop:
-  alias: Alarm Pending Beep Loop
+  alias: Alarm Pending Loop
   sequence:
+    - condition: state
+      entity_id: alarm_control_panel.loft_alarm
+      state: 'pending'
+    - delay: "00:00:01"
     - service: script.turn_on
-      data:
-        entity_id: script.alarm_pending_sound
-    - delay:
-        seconds: 4
+      entity_id: script.alarm_pending_sound
+
 alarm_pending_sound:
   alias: Alarm Pending Sound
   sequence:
     - service: shell_command.alarm_sound_pending
     - delay: "00:00:01"
     - service: shell_command.alarm_sound_pending
-    - delay: "00:00:01"  
     - service: script.turn_on
-      data:
-        entity_id: script.alarm_pending_loop
+      entity_id: script.alarm_pending_loop

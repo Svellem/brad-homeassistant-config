@@ -1,3 +1,9 @@
+    device_tracker.bradwenner_bradphone:
+      friendly_name: bradphone
+    device_tracker.bradwenner_ios:
+      friendly_name: iOS
+    device_tracker.bradwenner_owntracks:
+      friendly_name: Owntracks
     group.tracked_users:
       icon: mdi:home-modern
     sun.sun:
@@ -65,27 +71,17 @@
     plant.giant_pothos:
       friendly_name: Giant Pothos
     sensor.entry_temperature:
-      group:
-        group.temperaturebadges:
-          friendly_name: Entry
+      friendly_name: Entry Temp
+      icon: mdi:thermometer
     sensor.giant_pothos_temperature:
       friendly_name: Office Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Office
     sensor.hanging_red_pothos_temperature:
       friendly_name: Living Room Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Living Room
     sensor.kitchen_pothos_temperature:
       friendly_name: Kitchen Temp
       icon: mdi:thermometer
-      group:
-        group.temperaturebadges:
-          friendly_name: Kitchen
     sensor.window_spider_plant_light_intensity:
       friendly_name: Window Light Intensity
     sensor.last_motion:
