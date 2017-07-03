@@ -1,0 +1,14 @@
+- platform: mpd
+  name: pi
+  location: pi
+  host: 192.168.0.6
+  port: 6600
+
+#  - platform: volumio
+#    host: stereo.local
+#    port: 3000
+
+- platform: vlc
+  name: vlc_tts
+
+- platform: plex

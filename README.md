@@ -5,7 +5,7 @@ My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbe
 
 Running HA version: 0.47.1
 
-[![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
+![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
 
 ## Hardware
 * Lights

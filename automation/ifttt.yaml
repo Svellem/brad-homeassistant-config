@@ -89,6 +89,9 @@
 
 #
 # USING SELF AS TRIGGER
+# Fitbit polling is pretty limited
+# IFTT is sometimes fast sometimes delayed
+# Only use for stuff not time sensitive
 #
 
 #
@@ -101,33 +104,31 @@
     event_type: new_sleep_logged
   # If alarm is off, if it's between 0730 and 1130, and if I'm home
   condition:
-    condition: and
-    conditions:
-      - condition: time
-        after: 07:30:00
-        before: 11:30:00
-      - condition: state
-        entity_id: automation.alarm_clock
-        state: 'off'
-      - condition: state
-        entity_id: group.tracked_users
-        state: 'home'
+    - condition: time
+      after: '07:30:00'
+      before: '11:30:00'
+    - condition: state
+      entity_id: automation.alarm_clock
+      state: 'off'
+    - condition: state
+      entity_id: group.tracked_users
+      state: 'on'
   action:
     # Turn on lights
     - service: scene.turn_on
-      entity_id: scene.daylight_dim_lights
+      entity_id: scene.day_dim_lights
     # Turn on radio, set volume
     - service: input_slider.select_value
       data_template:
         entity_id: input_slider.radiovolume
-        value: 75
+        value: 65
     - service: switch.turn_on
       entity_id: switch.radio_npr
     # DONE, except if coffee is wanted...
     # if coffee is set, make the coffee
     - condition: state
-      entity_id: input_boolean.alarmcoffee
-      state: 'on'
+      entity_id: sensor.coffeemaker
+      state: 'Ready'
     - service: homeassistant.turn_on
       entity_id: switch.coffeemaker
 #
@@ -138,11 +139,10 @@
   trigger:
     platform: event
     event_type: new_weigh_in
-  # between 9PM and 11:30PM
+  # 9pm - midnight
   condition:
-      - condition: time
-        after: '21:00:00'
-        before: '24:00:00'
+    - condition: time
+      after: '21:00:00'
   action:
     service: scene.turn_on
     entity_id: scene.goodnight

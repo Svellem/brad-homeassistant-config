@@ -1,0 +1,30 @@
+#
+# Tracking with: OwnTracks/HA app,
+# on hold to simplify - Bluetooth, TP-Link
+#
+- platform: owntracks
+  max_gps_accuracy: 200
+
+- platform: ping
+  hosts:
+    ikeatradfri: 192.168.0.9
+    windowcam: 192.168.0.51
+    synology: 192.168.0.5
+    frontdoorcam: 192.168.0.50
+    espmilight: 192.168.0.20
+    bradlaptop: 192.168.0.10
+    laserprinter: 192.168.0.8
+    bradwenner_ping: 192.168.0.11
+
+#
+# On Hold
+#
+#- platform: bluetooth_tracker
+#  track_new_devices: true
+#  consider_home: 300
+#- platform: tplink
+#  host: 192.168.0.1
+#  username: !secret router_user
+#  password: !secret router_pass
+#  track_new_devices: false
+#  consider_home: 300

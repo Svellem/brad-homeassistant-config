@@ -10,89 +10,9 @@ homeassistant:
   elevation: 7
   unit_system: imperial
   time_zone: America/Los_Angeles
-
-#
-# CUSTOMIZE UI COMPONENTS
-#
-# Prolific use of custom-ui component
-# https://github.com/andrey-git/home-assistant-custom-ui
-# 
   customize: !include config/customize.yaml
-  customize_glob:
-    "*.*":
-      custom_ui_state_card: custom-ui
-    group.alarmbadge:
-      state_card_mode: badges
-      badges_list:
-        - alarm_control_panel.loft_alarm
-        - group.tracked_users
-        - input_boolean.guest_mode
-    group.bradsdevicesbadges:
-      state_card_mode: badges
-      badges_list:
-        - device_tracker.bradwenner_bradphone
-        - device_tracker.bradwenner_ios
-        - device_tracker.bradwenner_owntracks
-    group.pibadges:
-      state_card_mode: badges
-      badges_list:
-        - sensor.ram_use
-        - sensor.cpu_use
-        - sensor.disk_use_
-        - sensor.disk_free_
-    group.devicebadges:
-      state_card_mode: badges
-      badges_list:
-        - sensor.synology_online
-        - sensor.ikeatradfri_online
-        - sensor.milighthub_online
-        - sensor.espmilight_online
-        - sensor.windowcam_online
-        - sensor.frontdoorcam_online
-    group.openingsbadges:
-      state_card_mode: badges
-    group.transmissionbadges:
-      state_card_mode: badges
-      badges_list:
-        - sensor.transmission_down_speed_kbps
-        - sensor.transmission_up_speed_kbps      
-    group.sabnzbdbadges:
-      state_card_mode: badges
-      badges_list:
-      - sensor.sabnzbd_speed
-      - sensor.sabnzbd_left
-      - sensor.sabnzbd_queue
-    group.temperaturebadges:
-      state_card_mode: badges
-    group.environmentbadges:
-      state_card_mode: badges
-    group.motionbadges:
-      state_card_mode: badges
-      badges_list:
-        - binary_sensor.entry_motion
-        - binary_sensor.closet_motion
-        - binary_sensor.kitchen_motion
-        - binary_sensor.dining_motion
-# No idea why this isn't working..
-#    light.*:
-#      custom_ui_state_card: custom-ui
-#      state_card_mode: single-line
-#      hide_control: true
-#      stretch_slider: true
-#      slider_theme:
-#        min: 0
-#        max: 255
-#        off_when_min: true
-    plant.*:
-      custom_ui_state_card: custom-ui
-      show_last_changed: true
-      extra_badge:
-        attribute: moisture
-        unit: "%"
-        blacklist_states: null
-#
-# Basic settings
-#
+  customize_glob: !include config/custom-ui.yaml
+
 recorder:
   purge_days: 3
 frontend:
@@ -103,9 +23,7 @@ history:
 sun:
 wemo:
 
-#
-# Custom Panels & UI
-#
+# Custom UI Panels
 panel_custom:
   - name: floorplan
     sidebar_title: Floorplan
@@ -116,6 +34,7 @@ panel_custom:
 #
 # Split configuration into separate files
 #
+device_tracker: !include config/device_tracker.yaml
 zone: !include config/zones.yaml
 scene: !include_dir_merge_list scenes
 script: !include_dir_merge_named scripts
@@ -128,163 +47,38 @@ switch: !include config/switches.yaml
 automation: !include_dir_merge_list automation
 logbook: !include config/logbook.yaml
 shell_command: !include config/shell.yaml
-ios:
 plant: !include config/plants.yaml
+media_player: !include config/media_players.yaml
+mqtt: !include config/mqtt.yaml
 
+#
+# Additional Platforms
+#
 alarm_control_panel:
   - platform: manual
     name: Loft Alarm
-    pending_time: 60
+    pending_time: 45
     trigger_time: 120
-
-#
-# Tracking with: OwnTracks/HA app, 
-# on hold to simplify - Bluetooth, TP-Link
-#
-device_tracker:
-  - platform: owntracks
-    max_gps_accuracy: 200
-  - platform: bluetooth_tracker
-    track_new_devices: true
-    consider_home: 300
-#  - platform: tplink
-#    host: 192.168.0.1
-#    username: !secret router_user
-#    password: !secret router_pass
-#    track_new_devices: false
-#    consider_home: 300
-# for smart home devices, etc.
-  - platform: ping
-    hosts:
-      ikeatradfri: 192.168.0.9
-      windowcam: 192.168.0.51
-      synology: 192.168.0.5
-      frontdoorcam: 192.168.0.50
-      espmilight: 192.168.0.20
-      bradlaptop: 192.168.0.10
-
-#
-# Turn this on for Alexa
-#
+camera: !include config/cameras.yaml
+light: !include config/lights.yaml
+ios:
 emulated_hue:
-  type: alexa
   listen_port: 8300
   expose_by_default: false
-
-#
-# Set up Additional Platforms
-#
 tradfri:
   host: 192.168.0.9
   api_key: !secret ikea_key
-
 ifttt:
   key: !secret ifttt_key
-
 tts:
   - platform: google
     cache: true
     cache_dir: /tmp/tts
     time_memory: 3600
 
-media_player:
-  - platform: mpd
-    name: pi
-    location: pi
-    host: 192.168.0.6
-    port: 6600
-#  - platform: volumio
-#    host: stereo.local
-#    port: 3000
-  - platform: vlc
-    name: vlc_tts
-  - platform: plex
-
-mqtt:
-  broker: 192.168.0.6
-  port: 1883
-  client_id: home-assistant-1
-  keepalive: 60
-  username: hass
-  password: !secret mqtt_pass
-  protocol: 3.1
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-    qos: 1
-    retain: true
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
-    qos: 1
-    retain: true
-
 #
-# Security Cameras
+# Set up Communication Hardware
 #
-camera:
-  - platform: mjpeg
-    name: "Front Door"
-    username: frontdoor
-    password: !secret camera_frontdoor_pass
-    mjpeg_url: http://192.168.0.50/video.mjpg
-  - platform: mjpeg
-    name: "Window"
-    username: window
-    password: !secret camera_window_pass
-    mjpeg_url: http://192.168.0.51/video.mjpg
-#
-#  Webcams etc
-#
-  - platform: generic
-    name: "SF Radar"
-    still_image_url: https://radblast.wunderground.com/cgi-bin/radar/WUNIDS_map?station=MUX&brand=wui&num=1&delay=15&type=N0R&frame=0&scale=1.000&noclutter=0&showstorms=0&mapx=400&mapy=240&centerx=400&centery=240&transx=0&transy=0&showlabels=1&severe=0&rainsnow=0&lightning=0&smooth=1&rand=24789409&lat=0&lon=0&label=you
-  - platform: generic
-    name: "Car Location"
-    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.beacon_element.attributes.latitude }},{{ states.device_tracker.beacon_element.attributes.longitude }}&zoom=17&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.beacon_element.attributes.latitude }},{{ states.device_tracker.beacon_element.attributes.longitude }}
-    limit_refetch_to_url_change: true
-  - platform: generic
-    name: East Bay
-    still_image_url: http://static.lawrencehallofscience.org/scienceview/scienceview.berkeley.edu/html/view/view_assets/images/newview.jpg
-
-light:
-  - platform: limitlessled
-    bridges:
-      - host: 192.168.0.20
-        version: 5
-        port: 8001
-        groups:
-         - number: 1
-           name: Dining Floor Lamp
-         - number: 2
-           name: Globes
-         - number: 3
-           name: Floor Lamp
-         - number: 4
-           name: Stove
-      - host: 192.168.0.20
-        version: 5
-        port: 8002
-        groups:
-         - number: 1
-           name: Fridge
-         - number: 2
-           name: Entry
-         - number: 3
-           name: Office Pendant
-
-# EXPERIMENTAL ESP BULB
-  - platform: mqtt_json
-    name: 'Crawl Space'
-    state_topic: 'light/entry'
-    command_topic: 'light/entry/set'
-    color_temp: true
-    brightness: true
-    rgb: true
-    white_value: true
-    effect: false
-    optimistic: false
-
 zigbee:
   device: /dev/ttyUSB1
 
@@ -409,6 +203,7 @@ group:
       - alarm_control_panel.loft_alarm
       - group.tracked_users
       - input_boolean.guest_mode
+      - input_boolean.vacation_mode
 # Alarm Clock
   AlarmClock:
     control: hidden
@@ -426,7 +221,7 @@ group:
       - switch.bathroom_light
       - switch.bathroom_fan
   BradsDevices:
-    name: "Brad's Devices"
+    name: "Brad"
     entities:
       - group.bradsdevicesbadges
       - input_boolean.bradhome
@@ -434,10 +229,9 @@ group:
       - sensor.breaches_bradbradwennercom
   bradsdevicesbadges:
     entities:
-      - device_tracker.bradwenner_bradphone
       - device_tracker.bradwenner_ios
       - device_tracker.bradwenner_owntracks
-      - devie_tracker.bradlaptop
+      - device_tracker.bradwenner_ping
   Devices:
     name: Devices
     entities:
@@ -446,11 +240,12 @@ group:
   devicebadges:
     entities:
       - sensor.synology_online
+      - sensor.bradlaptop_online
       - sensor.ikeatradfri_online
-      - sensor.milighthub_online
       - sensor.espmilight_online
       - sensor.windowcam_online
       - sensor.frontdoorcam_online
+      - sensor.laserprinter_online
   Indoors:
     name: Indoors
     entities:
@@ -479,9 +274,8 @@ group:
   Bedroom:
     entities:
     - light.entry
-    - light.tradfri_bulb_e12_ws_opal_400lm
-    - light.tradfri_bulb_e12_ws_opal_400lm_2
-    - light.tradfri_bulb_e26_opal_1000lm
+    - light.closet
+    - light.bedroom
     - switch.bedroom_fan
   Kitchen:
     control: hidden
@@ -622,8 +416,8 @@ group:
       - sensor.home_to_richmond_Bart
   Downloads:
     entities:
-      - switch.transmission_turtle_mode
       - sensor.transmission_status
+      - switch.transmission_turtle_mode
       - group.transmissionbadges
       - sensor.sabnzbd_status
       - group.sabnzbdbadges

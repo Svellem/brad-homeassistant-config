@@ -42,7 +42,7 @@
       state: on
       brightness: 20
       transition: 120
-    light.tradfri_bulb_e26_opal_1000lm:
+    light.bedroom:
       state: on
       brightness: 40
     light.front_overheads:

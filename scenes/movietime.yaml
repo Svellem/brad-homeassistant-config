@@ -9,8 +9,7 @@
     light.back_overheads:
       state: off
       transition: 8
-    light.tradfri_bulb_e12_ws_opal_400lm: off
-    light.tradfri_bulb_e12_ws_opal_400lm_2: off
+    light.closet: off
     switch.kitchen_lights: off
     light.floor_lamp:
       state: off
@@ -19,7 +18,7 @@
     light.front_overheads:
       state: off
       transition: 8
-    light.tradfri_bulb_e26_opal_1000lm: off
+    light.bedroom: off
     switch.bathroom_light: off
     light.globes:
       state: off
@@ -91,11 +90,7 @@
     light.fridge:
       state: off
       transition: 8
-    light.tradfri_bulb_e26_opal_1000lm: off
-    light.tradfri_bulb_e12_ws_opal_400lm: off
-    light.tradfri_bulb_e12_ws_opal_400lm_2: off
-    switch.string_lights: off
-    switch.sink: off
+    light.closet: off
     light.dining_floor_lamp:
       state: off
       transition: 8

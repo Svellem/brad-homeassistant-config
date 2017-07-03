@@ -48,6 +48,6 @@
       state: on
       brightness: 65  
     switch.string_lights: on
-    light.tradfri_bulb_e26_opal_1000lm:
+    light.bedroom:
       state: on
       brightness: 40    

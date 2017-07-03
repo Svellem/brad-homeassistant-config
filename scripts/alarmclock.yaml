@@ -15,6 +15,25 @@ morning_coffee:
     - service: homeassistant.turn_on
       entity_id: switch.coffeemaker
 
+# WORK IN PROGRESS
+# Does it need to be a loop? Probably
+# 
+# Can't turn off lights once the 'transition' command has been sent (limitlessled)
+#
+alarm_snooze_sequence:
+  alias: Snooze Alarm Clock
+  sequence:
+    # Turn off Alarm Clock Sequence
+    - service: script.turn_off
+      entity_id: script.alarm_clock
+
+    # Turn off radio
+    - service: switch.turn_off
+      entity_id: switch.radio_npr
+    # Turn off bedroom lights
+    - service: light.turn_off
+      entity_id: light.bedroom, light.closet, light.entry
+
 #
 # 10 MINUTE ALARM SEQUENCE
 #
@@ -35,7 +54,7 @@ alarm_clock:
   # 10 MINUTE SEQUENCE
     - service: light.turn_on
       data:
-        entity_id: light.entry, light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.st$
+        entity_id: light.entry, light.dining_floor_lamp, light.floor_lamp, light.globes, light.fridge, light.stove
         brightness: 255
         rgb_color: [255,255,255]
         transition: 600 # 10 minutes transition
@@ -117,8 +136,8 @@ alarm_clock:
     # Finish up, turn everything else on
     # Turn on closet/kitchen/bathroom
     - service: switch.turn_on
-      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights, light.tradfri_bulb_e26_opal_1000lm
+      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights
     - service: light.turn_on
-      entity_id: light.tradfri_bulb_e12_ws_opal_400lm, light.tradfri_bulb_e12_ws_opal_400lm_2, light.tradfri_bulb_e12_ws_opal_400lm_2
+      entity_id: light.closet
 
 

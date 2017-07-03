@@ -1,0 +1,34 @@
+- platform: limitlessled
+  bridges:
+    - host: 192.168.0.20
+      version: 5
+      port: 8001
+      groups:
+       - number: 1
+         name: Dining Floor Lamp
+       - number: 2
+         name: Globes
+       - number: 3
+         name: Floor Lamp
+       - number: 4
+         name: Stove
+    - host: 192.168.0.20
+      version: 5
+      port: 8002
+      groups:
+       - number: 1
+         name: Fridge
+       - number: 2
+         name: Entry
+       - number: 3
+         name: Office Pendant
+- platform: mqtt_json
+  name: 'Crawl Space'
+  state_topic: 'light/entry'
+  command_topic: 'light/entry/set'
+  color_temp: true
+  brightness: true
+  rgb: true
+  white_value: true
+  effect: false
+  optimistic: false

@@ -1,17 +1,14 @@
-    input_boolean.guesthome:
-      show_last_changed: true 
-    input_boolean.bradhome:
-      show_last_changed: true
     sensor.breaches_bradbradwennercom:
       friendly_name: Pwned?
-    device_tracker.bradwenner_bradphone:
-      friendly_name: bradphone
+    device_tracker.bradwenner_ping:
+      friendly_name: WiFi
     device_tracker.bradwenner_ios:
       friendly_name: iOS
     device_tracker.bradwenner_owntracks:
       friendly_name: Owntracks
     group.tracked_users:
       icon: mdi:home-modern
+      show_last_changed: true
     sun.sun:
       show_last_changed: true
     sensor.moon:

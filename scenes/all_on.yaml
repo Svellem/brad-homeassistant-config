@@ -9,9 +9,8 @@
       state: on
       rgb_color: [255,255,255]
       brightness: 255
-    light.tradfri_bulb_e26_opal_1000lm: on
-    light.tradfri_bulb_e12_ws_opal_400lm_2: on
-    light.tradfri_bulb_e12_ws_opal_400lm: on
+    light.closet: on
+    light.bedroom: on
     light.fridge:
       state: on
       rgb_color: [255,255,255]

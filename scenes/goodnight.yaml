@@ -11,8 +11,7 @@
     light.entry:
       state: off
       transition: 1800
-    light.tradfri_bulb_e12_ws_opal_400lm: off
-    light.tradfri_bulb_e12_ws_opal_400lm_2: off
+    light.closet: off
     light.fridge:
       state: off
       transition: 1800
@@ -33,7 +32,7 @@
     light.front_overheads:
       state: off
       transition: 1800
-    light.tradfri_bulb_e26_opal_1000lm: off
+    light.bedroom: off
     light.globes:
       state: off
       transition: 1800

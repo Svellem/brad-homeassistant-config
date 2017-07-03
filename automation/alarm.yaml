@@ -19,7 +19,6 @@
     service: shell_command.alarm_sound_doorchime
 
 # If alarm changes from 'disarmed' to 'pending' announce 
-# Only announce if I'm home to hear it
 - alias: 'Alarm Announce - Pending Arm'
   trigger:
     - platform: state
@@ -48,7 +47,7 @@
       entity_id: alarm_control_panel.loft_alarm
       to: 'armed_home'
   action:
-    - delay: "00:00:01"
+    - delay: "00:00:02"
     - service: shell_command.alarm_sound_alarm_is_armed_home
 
 # If alarm changes from 'pending' to 'armed away'
@@ -60,7 +59,7 @@
       entity_id: alarm_control_panel.loft_alarm
       to: 'armed_away'
   action:
-    - delay: "00:00:01"
+    - delay: "00:00:02"
     - service: shell_command.alarm_sound_alarm_is_armed    
 
 
