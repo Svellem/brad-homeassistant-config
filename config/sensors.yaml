@@ -332,9 +332,14 @@
 
 - platform: darksky
   api_key: !secret darksky_api
+  forecast:
+    - 1
   monitored_conditions:
     - summary
     - hourly_summary
+    - daily_summary
+    - wind_speed
+    - wind_bearing
     - precip_intensity
     - precip_probability
     - temperature
@@ -344,14 +349,79 @@
 - platform: yr
   monitored_conditions:
     - fog 
+    - symbol
+
+# Convert the Wind Direction from degrees to cardinal
+- platform: template
+  sensors:
+    friendly_wind_direction:
+      friendly_name: 'Wind Direction'
+      value_template: >-
+        {%if states.sensor.dark_sky_wind_bearing.state | float<=11 %}N
+        {% elif states.sensor.dark_sky_wind_bearing.state | float>348 %}N
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=34 | float>11 %}NNE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=56 | float>34 %}NE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=79 | float>56 %}ENE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=101 | float>79 %}E
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=124 | float>101 %}ESE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=146 | float>124 %}SE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=169 | float>146 %}SSE
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=191 | float>169 %}S
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=214 | float>191 %}SSW
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=236 | float>214 %}SW
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=259 | float>236 %}WSW
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=281 | float>259 %}W
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=304 | float>281 %}WNW
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=326 | float>304 %}NW
+        {% elif states.sensor.dark_sky_wind_bearing.state | float<=348 | float>326 %}NNW
+        {%- endif %}
+- platform: template
+  sensors:
+    friendly_wind_direction_forecast:
+      friendly_name: 'Wind Forecast'
+      value_template: >-
+        {%if states.sensor.dark_sky_wind_bearing_1.state | float<=11 %}N
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float>348 %}N
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=34 | float>11 %}NNE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=56 | float>34 %}NE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=79 | float>56 %}ENE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=101 | float>79 %}E
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=124 | float>101 %}ESE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=146 | float>124 %}SE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=169 | float>146 %}SSE
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=191 | float>169 %}S
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=214 | float>191 %}SSW
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=236 | float>214 %}SW
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=259 | float>236 %}WSW
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=281 | float>259 %}W
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=304 | float>281 %}WNW
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=326 | float>304 %}NW
+        {% elif states.sensor.dark_sky_wind_bearing_1.state | float<=348 | float>326 %}NNW
+        {%- endif %}
 
 # Sun elevation
 - platform: template
   sensors:
     solar_angle:
       value_template: '{{ states.sun.sun.attributes.elevation }}'
-      friendly_name: 'Sun angle'
+      friendly_name: 'Solar angle'
       unit_of_measurement: 'degrees'
+
+# Sunset / Sunrise
+- platform: template
+  sensors:
+    sunset_time:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%I:%M") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Sunset"
+      unit_of_measurement: "PM"
+
+- platform: template
+  sensors:
+    sunrise_time:
+      value_template: '{% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%I:%M") %} {{ timestamp.lstrip("0") }}'
+      friendly_name: "Sunrise"
+      unit_of_measurement: "AM"
+
 
 - platform: time_date
   display_options:
@@ -525,3 +595,4 @@
     friendly_date:
       friendly_name: "Today's Date"
       value_template: "{{ now().strftime('%A %B %e, %Y') }}"
+

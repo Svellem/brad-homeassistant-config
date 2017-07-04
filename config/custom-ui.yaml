@@ -60,6 +60,37 @@
         - binary_sensor.bathroom_motion
         - binary_sensor.kitchen_motion
         - binary_sensor.dining_motion
+    group.todaybadges:
+      state_card_mode: badges
+      badges_list:
+        - sun.sun
+        - sensor.solar_angle
+        - sensor.moon
+        - sensor.sunset_time
+        - sensor.sunrise_time
+    group.weatherbadges:
+      state_card_mode: badges
+      badges_list:
+        - sensor.yr_symbol
+        - sensor.dark_sky_temperature
+        - sensor.dark_sky_daily_high_temperature
+        - sensor.dark_sky_daily_low_temperature
+    group.weatherconditionsbadges:
+      state_card_mode: badges
+      badges_list:
+        - sensor.dark_sky_precip_probability
+        - sensor.dark_sky_cloud_coverage
+        - sensor.yr_fog
+        - sensor.friendly_wind_direction
+        - sensor.dark_sky_wind_speed
+    group.weatherforecastbadges:
+      state_card_mode: badges
+      badges_list:
+        - sensor.dark_sky_daily_high_temperature_1
+        - sensor.dark_sky_daily_low_temperature_1
+        - sensor.dark_sky_precip_probability_1
+        - sensor.dark_sky_cloud_coverage_1
+        - sensor.friendly_wind_direction_forecast
 # No idea why this isn't working..
 #  light.*:
 #    custom_ui_state_card: custom-ui

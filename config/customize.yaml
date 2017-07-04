@@ -1,5 +1,38 @@
+    group.Today:
+      order: 1
+    sensor.yr_symbol:
+      friendly_name: " "
+    sensor.dark_sky_hourly_summary:
+      friendly_name: "Current:"
+    sensor.dark_sky_daily_summary:
+      friendly_name: "Forecast:"
+    sensor.dark_sky_temperature:
+      friendly_name: Current Temp
+    sensor.dark_sky_daily_high_temperature:
+      friendly_name: High
+    sensor.dark_sky_daily_high_temperature_1:
+      friendly_name: Forecast High
+    sensor.dark_sky_daily_low_temperature:
+      friendly_name: Low
+    sensor.dark_sky_daily_low_temperature_1:
+      friendly_name: Forecast Low
+    sensor.dark_sky_precip_probability:
+      friendly_name: Rain
+    sensor.dark_sky_precip_probability_1:
+      friendly_name: Forecast Rain
+    sensor.dark_sky_cloud_coverage:
+      friendly_name: Cloud
+    sensor.dark_sky_wind_speed:
+      friendly_name: Wind
+    sensor.dark_sky_wind_bearing:
+      friendly_name: Wind Bearing
+    sensor.dark_sky_cloud_coverage_1:
+      friendly_name: Forecast Cloud
+    sensor.water_plants:
+      icon: mdi:pine-tree
     sensor.breaches_bradbradwennercom:
       friendly_name: Pwned?
+      icon: mdi:evil
     device_tracker.bradwenner_ping:
       friendly_name: WiFi
     device_tracker.bradwenner_ios:
@@ -79,12 +112,15 @@
     sensor.giant_pothos_temperature:
       friendly_name: Office Temp
       icon: mdi:thermometer
+      unit_of_measurement: "°F"
     sensor.hanging_red_pothos_temperature:
       friendly_name: Living Room Temp
       icon: mdi:thermometer
+      unit_of_measurement: "°F"
     sensor.kitchen_pothos_temperature:
       friendly_name: Kitchen Temp
       icon: mdi:thermometer
+      unit_of_measurement: "°F"
     sensor.window_spider_plant_light_intensity:
       friendly_name: Window Light Intensity
     sensor.last_motion:

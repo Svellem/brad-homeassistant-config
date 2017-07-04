@@ -144,7 +144,7 @@ group:
     entities:
       - camera.sf_radar
       - group.Weather
-      - group.Space
+      - group.Today
       - group.Indoors
       - group.Temperatures
   # MEDIA TAB
@@ -251,7 +251,7 @@ group:
       - sensor.frontdoorcam_online
       - sensor.laserprinter_online
   Indoors:
-    name: Indoors
+    name: Indoor Air Quality
     entities:
       - group.environmentbadges
   environmentbadges:
@@ -321,9 +321,17 @@ group:
     - scene.night_dim_lights
     - scene.all_lights_off
     - scene.all_lights_on
-  Space:
+  Today:
+    entities:
+    - group.todaybadges
+    - sensor.friendly_date
+    - sensor.dark_sky_hourly_summary
+  todaybadges:
+    entities:
     - sun.sun
     - sensor.solar_angle
+    - sensor.sunrise_time
+    - sensor.sunset_time
     - sensor.moon
   Speakers:
     entities:
@@ -395,14 +403,30 @@ group:
       - switch.radio_kzsc
   Weather:
     entities:
-      - sensor.friendly_date
+      - group.weatherbadges
+      - group.weatherconditionsbadges
+      - sensor.dark_sky_daily_summary
+      - group.weatherforecastbadges
+  weatherbadges:
+    entities:
+      - sensor.yr_symbol
       - sensor.dark_sky_temperature
-      - sensor.dark_sky_summary
       - sensor.dark_sky_daily_high_temperature
       - sensor.dark_sky_daily_low_temperature
-      - sensor.dark_sky_precip_probability 
+  weatherconditionsbadges:
+    entities:
+      - sensor.dark_sky_precip_probability
       - sensor.dark_sky_cloud_coverage
       - sensor.yr_fog
+      - sensor.friendly_wind_direction
+      - sensor.dark_sky_wind_speed
+  weatherforecastbadges:
+    entities:
+      - sensor.dark_sky_daily_high_temperature_1
+      - sensor.dark_sky_daily_low_temperature_1
+      - sensor.dark_sky_precip_probability_1
+      - sensor.dark_sky_cloud_coverage_1
+      - sensor.friendly_wind_direction_forecast
   Temperatures:
     entities:
       - group.temperaturebadges

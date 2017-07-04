@@ -3,6 +3,31 @@
 #
 
 #
+# If rain tomorrow is in the forecast
+# Remind me to close window in the afternoon
+#
+- alias: 'Notify - Reminder to Close Window'
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_precip_probability_1
+      above: 60
+  condition:
+    - condition: state
+      entity_id: binary_sensor.left_window
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.bradhome
+      state: 'on'
+    - condition: time
+      after: '17:30:00'
+  action:
+    - service: notify.ios_bradwenner_bradphone
+      data:
+        title: "Reminder"
+        message: "Chance of rain is {{ states.sensor.dark_sky_precip_probability_1.state }}% tomorrow. Close the window."
+    
+
+#
 # Alert: Critical Device Offline
 # Condition: Once an Hour
 #
