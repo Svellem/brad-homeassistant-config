@@ -14,7 +14,9 @@ homeassistant:
   customize_glob: !include config/custom-ui.yaml
 
 recorder:
-  purge_days: 3
+  purge_days: 2
+#logger:
+#  default: debug
 frontend:
 http:
   api_password: !secret http_password
@@ -38,6 +40,7 @@ device_tracker: !include config/device_tracker.yaml
 zone: !include config/zones.yaml
 scene: !include_dir_merge_list scenes
 script: !include_dir_merge_named scripts
+python_script:
 input_boolean: !include config/input_boolean.yaml
 input_slider: !include config/input_slider.yaml
 input_select: !include config/input_select.yaml
@@ -79,9 +82,10 @@ tts:
 #
 # Set up Communication Hardware
 #
-zigbee:
-  device: /dev/ttyUSB1
-
+# This causes HA to hang :( :(
+#zha:
+#  usb_path: /dev/ttyUSB1
+#  database_path: /home/homeassistant/.homeassistant/zigbee.db
 zwave:
   usb_path: /dev/ttyUSB0
   new_entity_ids: true
@@ -196,7 +200,7 @@ group:
       - group.alarmbadge
       - script.alarm_disarm
       - script.alarm_arm_home
-      - script.alarm_arm_away
+      - input_boolean.alarm_override
 # Alarm Status Badge
   alarmbadge:
     entities:
@@ -262,7 +266,9 @@ group:
       - light.back_overheads
   Plants:
     entities:
+      - sensor.water_plants
       - plant.rubber_plant
+      - plant.giant_pothos
       - plant.giant_philodendron
       - plant.palm
       - plant.projector_pothos

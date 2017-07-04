@@ -1,5 +1,12 @@
   exclude:
     entities:
+      - script.alarm_pending_sound
+      - script.alarm_pending_loop
+      - automation.alarm_announce__armed_home
+      - group.motionbadges
+      - group.openingsbadges
+      - device_tracker.bradwenner_ping
+      - group.openings
       - sensor.cpu_temperature
       - sensor.cpu_use
       - sensor.disk_free_

@@ -24,3 +24,5 @@ ip_bans.yaml
 zwcfg_0x014d0166.xml
 zwscene.xml
 shell
+zigbee.db
+emulated_hue_ids.json

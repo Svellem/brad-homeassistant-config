@@ -1,3 +1,9 @@
+# Alarm
+alarm_override:
+  name: Alarm Override
+  initial: off
+  icon: mdi:cancel
+
 # PRESENCE
 vacation_mode:
   name: Vacation Mode

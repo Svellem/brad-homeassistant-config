@@ -1,0 +1,6 @@
+- alias: 'Update Plant Problems'
+  trigger:
+    - platform: state
+      entity_id: plant.giant_philodendron, plant.giant_pothos, plant.hanging_red_pothos, plant.hanging_spider_plant, plant.kitchen_pothos, plant.palm, plant.projector_pothos, plant.rubber_plant, plant.small_philodendron, plant.window_spider_plant
+  action: 
+    - service: python_script.plant_problems
