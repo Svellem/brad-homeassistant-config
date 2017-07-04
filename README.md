@@ -42,9 +42,9 @@ Running HA version: 0.47.1
 * Alarm
   * Alarm Away - when no one is home
   * Alarm Home - when coming home
-  * Announce Disarm
-  * Announce when being Armed
-  * Announce when Armed Home & Door Opens
+  * TTS Announce Disarm, Pending, and Armed Status
+  * Audible Alert when Front Door opens and Armed Home
+  * Trigger Alarm - Notify with security camera photo if Door Opened, "Presence Detected" announcement
 * Alarm Clock
   * Make Morning Coffee when Alarm goes off
   * Alarm Clock - turn on lights and radio to wake me up
@@ -71,8 +71,11 @@ Running HA version: 0.47.1
   * Turn on bathroom lights & lamp when movie pausd
   * Fade house lights up when Plex stops
   * Turns off bandwidth throttling for Transmission/sabnzbd when I'm away from home
+* Python Scripts
+  * plant_problems.py - Count number of plants that need attention
 * Notifications
-  * Alarm - send weather summary and image from window camera when alarm goes off
+  * Alarm - security photo if door opens when armed_away
+  * Alarm Clock - send weather summary and image from window camera when alarm goes off
   * Security - send image from front door camera if no one's home and door opens
   * Reminder - If I'm home at 10:30pm and coffee isn't ready but alarm is set, remind me
   * Reminder - Full moon 
