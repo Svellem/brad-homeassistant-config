@@ -73,6 +73,8 @@ Running HA version: 0.47.1
   * Turns off bandwidth throttling for Transmission/sabnzbd when I'm away from home
 * Python Scripts
   * plant_problems.py - Count number of plants that need attention
+  * average_indoor_temp.py - Poll available sensors and average them
+  * are_any_lights_on.py - input_boolean for lights on/off, counts lights and switches on
 * Notifications
   * Alarm - security photo if door opens when armed_away
   * Alarm Clock - send weather summary and image from window camera when alarm goes off

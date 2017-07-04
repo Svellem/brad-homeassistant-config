@@ -1,7 +1,41 @@
+# GROUP PRIORITIES IN UI
+# DEFAULT VIEW
+# DEVICE VIEW
+    group.Overheads:
+      order: 1
+      emulated_hue: true
+    group.Bathroom:
+      order: 2
+      emulated_hue: true
+    group.Bedroom:
+      order: 3
+    group.Kitchen:
+      order: 4
+      emulated_hue: true
+    group.LivingRoom:
+      order: 5
+      emulated_hue: true
+    group.Office:
+      order: 6
+      emulated_hue: true
+    group.Misc:
+      order: 10
+# CLIMATE GROUP
     group.Today:
       order: 1
+# SYSTEM GROUP
+    group.SystemOptions:
+      order: 1
+    group.BradsDevices:
+      order: 2
+    
+
+    input_boolean.are_any_lights_on:
+      custom_ui_state_card: custom-ui
+      extra_data_template: "{total_on} lights on"
     sensor.solar_angle:
       unit_of_measurement: "°"
+      icon: mdi:triangle-outline
     sensor.yr_symbol:
       friendly_name: " "
     sensor.dark_sky_hourly_summary:
@@ -70,8 +104,6 @@
       show_last_changed: true
     sensor.friendly_date:
       icon: mdi:calendar
-    sensor.solar_angle:
-      icon: mdi:triangle-outline
     sensor.kitchen_smoke:
       icon: mdi:fire
     sensor.kitchen_humidity:
@@ -241,9 +273,6 @@
       icon: mdi:cube
       emulated_hue: true
       emulated_hue_name: Aquarium
-    group.Overheads:
-      icon: mdi:lightbulb
-      emulated_hue: true
     group.LivingRoomLamps:
       icon: mdi:lightbulb
       emulated_hue: true
@@ -265,12 +294,6 @@
       emulated_hue: true
 
 # Just for Alexa
-    group.Bathroom:
-      emulated_hue: true
-    group.LivingRoom:
-      emulated_hue: true
-    group.Office:
-      emulated_hue: true
     scene.all_lights_off:
       emulated_hue: true
       emulated_hue_name: Kill Switch

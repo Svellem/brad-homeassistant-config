@@ -345,7 +345,8 @@ group:
   SystemOptions:
     name: Home Options
     entities:
-    - group.tracked_users
+#    - group.tracked_users
+    - input_boolean.are_any_lights_on
     - input_boolean.vacation_mode
     - input_boolean.guest_mode
     - switch.flux

@@ -5,6 +5,15 @@
 #
 #
 
+# Update sensor to count lights/switches on
+- alias: Update Are Lights On Sensor
+  trigger:
+    platform: state
+    # is there a better way to do this?
+    entity_id: switch.aquarium, switch.edison_pendants, switch.office, switch.sink, switch.work_lamp, switch.bathroom_light, switch.kitchen_lights, light.bedroom,light.closet,light.crawl_space,light.dining_floor_lamp,light.entry,light.floor_lamp,light.fridge,light.globes,light.office_pendant,light.stove,light.back_overheads,light.front_overheads
+  action:
+    - service: python_script.are_any_lights_on
+
 # Closet Lights on when Motion Detected
 - alias: Closet Lights On
   trigger:
