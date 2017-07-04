@@ -1,5 +1,7 @@
     group.Today:
       order: 1
+    sensor.solar_angle:
+      unit_of_measurement: "°"
     sensor.yr_symbol:
       friendly_name: " "
     sensor.dark_sky_hourly_summary:
@@ -112,15 +114,14 @@
     sensor.giant_pothos_temperature:
       friendly_name: Office Temp
       icon: mdi:thermometer
-      unit_of_measurement: "°F"
+#      unit_of_measurement: "Fahrenheit"
     sensor.hanging_red_pothos_temperature:
       friendly_name: Living Room Temp
       icon: mdi:thermometer
-      unit_of_measurement: "°F"
+#      unit_of_measurement: "Fahrenheit"
     sensor.kitchen_pothos_temperature:
       friendly_name: Kitchen Temp
       icon: mdi:thermometer
-      unit_of_measurement: "°F"
     sensor.window_spider_plant_light_intensity:
       friendly_name: Window Light Intensity
     sensor.last_motion:

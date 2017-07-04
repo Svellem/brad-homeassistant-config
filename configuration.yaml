@@ -256,10 +256,11 @@ group:
       - group.environmentbadges
   environmentbadges:
     entities:
-      - sensor.kitchen_smoke
+      - sensor.average_indoor_temp
       - sensor.kitchen_humidity
-      - sensor.carbon_monoxide
       - sensor.air_pressure
+      - sensor.kitchen_smoke
+      - sensor.carbon_monoxide
   Overheads:
     entities:
       - light.front_overheads
@@ -427,16 +428,6 @@ group:
       - sensor.dark_sky_precip_probability_1
       - sensor.dark_sky_cloud_coverage_1
       - sensor.friendly_wind_direction_forecast
-  Temperatures:
-    entities:
-      - group.temperaturebadges
-  temperaturebadges:
-    entities:
-      - sensor.entry_temperature
-      - sensor.kitchen_pothos_temperature
-      - sensor.giant_pothos_temperature
-      - sensor.hanging_red_pothos_temperature
-      - sensor.window_air_temp
   TravelTimes:
     name: Travel Times
     entities:

@@ -48,8 +48,6 @@
         - sensor.sabnzbd_speed
         - sensor.sabnzbd_left
         - sensor.sabnzbd_queue
-    group.temperaturebadges:
-      state_card_mode: badges
     group.environmentbadges:
       state_card_mode: badges
     group.motionbadges:
