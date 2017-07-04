@@ -3,14 +3,21 @@
 #
 
 #
-# If rain tomorrow is in the forecast
-# Remind me to close window in the afternoon
+# Close Window if Bad Weather
+# 
+# triggered by weather
+# if i'm home, after 5:30p, after sunset, if window is open
 #
 - alias: 'Notify - Reminder to Close Window'
   trigger:
+    # Rain tomorrow
     - platform: numeric_state
       entity_id: sensor.dark_sky_precip_probability_1
       above: 60
+    # Cold below 50F
+    - platform: numeric_state
+      entity_id: sensor.dark_sky_daily_low_temperature
+      below: 50
   condition:
     - condition: state
       entity_id: binary_sensor.left_window
@@ -20,11 +27,13 @@
       state: 'on'
     - condition: time
       after: '17:30:00'
+    - condition: sun
+      after: sunset
   action:
     - service: notify.ios_bradwenner_bradphone
       data:
         title: "Reminder"
-        message: "Chance of rain is {{ states.sensor.dark_sky_precip_probability_1.state }}% tomorrow. Close the window."
+        message: "Chance of rain is {{ states.sensor.dark_sky_precip_probability_1.state }}% tomorrow. The low tonight is {{ states.sensor.dark_sky_daily_low_temperature }}F.\nClose the window."
     
 
 #
