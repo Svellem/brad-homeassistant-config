@@ -86,3 +86,12 @@ Running HA version: 0.47.1
   * System - Notify when critical smart home device goes offline for more than 5 minutes
 * Timelapse - record JPEGs of sunrise/sunset
  
+## Other Projects Used
+* esp8266 related
+  * [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant)
+  * [ESPEasy](https://github.com/letscontrolit/ESPEasy)
+  * [AiLight](https://github.com/stelgenhof/AiLight)
+  * [esp8266-milight-hub](https://github.com/sidoh/esp8266_milight_hub)
+* HA addons
+  * [Floorplan](https://github.com/pkozul/ha-floorplan)
+  * [custom-ui](https://github.com/andrey-git/home-assistant-custom-ui)

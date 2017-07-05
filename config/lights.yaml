@@ -1,11 +1,11 @@
 - platform: limitlessled
   bridges:
-    - host: 192.168.0.20
+    - host: 192.168.0.25
       version: 5
-      port: 8001
+      port: 8899
       groups:
        - number: 1
-         name: Dining Floor Lamp
+         name: Fridge
        - number: 2
          name: Globes
        - number: 3
@@ -14,14 +14,22 @@
          name: Stove
     - host: 192.168.0.20
       version: 5
-      port: 8002
+      port: 8003
       groups:
        - number: 1
-         name: Fridge
-       - number: 2
-         name: Entry
-       - number: 3
          name: Office Pendant
+    - host: 192.168.0.20
+      version: 5
+      port: 8004
+      groups:
+       - number: 1
+         name: Entry
+    - host: 192.168.0.20
+      version: 5
+      port: 8005
+      groups:
+       - number: 1
+         name: Dining Floor Lamp
 - platform: mqtt_json
   name: 'Crawl Space'
   state_topic: 'light/entry'
