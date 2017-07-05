@@ -48,6 +48,7 @@ Running HA version: 0.47.1
 * Alarm Clock
   * Make Morning Coffee when Alarm goes off
   * Alarm Clock - turn on lights and radio to wake me up
+  * UI - change default view to show commute times, weather info during morning
 * Aquarium
   * Turn on 30 mins before sunrise and 1 hour after
   * Turn on 1 hour before sunset, turn off 4 hours after or at 10PM (whichever is first)
