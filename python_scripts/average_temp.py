@@ -27,9 +27,10 @@ for entity_id in tempEntities:
   state = hass.states.get(entity_id)
 
   # If not None, add up and increase counter
-  if state.state is not 'unknown':
-     tempsCounted = tempsCounted + 1
-     tempsTotal = tempsTotal + int(float(state.state))
+  if state.state is not None:
+     if state.state is not 'unknown':
+       tempsCounted = tempsCounted + 1
+       tempsTotal = tempsTotal + int(float(state.state))
 
 # Get average
 averageTemp = "{0:.2f}".format(tempsTotal / tempsCounted)

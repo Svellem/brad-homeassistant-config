@@ -4,6 +4,8 @@ waterPlants = []
 numberWater = 0
 fertilizePlants = []
 numberFertilize = 0
+deadBatteries = []
+numberdeadBatteries = 0
 whichIcon = "mdi:help-circle-outline"
 
 for entity_id in hass.states.entity_ids('plant'):
@@ -18,6 +20,9 @@ for entity_id in hass.states.entity_ids('plant'):
         if "moisture low" in problem:
           waterPlants.append(state.name)
           numberWater = numberWater + 1
+        if "battery low" in problem:
+          deadBatteries.append(state.name)
+          numberdeadBatteries = numberDeadBatteries + 1
 
 # Set icon
 if problemPlants > 0:
@@ -34,5 +39,7 @@ hass.states.set('sensor.water_plants', problemPlants, {
     'water': waterPlants,
     'water_number': numberWater,
     'fertilize': fertilizePlants,
-    'fertilize_number': numberFertilize
+    'fertilize_number': numberFertilize,
+    'battery_change': deadBatteries,
+    'battery_number': numberdeadBatteries
 })

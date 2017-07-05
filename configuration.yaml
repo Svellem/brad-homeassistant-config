@@ -148,7 +148,6 @@ group:
       - group.Weather
       - group.Today
       - group.Indoors
-      - group.Temperatures
   # MEDIA TAB
   Media:
     view: yes
