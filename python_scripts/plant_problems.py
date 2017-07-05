@@ -31,7 +31,7 @@ else:
   whichIcon = "mdi:check-circle-outline"
 
 # Set states
-hass.states.set('sensor.water_plants', problemPlants, {
+hass.states.set('sensor.plant_problems', problemPlants, {
     'unit_of_measurement': 'plants',
     'friendly_name': 'Problem Plants',
     'icon': whichIcon,
@@ -42,4 +42,33 @@ hass.states.set('sensor.water_plants', problemPlants, {
     'fertilize_number': numberFertilize,
     'battery_change': deadBatteries,
     'battery_number': numberdeadBatteries
+})
+
+hass.states.set('sensor.water_plants_number', numberWater, {
+    'unit_of_measurement': 'plants',
+    'friendly_name': 'Water Plants Number',
+    'icon': 'mdi:water'
+})
+
+waterplantsList = ', '.join(waterPlants)
+if waterplantsList == "":
+  waterplantsList = "None"
+hass.states.set('sensor.water_plants_friendly', waterplantsList, {
+    'friendly_name': 'Water Plants',
+    'icon': 'mdi:water'
+})
+
+hass.states.set('sensor.fertilize_plants_number', numberFertilize, {
+    'unit_of_measurement': 'plants',
+    'friendly_name': 'Fertilize Plants Number',
+    'icon': 'mdi:emoticon-poop'
+})
+
+fertilizeplantsList = ', '.join(fertilizePlants)
+if waterplantsList == "":
+  waterplantsList = "None"
+hass.states.set('sensor.fertilize_plants_friendly', fertilizeplantsList, {
+    'unit_of_measurement': 'plants',
+    'friendly_name': 'Fertilize Plants',
+    'icon': 'mdi:emoticon-poop'
 })

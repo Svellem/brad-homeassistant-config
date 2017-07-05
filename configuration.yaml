@@ -268,7 +268,7 @@ group:
       - light.back_overheads
   Plants:
     entities:
-      - sensor.water_plants
+      - sensor.plant_problems
       - plant.rubber_plant
       - plant.giant_pothos
       - plant.giant_philodendron

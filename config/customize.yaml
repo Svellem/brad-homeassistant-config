@@ -325,6 +325,7 @@
       emulated_hue: true
       emulated_hue_name: Night Light
     switch.coffeemaker:
+      friendly_name: "Coffee Maker"
       emulated_hue: true
       show_last_changed: true
       emulated_hue_name: Coffee

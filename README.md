@@ -82,6 +82,7 @@ Running HA version: 0.47.1
   * Security - send image from front door camera if no one's home and door opens
   * Reminder - If I'm home at 10:30pm and coffee isn't ready but alarm is set, remind me
   * Reminder - Full moon 
+  * Plants - Once a day reminder to water plants if more than 3 are thirsty
   * System - Notify if disk use gets high
   * System - Notify if new HA version available
   * System - Notify when critical smart home device goes offline for more than 5 minutes
