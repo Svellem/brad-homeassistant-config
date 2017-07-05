@@ -124,8 +124,10 @@ group:
       - group.AlarmClock
       - camera.car_location
       - group.Alarm
+      # COMMUTE VIEW, HIDDEN BY DEFAULT
       - group.traveltimes
-#      - camera.east_bay
+      - group.TodayDefault
+      - group.TodayWeather
   Lights:
     view: yes
     icon: mdi:flash
@@ -327,6 +329,13 @@ group:
     - group.todaybadges
     - sensor.friendly_date
     - sensor.dark_sky_hourly_summary
+  # Put a copy in default_view for commute
+  TodayDefault:
+    name: Today
+    entities:
+    - group.todaybadges
+    - sensor.friendly_date
+    - sensor.dark_sky_hourly_summary
   todaybadges:
     entities:
     - sun.sun
@@ -409,6 +418,12 @@ group:
       - group.weatherconditionsbadges
       - sensor.dark_sky_daily_summary
       - group.weatherforecastbadges
+  TodayWeather:
+    name: "Today's Weather"
+    entities:
+      - group.weatherbadges
+      - group.weatherconditionsbadges
+      - sensor.dark_sky_daily_summary
   weatherbadges:
     entities:
       - sensor.yr_symbol

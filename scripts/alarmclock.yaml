@@ -15,6 +15,24 @@ morning_coffee:
     - service: homeassistant.turn_on
       entity_id: switch.coffeemaker
 
+#
+# Reset default_view
+# 2 hours after alarm goes off
+#
+alarm_reset_ui:
+  alias: Alarm Reset UI
+  sequence:
+    - delay: "00:02:00"
+    - service: group.set_visibility
+      data:
+        entity_id: group.traveltimes,group.TodayDefault,group.TodayWeather
+        visible: false
+    # TURN OFF DEFAULT GROUPS
+    - service: group.set_visibility
+      data:
+        entity_id: group.alarmclock,group.scenes,group.alarm
+        visible: true
+
 # WORK IN PROGRESS
 # Does it need to be a loop? Probably
 # 
@@ -63,11 +81,20 @@ alarm_clock:
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
 
-#    # Turn on Commute Time panel in default_view
-#    - service: group.set_visibility
-#      entity_id: group.traveltimes
-#      data:
-#        visible: True
+    #
+    # RESET DEFAULT VIEW FOR MORNING
+    # Turn on Commute Time panel in default_view
+    # 
+    # TURN ON MORNING RELATED GROUPS
+    - service: group.set_visibility
+      data:
+        entity_id: group.traveltimes,group.TodayDefault,group.TodayWeather
+        visible: True
+    # TURN OFF DEFAULT GROUPS
+    - service: group.set_visibility
+      data:
+        entity_id: group.alarmclock,group.scenes,group.alarm
+        visible: false
 
     # Let lights fade in 3 minutes
     - delay: 00:03:00
@@ -140,4 +167,7 @@ alarm_clock:
     - service: light.turn_on
       entity_id: light.closet
 
+    # Timer to Reset UI 2 hours from now
+    - service: script.turn_on
+      entity_id: script.alarm_reset_ui
 

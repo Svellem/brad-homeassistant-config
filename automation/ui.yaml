@@ -2,8 +2,6 @@
 # Turn on/off UI elements
 #
 
-# alarmclock.yaml: Commute times shown by alarm, turned off 3 hours after
-
 # Turn Visibility Off for These Groups at HA start
 - alias: 'UI Groups Off by Default'
   trigger:
@@ -11,6 +9,6 @@
     event: start
   action:
     - service: group.set_visibility
-      entity_id: group.traveltimes
+      entity_id: group.traveltimes, group.TodayWeather, group.TodayDefault
       data:
         visible: False

@@ -20,6 +20,13 @@
       emulated_hue: true
     group.Misc:
       order: 10
+# DEFAULT VIEW - MORNING
+    group.TodayWeather:
+      order: 1
+    group.traveltimes:
+      order: 2
+    group.TodayDefault:
+      order: 3
 # CLIMATE GROUP
     group.Today:
       order: 1
@@ -316,4 +323,5 @@
       emulated_hue_name: Night Light
     switch.coffeemaker:
       emulated_hue: true
+      show_last_changed: true
       emulated_hue_name: Coffee
