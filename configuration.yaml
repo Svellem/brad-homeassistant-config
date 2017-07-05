@@ -370,6 +370,7 @@ group:
     - binary_sensor.bathroom_motion
     - binary_sensor.kitchen_motion
     - binary_sensor.dining_motion
+    - binary_sensor.living_room_motion
   Openings:
     entities:
     - group.openingsbadges

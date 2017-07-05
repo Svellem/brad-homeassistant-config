@@ -3,6 +3,12 @@
 #
 
 - platform: mqtt
+  state_topic: "PiNode/Motion/LivingRoom/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Living Room Motion"
+- platform: mqtt
   state_topic: "PiNode/Motion/Dining/Switch"
   device_class: motion
   payload_on: "1"

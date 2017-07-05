@@ -169,6 +169,9 @@
     binary_sensor.bathroom_motion:
       friendly_name: Bathroom Motion
       device_class: motion
+    binary_sensor.living_room_motion:
+      friendly_name: Living Room Motion
+      device_class: motion
     light.tradfri_bulb_e26_opal_1000lm:
       friendly_name: Bedroom Light
       emulated_hue: true
