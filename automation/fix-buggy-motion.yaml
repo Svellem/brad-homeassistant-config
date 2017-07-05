@@ -1,0 +1,31 @@
+#
+# DIY motion sensors get stuck sometimes
+# Turn off with HA until I get around to something better
+#
+#
+
+- alias: 'Fix Stuck Kitchen Motion'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      to: 'on'
+      for:
+        seconds: 10
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "KitchenNode/Motion/Switch"
+        payload: 0
+
+- alias: 'Fix Stuck Entry Motion'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.entry_motion
+      to: 'on'
+      for:
+        seconds: 10
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "FrontDoorNode/Motion/Switch"
+        payload: 0
