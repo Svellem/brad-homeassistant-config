@@ -13,8 +13,6 @@
 # OPTIONS      
 # New tracker name
 metatrackerName = 'device_tracker.bradwenner'
-# List of device entities to ignore 'not_home' signals from
-nothomeIgnore = ['device_tracker.bradwenner_ping']
 
 # Get Data from Automation Trigger
 triggeredEntity = data.get('entity_id')
@@ -49,13 +47,17 @@ else:
   newBattery = None
 
 # Set new state and icon
+# Everything updates 'home'
 if newState.state == 'home':
   newStatus = 'home'
   newIcon = 'mdi:home-map-marker'
-elif newState.state == 'not_home':
-  if triggeredEntity not in nothomeIgnore:
+# only GPS platforms update 'not_home'
+elif newState.state == 'not_home' and newSource == 'gps':
     newStatus = 'not_home'
     newIcon = 'mdi:home'
+# Otherwise keep old status
+else: 
+    newStatus = currentState.state
 
 # Create device_tracker.meta entity
 hass.states.set(metatrackerName, newStatus, {
