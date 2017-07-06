@@ -122,7 +122,7 @@
     - service: notify.ios_bradwenner_bradphone
       data:
         title: "{{ states.sensor.friendly_date.state }}"
-        message: "{{ states.sensor.dark_sky_summary.state }} and {{ states.sensor.dark_sky_temperature.state }}°F out today. \n Chance of Rain is {{ states.sensor.dark_sky_precip_probability.state }}%. \n Moon is {{ states.sensor.moon.state }}."
+        message: "{{ states.sensor.dark_sky_hourly_summary.state }}\n{{ states.sensor.dark_sky_temperature.state }}°F currently, high of {{ states.sensor.dark_sky_daily_high_temperature.state }}°F and low {{ states.sensor.dark_sky_daily_low_temperature.state }}°F.\n Chance of Rain is {{ states.sensor.dark_sky_precip_probability.state }}%.\n Moon is {{ states.sensor.moon.state }} tonight."
         data:
           attachment:
             url: !secret camera_window_jpg

@@ -5,7 +5,6 @@
 #
 #
 
-# Update sensor to count lights/switches on
 - alias: Update Are Lights On Sensor
   trigger:
     platform: state
@@ -41,15 +40,18 @@
 
 
 # Bathroom Lights Turned on by Motion Sensor
+# Not between 12am-6am
 - alias: Bathroom Lights On
   trigger:
     platform: state
     entity_id: binary_sensor.bathroom_motion
     to: 'on'
   condition:
-    condition: state
-    entity_id: switch.bathroom_light
-    state: 'off'
+    - condition: state
+      entity_id: switch.bathroom_light
+      state: 'off'
+    - condition: time
+      after: '06:00:00'
   action:
     service: homeassistant.turn_on
     entity_id: switch.bathroom_light
