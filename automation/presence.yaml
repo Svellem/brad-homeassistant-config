@@ -1,4 +1,16 @@
 #
+# Update Meta Device Tracker
+#
+- alias: "Update Brad's Meta Tracker"
+  trigger:
+    platform: state
+    entity_id: device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks, device_tracker.bradwenner_ping
+  action:
+    service: python_script.meta_device_tracker
+    data_template:
+      entity_id: '{{trigger.entity_id}}' 
+
+#
 # Turn on evening lighting if someone is home at SUNSET
 #
 - alias: 'Sunset Transition'

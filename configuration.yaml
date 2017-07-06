@@ -234,6 +234,7 @@ group:
       - sensor.breaches_bradbradwennercom
   bradsdevicesbadges:
     entities:
+      - device_tracker.bradwenner
       - device_tracker.bradwenner_ios
       - device_tracker.bradwenner_owntracks
       - device_tracker.bradwenner_ping

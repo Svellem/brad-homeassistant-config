@@ -15,6 +15,7 @@
     group.bradsdevicesbadges:
       state_card_mode: badges
       badges_list:
+        - device_tracker.bradwenner
         - device_tracker.bradwenner_ios
         - device_tracker.bradwenner_owntracks
         - device_tracker.bradwenner_ping
