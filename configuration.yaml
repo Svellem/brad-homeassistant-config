@@ -78,6 +78,14 @@ tts:
     cache: true
     cache_dir: /tmp/tts
     time_memory: 3600
+  - platform: amazon_polly
+    aws_access_key_id: !secret aws_key
+    aws_secret_access_key: !secret aws_secret_key
+    name: polly
+    # English US Female
+    voice: Salli
+    # English UK Female
+    # voice: Amy
 
 #
 # Set up Communication Hardware
@@ -235,6 +243,7 @@ group:
       - device_tracker.brad_ios
       - device_tracker.brad_owntracks
       - device_tracker.brad_ping
+      - device_tracker.brad_router
   Devices:
     name: Devices
     entities:
@@ -255,7 +264,7 @@ group:
       - group.environmentbadges
   environmentbadges:
     entities:
-      - sensor.average_indoor_temp
+      - sensor.indoor_mean_temp
       - sensor.kitchen_humidity
       - sensor.air_pressure
       - sensor.kitchen_smoke

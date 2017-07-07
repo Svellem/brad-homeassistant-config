@@ -2,6 +2,27 @@
 #
 # SENSORS!!!!!!!!
 
+
+#
+# MIN / MAX
+#
+- platform: min_max
+  entity_ids:
+    - sensor.entry_temperature
+    - sensor.kitchen_pothos_temperature
+    - sensor.kitchen_temperature
+    - sensor.giant_pothos_temperature
+    - sensor.hanging_red_pothos_temperature
+    - sensor.window_air_temp
+    - sensor.giant_philodrendon_temperature
+    - sensor.hanging_spider_plant_temperature
+    - sensor.palm_temperature
+    - sensor.projector_pothos_temperature
+    - sensor.rubber_plant_temperature 
+    - sensor.small_philodendron_temperature
+    - sensor.window_spider_plant_temperature
+  type: mean
+  name: indoor_mean_temp
 #
 # Have I Been Pwned?
 #
@@ -437,12 +458,12 @@
     battery_iphone:
       unit_of_measurement: '%'
       value_template: >
-          {%- if states.device_tracker.bradwenner_ios.attributes.battery %}
-              {{ states.device_tracker.bradwenner_ios.attributes.battery|round }}
+          {%- if states.device_tracker.brad_ios.attributes.battery %}
+              {{ states.device_tracker.brad_ios.attributes.battery|round }}
           {% else %}
               {{ states.sensor.battery_iphone.state }}
           {%- endif %}
-      icon_template: '{%- if is_state("sensor.battery_iphone", "unknown") %}mdi:battery-unknown{%- elif is_state_attr("sensor.bradphone_battery_state_2", "battery_statte", "Charging") %}mdi:battery-charging{%- elif  states.device_tracker.bradwenner_ios.attributes.battery <= 5 %}mdi:battery-outline{%- elif states.device_tracker.bradwenner_ios.attributes.battery >= 95 %}mdi:battery{% else %}mdi:battery-{{(states.device_tracker.bradwenner_ios.attributes.battery|float / 10)|round*10}}{%- endif %}'
+      icon_template: '{%- if is_state("sensor.battery_iphone", "unknown") %}mdi:battery-unknown{%- elif is_state_attr("sensor.bradphone_battery_state_2", "battery_statte", "Charging") %}mdi:battery-charging{%- elif  states.device_tracker.brad_ios.attributes.battery <= 5 %}mdi:battery-outline{%- elif states.device_tracker.brad_ios.attributes.battery >= 95 %}mdi:battery{% else %}mdi:battery-{{(states.device_tracker.brad_ios.attributes.battery|float / 10)|round*10}}{%- endif %}'
 
 
 

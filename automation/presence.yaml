@@ -9,7 +9,7 @@
     service: python_script.meta_device_tracker
     data_template:
       entity_id: '{{trigger.entity_id}}' 
-      meta_entity: 'brad'
+      meta_entity: 'Brad'
 
 #
 # Turn on evening lighting if someone is home at SUNSET

@@ -27,9 +27,10 @@ if newSource == 'gps':
   newgpsAccuracy = newState.attributes.get('gps_accuracy')
 # If not, keep last known coordinates
 else:
-  newLatitude = currentState.attributes.get('latitude')
-  newLongitude = currentState.attributes.get('longitude')
-  newgpsAccuracy = currentState.attributes.get('gps_accuracy')
+  if newSource is not None:
+    newLatitude = currentState.attributes.get('latitude')
+    newLongitude = currentState.attributes.get('longitude')
+    newgpsAccuracy = currentState.attributes.get('gps_accuracy')
 
 # Get Battery
 if newState.attributes.get('battery') is not None:
@@ -55,6 +56,7 @@ else:
 # Create device_tracker.meta entity
 hass.states.set(metatrackerName, newStatus, {
     'icon': newIcon,
+    'name': metatrackerName,
     'source_type': newSource,
     'battery': newBattery,
     'gps_accuracy': newgpsAccuracy,

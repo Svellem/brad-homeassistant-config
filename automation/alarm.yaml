@@ -34,7 +34,11 @@
             url: !secret camera_frontdoor_jpg
             content-type: jpeg
             hide-thumbnail: false
-    - service: shell_command.alarm_sound_presence_detected
+    - delay: '00:00:05'
+    - service: tts.google_polly_say
+      entity_id: media_player.vlc_tts
+      data_template:
+        message: 'Your presence has been detected and recorded, thank you'
 #
 # Audible Notifications
 #
@@ -58,6 +62,7 @@
   action:
     service: shell_command.alarm_sound_doorchime
 
+
 # If alarm changes from 'disarmed' to 'pending' announce 
 - alias: 'Alarm Announce - Pending Arm'
   trigger:
@@ -74,7 +79,10 @@
     - service: homeassistant.turn_off
       entity_id: switch.mpd_pi
     # "Alarm is being armed..." 2s
-    - service: shell_command.alarm_sound_armed
+    - service: tts.amazon_polly_say
+      entity_id: media_player.vlc_tts
+      data_template:
+        message: 'Alarm activated'
     # Beep.. beep. beep.. turn off after done pending state
     - service: script.turn_on
       entity_id: script.alarm_pending_loop
@@ -96,7 +104,11 @@
       state: 'off'
   action:
     - delay: "00:00:02"
-    - service: shell_command.alarm_sound_alarm_is_armed_home
+#    - service: shell_command.alarm_sound_alarm_is_armed_home
+    - service: tts.amazon_polly_say
+      entity_id: media_player.vlc_tts
+      data_template:
+        message: 'Alarm is now armed home'
 
 # If alarm changes from 'pending' to 'armed away'
 # Turn off pending loop, then announce it
@@ -114,8 +126,11 @@
       state: 'off'
   action:
     - delay: "00:00:02"
-    - service: shell_command.alarm_sound_alarm_is_armed    
-
+#    - service: shell_command.alarm_sound_alarm_is_armed    
+    - service: tts.amazon_polly_say
+      entity_id: media_player.vlc_tts
+      data_template:
+        message: 'Alarm is now armed away'
 
 # If alarm is disarmed, announce
 - alias: 'Alarm Announce - Disarmed'
@@ -131,7 +146,11 @@
       state: 'off'
   action:
     - delay: "00:00:01"
-    - service: shell_command.alarm_sound_disarmed
+#    - service: shell_command.alarm_sound_disarmed
+    - service: tts.amazon_polly_say
+      entity_id: media_player.vlc_tts
+      data_template:
+        message: 'Alarm is now disarmed'
     
 #
 # Change Alarm Status based on presence
