@@ -36,7 +36,10 @@
     group.BradsDevices:
       order: 2
     
-
+    
+    sensor.indoor_mean_temp:
+      icon: mdi:thermometer
+      friendly_name: Indoor Temp
     input_boolean.are_any_lights_on:
       custom_ui_state_card: custom-ui
       extra_data_template: "{total_on} lights on"

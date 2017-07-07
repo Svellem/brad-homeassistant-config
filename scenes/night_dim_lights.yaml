@@ -12,6 +12,7 @@
     light.entry:
       state: off
       transition: 60
+      rgb_color: [255,255,255]
     light.stove:
       state: on
       rgb_color: [255,255,255]
@@ -27,14 +28,13 @@
       rgb_color: [255,255,255]
       brightness: 80
       transition: 60
-    switch.kitchen_lights: on
     light.globes:
       state: off
       brightness: 30
       transition: 60
     switch.string_lights: off
     light.office_pendant:
-      state: o
+      state: on
       rgb_color: [255,255,255]
       brightness: 50
       transition: 60

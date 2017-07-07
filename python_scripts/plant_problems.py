@@ -22,7 +22,7 @@ for entity_id in hass.states.entity_ids('plant'):
           numberWater = numberWater + 1
         if "battery low" in problem:
           deadBatteries.append(state.name)
-          numberdeadBatteries = numberDeadBatteries + 1
+          numberdeadBatteries = numberdeadBatteries + 1
 
 # Set icon
 if problemPlants > 0:

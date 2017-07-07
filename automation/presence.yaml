@@ -3,8 +3,10 @@
 #
 - alias: "Update Brad's Meta Tracker"
   trigger:
-    platform: state
-    entity_id: device_tracker.brad_ios, device_tracker.brad_owntracks, device_tracker.brad_ping
+    - platform: state
+      entity_id: device_tracker.brad_ios, device_tracker.brad_owntracks, device_tracker.brad_ping
+    - platform: homeassistant
+      event: start
   action:
     service: python_script.meta_device_tracker
     data_template:
@@ -64,6 +66,20 @@
       entity_id: scene.night_dim_lights
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
+
+# Same thing but differnet scene for Midnight-430am
+- alias: 'Welcome Home - It's Late and You're Probably Drunk'
+  trigger:
+    platform: state
+    entity_id: group.tracked_users
+    from: 'not_home'
+    to: 'home'
+  condition:
+    - condition: time
+      before: '05:30:00'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.night_light
 
 #
 # TURN EVERYTHING OFF WHEN NO ONE IS HOME

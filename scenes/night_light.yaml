@@ -6,16 +6,16 @@
     light.entry:
       state: on
       rgb_color: [255,0,0]
-      brightness: 5
+      brightness: 75
     light.fridge:
       state: on
       rgb_color: [255,0,0]
-      brightness: 5
-    light.stove:
+      brightness: 50
+    light.office_pendant:
       state: on
       rgb_color: [255,0,0]
-      brightness: 5    
+      brightness: 60    
     light.dining_floor_lamp:
       state: on
       rgb_color: [255,0,0]
-      brightness: 5
+      brightness: 110
