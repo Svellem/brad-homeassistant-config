@@ -4,11 +4,12 @@
 - alias: "Update Brad's Meta Tracker"
   trigger:
     platform: state
-    entity_id: device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks, device_tracker.bradwenner_ping
+    entity_id: device_tracker.brad_ios, device_tracker.brad_owntracks, device_tracker.brad_ping
   action:
     service: python_script.meta_device_tracker
     data_template:
       entity_id: '{{trigger.entity_id}}' 
+      meta_entity: 'brad'
 
 #
 # Turn on evening lighting if someone is home at SUNSET
@@ -21,7 +22,7 @@
   condition:
     condition: state
     entity_id: group.tracked_users
-    state: 'on'
+    state: 'home'
   action:
     service: scene.turn_on
     entity_id: scene.evening_bright_lights
@@ -33,8 +34,8 @@
   trigger:
     platform: state
     entity_id: group.tracked_users
-    from: 'off'
-    to: 'on'
+    from: 'not_home'
+    to: 'home'
   condition:
     - condition: sun
       after: sunrise
@@ -45,13 +46,14 @@
       entity_id: scene.day_dim_lights
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
+
 # Same thing but differnet scene for evening 
 - alias: 'Welcome Home - Evening'
   trigger:
     platform: state
     entity_id: group.tracked_users
-    from: 'off'
-    to: 'on'
+    from: 'not_home'
+    to: 'home'
   condition:
     - condition: sun
       after: sunset
@@ -63,45 +65,6 @@
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
 
-# Multi-tracker automations for brad
-# using input_boolean.bradhome for presence
-# which is inside group.tracked_users
-#
-# Trackers used:
-#   device_tracker.bradwenner_ios - iOS
-#   device_tracker.bradwenner_owntracks - OwnTracks
-#   device_tracker.bradwenner_ping - WiFi Ping
-#
-
-# AWAY - Only iOS/Owntracks update 'not_home'
-- alias: 'Brad Away'
-  condition:
-    condition: state
-    entity_id: input_boolean.bradhome
-    state: 'on'
-  trigger:
-    - platform: state
-      entity_id: device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks
-      to: 'not_home'
-      # stop turning shit off when I walk the dog
-      for:
-        minutes: 10
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.bradhome
-# HOME - WiFi Ping, iOS, Owntracks all turn 'home' on
-- alias: 'Brad Home'
-  condition:
-    condition: state
-    entity_id: input_boolean.bradhome
-    state: 'off'
-  trigger:
-    - platform: state
-      entity_id: device_tracker.bradwenner_ping, device_tracker.bradwenner_ios, device_tracker.bradwenner_owntracks
-      to: 'home'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.bradhome
 #
 # TURN EVERYTHING OFF WHEN NO ONE IS HOME
 #
@@ -111,7 +74,7 @@
   trigger:
     platform: state
     entity_id: group.tracked_users
-    to: 'off'
+    to: 'not_home'
   action:
     - service: scene.turn_on
       entity_id: scene.all_lights_off

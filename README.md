@@ -63,7 +63,7 @@ Running HA version: 0.47.1
   * Evening - turn on dim lights if I come home after 10pm
   * Turn everything off when no one's home
   * Turn Closet lights on/off by motion detector
-  * Turn Bathroom lights on/off by motion detector
+  * Turn Bathroom lights on/off by motion detector (off 12a-8:30a)
   * Turn Crawl space light on/off by door sensor
   * Turn kitchen lamps on/off using wall switch
   * Turn on office lamps using switch
@@ -76,6 +76,8 @@ Running HA version: 0.47.1
   * plant_problems.py - Count number of plants that need attention
   * average_indoor_temp.py - Poll available sensors and average them
   * are_any_lights_on.py - input_boolean for lights on/off, counts lights and switches on
+  * meta_device_tracker.py - Consolidate device tracking into one entity, only use GPS platforms for 'not_home'
+  * plant_problems.py - Count number of plants that need attention
 * Notifications
   * Alarm - security photo if door opens when armed_away
   * Alarm Clock - send weather summary and image from window camera when alarm goes off

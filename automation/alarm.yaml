@@ -48,7 +48,7 @@
   condition:
     - condition: state
       entity_id: group.tracked_users
-      state: 'on'
+      state: 'home'
     - condition: state
       entity_id: alarm_control_panel.loft_alarm
       state: 'armed_home'
@@ -146,7 +146,7 @@
   trigger:
     - platform: state
       entity_id: group.tracked_users
-      to: 'off'
+      to: 'not_home'
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode
@@ -162,7 +162,7 @@
   trigger:
     - platform: state
       entity_id: group.tracked_users
-      to: 'on'
+      to: 'home'
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode

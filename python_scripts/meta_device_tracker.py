@@ -10,12 +10,10 @@
 # 
 #
    
-# OPTIONS      
-# New tracker name
-metatrackerName = 'device_tracker.bradwenner'
-
 # Get Data from Automation Trigger
 triggeredEntity = data.get('entity_id')
+metatrackerName = "device_tracker." + data.get('meta_entity')
+
 # Get current & new state
 newState = hass.states.get(triggeredEntity)
 currentState = hass.states.get(metatrackerName)
@@ -28,15 +26,10 @@ if newSource == 'gps':
   newLongitude = newState.attributes.get('longitude')
   newgpsAccuracy = newState.attributes.get('gps_accuracy')
 # If not, keep last known coordinates
-elif currentState.attributes.get('latitude') is not None:
+else:
   newLatitude = currentState.attributes.get('latitude')
   newLongitude = currentState.attributes.get('longitude')
   newgpsAccuracy = currentState.attributes.get('gps_accuracy')
-# Otherwise return null
-else:
-  newLatitude = None
-  newLongitude = None
-  newgpsAccuracy = None
 
 # Get Battery
 if newState.attributes.get('battery') is not None:
@@ -61,13 +54,12 @@ else:
 
 # Create device_tracker.meta entity
 hass.states.set(metatrackerName, newStatus, {
-    'friendly_name': 'Meta Tracker',
     'icon': newIcon,
     'source_type': newSource,
     'battery': newBattery,
     'gps_accuracy': newgpsAccuracy,
     'latitude': newLatitude,
     'longitude': newLongitude,
-    'last_update_source': triggeredEntity 
+    'last_update_source': newState.name 
 })
 

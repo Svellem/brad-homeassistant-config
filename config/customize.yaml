@@ -76,11 +76,13 @@
     sensor.breaches_bradbradwennercom:
       friendly_name: Pwned?
       icon: mdi:evil
-    device_tracker.bradwenner_ping:
+    device_tracker.brad:
+      friendly_name: Brad
+    device_tracker.brad_ping:
       friendly_name: WiFi
-    device_tracker.bradwenner_ios:
+    device_tracker.brad_ios:
       friendly_name: iOS
-    device_tracker.bradwenner_owntracks:
+    device_tracker.brad_owntracks:
       friendly_name: Owntracks
     group.tracked_users:
       icon: mdi:home-modern

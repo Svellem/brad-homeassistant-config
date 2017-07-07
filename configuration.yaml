@@ -188,8 +188,7 @@ group:
     view: no
     name: Tracked Users
     entities:
-      - input_boolean.bradhome 
-      - input_boolean.guesthome
+      - device_tracker.brad
 # SMALLER GROUPS FOR ABOVE TABS
 #
 
@@ -229,15 +228,13 @@ group:
     name: "Brad"
     entities:
       - group.bradsdevicesbadges
-      - input_boolean.bradhome
       - sensor.battery_iphone
-      - sensor.breaches_bradbradwennercom
   bradsdevicesbadges:
     entities:
-      - device_tracker.bradwenner
-      - device_tracker.bradwenner_ios
-      - device_tracker.bradwenner_owntracks
-      - device_tracker.bradwenner_ping
+      - device_tracker.brad
+      - device_tracker.brad_ios
+      - device_tracker.brad_owntracks
+      - device_tracker.brad_ping
   Devices:
     name: Devices
     entities:
