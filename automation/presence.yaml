@@ -1,10 +1,11 @@
 #
 # Update Meta Device Tracker
 #
-- alias: "Update Brad's Meta Tracker"
+- alias: "Update Brad's Meta Tracker Home"
   trigger:
     - platform: state
       entity_id: device_tracker.brad_ios, device_tracker.brad_owntracks, device_tracker.brad_ping
+      to: 'home'
     - platform: homeassistant
       event: start
   action:
@@ -12,6 +13,20 @@
     data_template:
       entity_id: '{{trigger.entity_id}}' 
       meta_entity: 'Brad'
+
+# Add a delay here
+- alias: "Update Brad's Meta Track Away"
+  trigger:
+    - platform: state
+      entity_id: device_tracker.brad_ios, device_tracker.brad_owntracks
+      to: 'not_home'
+      for:
+        minutes: 10
+  action:
+    service: python_script.meta_device_tracker
+    data_template:
+      entity_id: '{{trigger.entity_id}}'
+      meta_entity: 'Brad'    
 
 #
 # Turn on evening lighting if someone is home at SUNSET

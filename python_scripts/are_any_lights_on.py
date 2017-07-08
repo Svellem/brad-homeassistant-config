@@ -38,5 +38,6 @@ hass.states.set('input_boolean.are_any_lights_on', lightStatus, {
     'icon': whichIcon,
     'lights_on': lightsOn,
     'switches_on': switchesOn,
-    'total_on': totalOn
+    'total_on': totalOn,
+    'extra_data_template':'{total_on} lights on'
 })

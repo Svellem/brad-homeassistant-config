@@ -35,7 +35,7 @@
             content-type: jpeg
             hide-thumbnail: false
     - delay: '00:00:05'
-    - service: tts.google_polly_say
+    - service: tts.amazon_polly_say
       entity_id: media_player.vlc_tts
       data_template:
         message: 'Your presence has been detected and recorded, thank you'

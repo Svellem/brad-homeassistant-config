@@ -277,6 +277,7 @@ group:
   Plants:
     entities:
       - sensor.plant_problems
+      - script.tts_plant_info
       - plant.rubber_plant
       - plant.giant_pothos
       - plant.giant_philodendron

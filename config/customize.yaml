@@ -43,7 +43,6 @@
       icon: mdi:thermometer
       friendly_name: Indoor Temp
     input_boolean.are_any_lights_on:
-      custom_ui_state_card: custom-ui
       extra_data_template: "{total_on} lights on"
     sensor.solar_angle:
       unit_of_measurement: "°"
@@ -154,6 +153,8 @@
       emulated_hue: true
     plant.giant_pothos:
       friendly_name: Giant Pothos
+    sensor.problem_plants:
+      extra_data_template: "{problem_plants}"
     sensor.entry_temperature:
       friendly_name: Entry Temp
       icon: mdi:thermometer
@@ -250,6 +251,7 @@
     sensor.battery_frontmotion:
       icon: mdi:battery-charging
     sensor.battery_iphone:
+      show_last_changed: true
       friendly_name: iPhone Battery
     sensor.transmission_status:
       show_last_changed: true
@@ -336,5 +338,6 @@
     switch.coffeemaker:
       friendly_name: "Coffee Maker"
       emulated_hue: true
-      show_last_changed: true
+      extra_data_template: "{state_detail}"
+#      show_last_changed: true
       emulated_hue_name: Coffee

@@ -1,13 +1,20 @@
 # Home Assistant Configuration
 [Home Assistant](http://homeassistant.io) configuration files.
 
+* [Hardware](#Hardware)
+* [Presence Detection](#Presence_Detection)
+* [Automations](#Automations)
+* [House Modes](#House_Modes)
+* [Other Projects Used](#Other_Projects_Used)
+* [Other Software Used](#Other_Software_Used)
+
 My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbee USB stick](http://amzn.to/2u8XVGm).
 
 Running HA version: 0.47.1
 
 ![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
 
-## Hardware
+# Hardware
 * Lights
   * LimitlessLED - [Milight RGB Bulbs](http://amzn.to/2slpT2W) using [MiLight WiFi Bridge](http://amzn.to/2roEQ59) x2
   * Ikea Tradfri - several bulbs via gateway
@@ -27,7 +34,7 @@ Running HA version: 0.47.1
   * [Volumio](https://volumio.org/) Raspberry Pi streaming player for stereo
   * Plex (Roku)
   * MPD - plays radio through speaker on HA Raspberry Pi
-  * VLC - for TTS (not implemented yet)
+  * VLC - for Amazon Polly TTS output
 * Sensors
   * [Wemos D1 Mini](http://amzn.to/2sydVU8) (esp8266) nodes with sensors for motion, temps, etc. via MQTT
   * Mi Flora plant sensors x9
@@ -37,23 +44,24 @@ Running HA version: 0.47.1
   * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
   * old iPhones with IPCam app
   * Synology DS413j - NAS
-## Presence
+# Presence
 Tracking with:
 * Owntracks - 'significant changes' mode, iBeacon
 * HomeAssistant iOS app - enable location tracking, enable iBeacon
 * ping - Is my phone pingable on my network?
-* TPLink router - Is my phone currently a connected client?
 * Bluetooth
 
 I use a python script to filter 'home' and 'not_home' signals by platform.
-* All platforms update 'home' if they detect my presence
+* All platforms update 'home'
 * Only GPS platforms (Owntracks, iOS app) update 'not_home'
+  * Delayed by 10 minutes to avoid turning everything off on quick dog walks / bodega runs
 * Retain the most recent GPS coordinates and battery state regardless of platform
 
 This script creates a new device_tracker with the most recent information and state, using the most platforms in the most reliable way.
 
+![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/device-tracker.png)
 
-## Automations
+# Automations
 * Alarm
   * Alarm Away - when no one is home
   * Alarm Home - when coming home
@@ -105,8 +113,13 @@ This script creates a new device_tracker with the most recent information and st
   * System - Notify if new HA version available
   * System - Notify when critical smart home device goes offline for more than 5 minutes
 * Timelapse - record JPEGs of sunrise/sunset
+
+# House Modes
+* Alarm Override - Turns off all alarm automations, sound effects, and alerts.
+* Vacation Mode
+* Guest Mode
  
-## Other Projects Used
+# Other Projects Used
 * esp8266 related
   * [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant)
   * [ESPEasy](https://github.com/letscontrolit/ESPEasy)
@@ -115,3 +128,13 @@ This script creates a new device_tracker with the most recent information and st
 * HA addons
   * [Floorplan](https://github.com/pkozul/ha-floorplan)
   * [custom-ui](https://github.com/andrey-git/home-assistant-custom-ui)
+* [forever-service](https://github.com/zapty/forever-service) For Python scripts as services
+* My Scripts
+  * [raspi-pir-mqtt-homeassistant](https://github.com/oakbrad/raspi-pir-mqtt-homeassistant) Publish connected PIR sensor to MQTT on a Raspberry Pi 
+
+# Other Software Used
+* [Transmission](http://transmissionbt.com) torrent manager
+* [sabnzbd](http://sabnzbd.org) NZB queue manager
+* [Plex](http://plex.tv) Media management & server
+
+
