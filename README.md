@@ -3,7 +3,7 @@
 
 * [Hardware](#hardware)
 * [Presence Detection](#presence)
-* [Automations](aAutomations)
+* [Automations](#automations)
 * [House Modes](#house-modes)
 * [Other Projects Used](#other-projects-used)
 * [Other Software Used](#other-software-used)
