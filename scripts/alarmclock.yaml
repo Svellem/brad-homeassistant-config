@@ -77,9 +77,11 @@ alarm_clock:
         rgb_color: [255,255,255]
         transition: 600 # 10 minutes transition
 
-    # Throttle Transmission
+    # Throttle Downloads
     - service: homeassistant.turn_on
       entity_id: switch.transmission_turtle_mode
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.sabnzbd_turtle_mode
 
     #
     # RESET DEFAULT VIEW FOR MORNING
@@ -157,8 +159,18 @@ alarm_clock:
       data_template:
         entity_id: input_slider.radiovolume
         value: 70
+    - delay: 00:00:15
 
-    # 9.5 MINUTES INTO SEQUENCE
+    # TURN RADIO OFF, PLAY TTS ANNOUNCEMENTS
+    - service: switch.turn_off
+      entity_id: switch.radio_npr
+    - delay: 00:00:03
+    - service: script.morning_info
+    - delay: 00:00:16
+    - service: switch.turn_on
+      entity_id: switch.radio_npr
+
+    # 10 MINUTES INTO SEQUENCE
     #
     # Finish up, turn everything else on
     # Turn on closet/kitchen/bathroom

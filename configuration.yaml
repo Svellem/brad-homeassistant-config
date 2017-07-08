@@ -465,8 +465,8 @@ group:
       - switch.transmission_turtle_mode
       - group.transmissionbadges
       - sensor.transmission_status
-      - input_boolean.sabnzbd_turtle_mode
       - sensor.sabnzbd_status
+      - input_boolean.sabnzbd_turtle_mode
       - group.sabnzbdbadges
   transmissionbadges:
     entities:
