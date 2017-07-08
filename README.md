@@ -1,12 +1,12 @@
 # Home Assistant Configuration
 [Home Assistant](http://homeassistant.io) configuration files.
 
-* [Hardware](#Hardware)
-* [Presence Detection](#Presence_Detection)
-* [Automations](#Automations)
-* [House Modes](#House_Modes)
-* [Other Projects Used](#Other_Projects_Used)
-* [Other Software Used](#Other_Software_Used)
+* [Hardware](#hardware)
+* [Presence Detection](#presence)
+* [Automations](aAutomations)
+* [House Modes](#house-modes)
+* [Other Projects Used](#other-projects-used)
+* [Other Software Used](#other-software-used)
 
 My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbee USB stick](http://amzn.to/2u8XVGm).
 
