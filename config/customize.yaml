@@ -36,7 +36,9 @@
     group.BradsDevices:
       order: 2
     
-    
+
+    input_boolean.sabnzbd_turtle_mode:
+      icon: mdi:flash
     sensor.indoor_mean_temp:
       icon: mdi:thermometer
       friendly_name: Indoor Temp
@@ -251,8 +253,10 @@
       friendly_name: iPhone Battery
     sensor.transmission_status:
       show_last_changed: true
+      icon: mdi:folder-download
     sensor.sabnzbd_status:
       show_last_changed: true
+      icon: mdi:folder-download
     sensor.transmission_down_speed_kbps:
       icon: mdi:arrow-down-bold-circle-outline
     sensor.transmission_up_speed_kbps:

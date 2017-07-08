@@ -53,6 +53,7 @@ shell_command: !include config/shell.yaml
 plant: !include config/plants.yaml
 media_player: !include config/media_players.yaml
 mqtt: !include config/mqtt.yaml
+rest_command: !include config/rest.yaml
 
 #
 # Additional Platforms
@@ -463,6 +464,8 @@ group:
       - sensor.transmission_status
       - switch.transmission_turtle_mode
       - group.transmissionbadges
+      - sensor.transmission_status
+      - input_boolean.sabnzbd_turtle_mode
       - sensor.sabnzbd_status
       - group.sabnzbdbadges
   transmissionbadges:

@@ -37,7 +37,22 @@ Running HA version: 0.47.1
   * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
   * old iPhones with IPCam app
   * Synology DS413j - NAS
-  
+## Presence
+Tracking with:
+* Owntracks - 'significant changes' mode, iBeacon
+* HomeAssistant iOS app - enable location tracking, enable iBeacon
+* ping - Is my phone pingable on my network?
+* TPLink router - Is my phone currently a connected client?
+* Bluetooth
+
+I use a python script to filter 'home' and 'not_home' signals by platform.
+* All platforms update 'home' if they detect my presence
+* Only GPS platforms (Owntracks, iOS app) update 'not_home'
+* Retain the most recent GPS coordinates and battery state regardless of platform
+
+This script creates a new device_tracker with the most recent information and state, using the most platforms in the most reliable way.
+
+
 ## Automations
 * Alarm
   * Alarm Away - when no one is home
@@ -61,6 +76,7 @@ Running HA version: 0.47.1
   * Sunset - 40m before sunset, turn on evening lights
   * Day - during day turn on day dim lights and throttle Transmission
   * Evening - turn on dim lights if I come home after 10pm
+  * After Midnight - turn on red lights if I come home 12a-430a
   * Turn everything off when no one's home
   * Turn Closet lights on/off by motion detector
   * Turn Bathroom lights on/off by motion detector (off 12a-8:30a)

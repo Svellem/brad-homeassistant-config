@@ -1,7 +1,6 @@
 #
 # SWITCHES!!!!
 #
-
 - platform: flux
   lights:
     - light.tradfri_bulb_e12_ws_opal_400lm_2

@@ -68,7 +68,7 @@
       entity_id: switch.transmission_turtle_mode
 
 # Same thing but differnet scene for Midnight-430am
-- alias: 'Welcome Home - It's Late and You're Probably Drunk'
+- alias: "Welcome Home - It's Pretty Late"
   trigger:
     platform: state
     entity_id: group.tracked_users

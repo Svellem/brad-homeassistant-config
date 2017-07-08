@@ -3,6 +3,23 @@
 #
 
 #
+# 
+- alias: 'Pause SabNZBD'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sabnzbd_turtle_mode
+    to: 'on'
+  action:
+    service: rest_command.sabnzbd_pause
+- alias: 'Resume SabNZBD'
+  trigger:
+    platform: state
+    entity_id: input_boolean.sabnzbd_turtle_mode
+    to: 'off'
+  action:
+    service: rest_command.sabnzbd_resume
+
+#
 # Turn on/off UI elements
 #
 

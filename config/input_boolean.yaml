@@ -14,16 +14,12 @@ guest_mode:
   initial: off
   icon: mdi:account-multiple
 
-# Group Presence Trackers
-bradhome:
-  name: Brad Home
-  icon: mdi:account
-guesthome:
-  name: Guest Home
-  initial: off
-  icon: mdi:account-plus
-
 alarmweekday:
   name: Weekdays Only
   initial: off
   icon: mdi:calendar
+
+# SabNZBD
+sabnzbd_turtle_mode:
+  name: SabNZBD Turtle Mode
+  initial: off 

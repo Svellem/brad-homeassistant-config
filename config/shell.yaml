@@ -11,10 +11,5 @@
 # play for WAV, mplayer for MP3 seem to work best
 # 
   alarm_sound_doorchime: 'play --volume .15 /home/homeassistant/.homeassistant/media/sounds_alarm/door_open.wav'
-  alarm_sound_disarmed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_disarmed.mp3'
-  alarm_sound_armed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_being_armed.mp3'
   alarm_sound_pending: 'play --volume .15 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_pending_beep.wav'
-  alarm_sound_alarm_is_armed: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_armed.mp3'
-  alarm_sound_alarm_is_armed_home: 'mplayer -volume 10 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_is_armed_home.mp3'
-  alarm_sound_presence_detected: 'play --volume 1.2 /home/homeassistant/.homeassistantmedia/sounds_alarm/alarm_presence_detected.wav'
 
