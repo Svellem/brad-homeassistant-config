@@ -61,6 +61,7 @@ This script creates a new device_tracker with the most recent information and st
 Position in house is located using sensor.last_motion
 
 ![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/device-tracker.png)
+![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/last-motion.png)
 
 # Automations
 * Alarm
