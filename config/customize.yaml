@@ -37,8 +37,16 @@
       order: 2
     
 
+    binary_sensor.dining_motion_2:
+      friendly_name: Dining Motion
+    light.notify_led:
+      icon: mdi:led-on
+      friendly_name: Notify LED
     input_boolean.sabnzbd_turtle_mode:
       icon: mdi:flash
+    sensor.indoor_mean_humidity:
+      icon: mdi:water-percent
+      friendly_name: Indoor Humidity
     sensor.indoor_mean_temp:
       icon: mdi:thermometer
       friendly_name: Indoor Temp
@@ -203,10 +211,12 @@
       emulated_hue: true
     light.dining_floor_lamp:
       icon: mdi:lamp
+      assumed_state: false
       emulated_hue: true
     light.office_pendant:
       icon: mdi:ceiling-light
       emulated_hue: true
+      assumed_state: false
     switch.string_lights:
       icon: mdi:led-on
       emulated_hue: true
@@ -341,3 +351,7 @@
       extra_data_template: "{state_detail}"
 #      show_last_changed: true
       emulated_hue_name: Coffee
+
+# MiLight turn on toggles
+    light.entry:
+      assumed_state: false

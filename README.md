@@ -3,10 +3,9 @@
 
 * [Hardware](#hardware)
 * [Presence Detection](#presence)
-* [Automations](aAutomations)
+* [Automations](#automations)
 * [House Modes](#house-modes)
 * [Other Projects Used](#other-projects-used)
-* [Other Software Used](#other-software-used)
 
 My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbee USB stick](http://amzn.to/2u8XVGm).
 
@@ -59,6 +58,8 @@ I use a python script to filter 'home' and 'not_home' signals by platform.
 
 This script creates a new device_tracker with the most recent information and state, using the most platforms in the most reliable way.
 
+Position in house is located using sensor.last_motion
+
 ![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/device-tracker.png)
 
 # Automations
@@ -71,10 +72,13 @@ This script creates a new device_tracker with the most recent information and st
 * Alarm Clock
   * Make Morning Coffee when Alarm goes off
   * Alarm Clock - turn on lights and radio to wake me up
+  * TTS Annouce Weather & other Info
   * UI - change default view to show commute times, weather info during morning
 * Aquarium
   * Turn on 30 mins before sunrise and 1 hour after
   * Turn on 1 hour before sunset, turn off 4 hours after or at 10PM (whichever is first)
+* Climate
+  * Indoor Temperature & Humidity is a mean of all available sensors (using min_max component)
 * IFTT Integration
   * When plants need to be watered, add them to my Todoist todo list
   * If Fitbit logs new sleep but no alarm is set, wake house up
@@ -97,8 +101,6 @@ This script creates a new device_tracker with the most recent information and st
   * Fade house lights up when Plex stops
   * Turns off bandwidth throttling for Transmission/sabnzbd when I'm away from home
 * Python Scripts
-  * plant_problems.py - Count number of plants that need attention
-  * average_indoor_temp.py - Poll available sensors and average them
   * are_any_lights_on.py - input_boolean for lights on/off, counts lights and switches on
   * meta_device_tracker.py - Consolidate device tracking into one entity, only use GPS platforms for 'not_home'
   * plant_problems.py - Count number of plants that need attention
@@ -125,16 +127,16 @@ This script creates a new device_tracker with the most recent information and st
   * [ESPEasy](https://github.com/letscontrolit/ESPEasy)
   * [AiLight](https://github.com/stelgenhof/AiLight)
   * [esp8266-milight-hub](https://github.com/sidoh/esp8266_milight_hub)
+  * [Bruh Multisensor](https://github.com/bruhautomation/ESP-MQTT-JSON-Multisensor)
 * HA addons
   * [Floorplan](https://github.com/pkozul/ha-floorplan)
   * [custom-ui](https://github.com/andrey-git/home-assistant-custom-ui)
 * [forever-service](https://github.com/zapty/forever-service) For Python scripts as services
 * My Scripts
   * [raspi-pir-mqtt-homeassistant](https://github.com/oakbrad/raspi-pir-mqtt-homeassistant) Publish connected PIR sensor to MQTT on a Raspberry Pi 
-
-# Other Software Used
-* [Transmission](http://transmissionbt.com) torrent manager
-* [sabnzbd](http://sabnzbd.org) NZB queue manager
-* [Plex](http://plex.tv) Media management & server
+* Media Software 
+  * [Transmission](http://transmissionbt.com) torrent manager
+  * [sabnzbd](http://sabnzbd.org) NZB queue manager
+  * [Plex](http://plex.tv) Media management & server
 
 

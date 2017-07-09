@@ -59,7 +59,7 @@
         - binary_sensor.closet_motion
         - binary_sensor.bathroom_motion
         - binary_sensor.kitchen_motion
-        - binary_sensor.dining_motion
+        - binary_sensor.dining_motion_meta
         - binary_sensor.living_room_motion
     group.todaybadges:
       state_card_mode: badges

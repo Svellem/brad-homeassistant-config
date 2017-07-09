@@ -12,24 +12,9 @@
          name: Floor Lamp
        - number: 4
          name: Stove
-    - host: 192.168.0.20
-      version: 5
-      port: 8003
-      groups:
-       - number: 1
-         name: Office Pendant
-    - host: 192.168.0.20
-      version: 5
-      port: 8004
-      groups:
-       - number: 1
-         name: Entry
-    - host: 192.168.0.20
-      version: 5
-      port: 8005
-      groups:
-       - number: 1
-         name: Dining Floor Lamp
+#
+# esp8266 Chinese bulb with AiLight firmware
+#
 - platform: mqtt_json
   name: 'Crawl Space'
   state_topic: 'light/entry'
@@ -40,3 +25,34 @@
   white_value: true
   effect: false
   optimistic: false
+#
+# milight-esp8266-hub in JSON-MQTT mode
+#
+- platform: mqtt_json
+  name: 'Entry'
+  command_topic: 'milight/0x2000/rgbw/1'
+  brightness: true
+  rgb: true
+- platform: mqtt_json
+  name: 'Office Pendant'
+  command_topic: 'milight/0x1/rgbw/1'
+  brightness: true
+  rgb: true
+- platform: mqtt_json
+  name: 'Dining Floor Lamp'
+  command_topic: 'milight/0x8000/rgbw/1'
+  brightness: true
+  rgb: true
+
+
+# BruhNode LED
+
+- platform: mqtt_json  
+  name: "Notify LED"  
+  state_topic: "BruhNode/LivingRoom"  
+  command_topic: "BruhNode/LivingRoom/set"  
+  brightness: true  
+  flash: true  
+  rgb: true  
+  optimistic: false  
+  qos: 0 

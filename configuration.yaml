@@ -266,7 +266,7 @@ group:
   environmentbadges:
     entities:
       - sensor.indoor_mean_temp
-      - sensor.kitchen_humidity
+      - sensor.indoor_mean_humidity
       - sensor.air_pressure
       - sensor.kitchen_smoke
       - sensor.carbon_monoxide
@@ -377,7 +377,7 @@ group:
     - binary_sensor.closet_motion
     - binary_sensor.bathroom_motion
     - binary_sensor.kitchen_motion
-    - binary_sensor.dining_motion
+    - binary_sensor.dining_motion_meta
     - binary_sensor.living_room_motion
   Openings:
     entities:
@@ -396,6 +396,7 @@ group:
   Misc:
     - light.crawl_space
     - switch.extra_plug
+    - light.notify_led
   Pi:
     name: HomeAssistant Pi
     control: hidden
