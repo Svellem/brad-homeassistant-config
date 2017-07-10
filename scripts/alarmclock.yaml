@@ -166,7 +166,9 @@ alarm_clock:
       entity_id: switch.radio_npr
     - delay: 00:00:03
     - service: script.tts_morning_info
-    - delay: 00:00:16
+    - delay: 00:00:45
+#    - wait_template: "{{ states.media_player.vlc_tts.state == 'idle' }}"
+#      time_out: 00:00:50
     - service: switch.turn_on
       entity_id: switch.radio_npr
 

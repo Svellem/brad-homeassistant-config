@@ -35,8 +35,12 @@
       order: 1
     group.BradsDevices:
       order: 2
-    
-
+    camera.ip_webcam:
+      friendly_name: Kitchen
+    media_player.roku_3__4124cg078650:
+      friendly_name: Roku
+    media_player.vlc_tts:
+      friendly_name: Voice Announcements
     binary_sensor.dining_motion_2:
       friendly_name: Dining Motion
     light.notify_led:
@@ -341,16 +345,19 @@
       emulated_hue_name: Goodnight Sequence
     scene.night_dim_lights:
       emulated_hue: true
-      emulated_hue_name: Dim Lights
+      emulated_hue_name: Night Lights
     scene.night_light:
       emulated_hue: true
-      emulated_hue_name: Night Light
+      emulated_hue_name: Red Mode
     switch.coffeemaker:
       friendly_name: "Coffee Maker"
       emulated_hue: true
       extra_data_template: "{state_detail}"
 #      show_last_changed: true
       emulated_hue_name: Coffee
+    script.tts_plant_info:
+      friendly_name: "Plant Update"
+      emulated_hue: true
 
 # MiLight turn on toggles
     light.entry:

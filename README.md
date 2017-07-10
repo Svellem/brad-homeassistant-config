@@ -43,6 +43,7 @@ Running HA version: 0.47.1
   * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
   * old iPhones with IPCam app
   * Synology DS413j - NAS
+  * [Amazon Dash Buttons](http://amzn.to/2uXPJZe)
 # Presence
 Tracking with:
 * Owntracks - 'significant changes' mode, iBeacon
@@ -80,6 +81,8 @@ Position in house is located using sensor.last_motion
   * Turn on 1 hour before sunset, turn off 4 hours after or at 10PM (whichever is first)
 * Climate
   * Indoor Temperature & Humidity is a mean of all available sensors (using min_max component)
+* Dash Buttons
+  * Laundry Timer - iOS Notification & TTS notification for timer 
 * IFTT Integration
   * When plants need to be watered, add them to my Todoist todo list
   * If Fitbit logs new sleep but no alarm is set, wake house up
@@ -132,6 +135,7 @@ Position in house is located using sensor.last_motion
 * HA addons
   * [Floorplan](https://github.com/pkozul/ha-floorplan)
   * [custom-ui](https://github.com/andrey-git/home-assistant-custom-ui)
+  * [dasher](https://github.com/maddox/dasher)
 * [forever-service](https://github.com/zapty/forever-service) For Python scripts as services
 * My Scripts
   * [raspi-pir-mqtt-homeassistant](https://github.com/oakbrad/raspi-pir-mqtt-homeassistant) Publish connected PIR sensor to MQTT on a Raspberry Pi 

@@ -1,0 +1,27 @@
+#
+# Turn screensaver off when motion detected
+#
+
+- alias: 'Turn On Fridge Panel Screen on Motion'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_motion_meta
+    to: 'on'
+  # stop it from blinding me at night. Click to open instead.
+  # Only after 4:30A
+  # If after sunset, only if a light is on
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: 'below_horizon'
+          - condition: state
+            entity_id: sensor.are_any_lights_on
+            state: 'on'
+      - condition: time
+        after: '04:30:00'
+  action:
+    service: shell_command.fridgepanel_screensaveroff

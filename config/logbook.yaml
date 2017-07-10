@@ -1,5 +1,68 @@
   exclude:
     entities:
+      - media_player.mpd_pi
+      - media_player.vlc_tts
+      - group.Radio
+      - automation.alarm_announce__pending_arm
+      - device_tracker.bradlaptop
+      - device_tracker.frontdoorcam
+      - device_tracker.milight
+      - device_tracker.ikeatradfri
+      - device_tracker.brad_ping
+      - automation.adjust_radio_volume
+      - group.Downloads
+      - sensor.bathroom_burglar
+      - sensor.bathroom_alarm_type
+      - sensor.bathroom_sourcenodeid
+      - sensor.bathroom_alarm_level
+      - script.are_any_lights_on
+      - group.bedroom
+      - group.bradsdevices
+      - group.livingroom
+      - group.misc
+      - group.plants
+      - group.speakers
+      - input_slider.alarmminutes
+      - input_slider.alarmhour
+      - group.systemoptions
+      - group.overheads       
+      - group.tracked_users
+      - sensor.friendly_wind_direction_forecast
+      - sensor.fertilize_plants_friendly
+      - sensor.fertilize_plants_number
+      - sensor.dark_sky_wind_speed
+      - sensor.dark_sky_wind_speed_1
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_wind_bearing_1
+      - sensor.dark_sky_precip_probability_1
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_precip_intensity_1
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_daily_high_temperature_1
+      - sensor.dark_sky_daily_low_temperature_1
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_cloud_coverage_1
+      - sensor.dark_sky_cloud_coverage
+      - sensor.current_location_to_home
+      - sensor.current_location_to_studio
+      - sensor.friendly_wind_direction
+      - automation.fix_stuck_entry_motion
+      - automation.ui_groups_off_by_default
+      - automation.update_are_lights_on_sensor
+      - group.bathroom
+      - group.bradsdevicesbadges
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_hourly_summary
+      - automation.update_plant_problems
+      - binary_sensor.bathroom_motion
+      - automation.update_average_indoor_temperature
+      - automation.update_brads_meta_tracker_home
+      - automation.update_brads_meta_track_away
+      - binary_sensor.dining_motion_meta
+      - binary_sensor.dining_motion_2
+      - automation.fix_stuck_kitchen_motion
+      - binary_sensor.living_room_motion
       - script.alarm_pending_sound
       - script.alarm_pending_loop
       - automation.alarm_announce__armed_home
@@ -41,13 +104,13 @@
       - automation.publish_aquarium_to_thingspeak
       - automation.publish_window_light_level_to_thingspeak
       - automation.publish_plants_to_thingspeak
-      - binary_sensor.ecolink_pir_motion_sensor_sensor_14_0
       - binary_sensor.dining_motion
       - binary_sensor.entry_motion
       - binary_sensor.kitchen_motion
       - binary_sensor.closet_motion
-      - sensor.last_motion
       - light.tradfri_bulb_e12_ws_opal_400lm
       - light.tradfri_bulb_e12_ws_opal_400lm_2
     domains:
       - zwave
+      - plant
+

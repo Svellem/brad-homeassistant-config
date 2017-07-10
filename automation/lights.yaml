@@ -55,7 +55,8 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.bathroom_light
-# Bathroom Lights & Fan Turned Off After No Motion 20 minutes
+# Bathroom Lights & Fan Turned Off After No Motion 5 minutes
+# Unless 'Last Motion' was Bathroom
 - alias: Bathroom Lights & Fan Off
   trigger:
     platform: state
@@ -63,6 +64,10 @@
     to: 'off'
     for:
       minutes: 5
+  # If the dog walks around while I'm showering, this won't work. hmm...
+  condition:
+    condition: template
+    value_template: '{%- if is_state("sensor.last_motion", "Bathroom Motion") -%}True{% else%}False{%endif%}'
   action:
     service: homeassistant.turn_off
     entity_id: switch.bathroom_light, switch.bathroom_fan

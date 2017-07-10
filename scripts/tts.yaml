@@ -1,3 +1,19 @@
+#
+# Laundry is Ready
+#
+tts_laundry_ready:
+  alias: Your Laundry is Ready
+  sequence:
+    - service: tts.amazon_polly_say
+      data_template:
+        entity_id: media_player.vlc_tts
+        message: >
+          Attention. Your laundry is ready.
+
+
+#
+# Morning Routine Info
+##
 tts_morning_info:
   alias: Morning Information
   sequence:

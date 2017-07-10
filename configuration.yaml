@@ -14,6 +14,7 @@ homeassistant:
   customize_glob: !include config/custom-ui.yaml
 
 recorder:
+  db_url: !secret db_path
   purge_days: 2
 #logger:
 #  default: debug
@@ -87,6 +88,15 @@ tts:
     voice: Salli
     # English UK Female
     # voice: Amy
+android_ip_webcam:
+  - host: 192.168.0.52
+    scan_interval: 2
+    sensors:
+      - light
+      - motion
+    switches:
+      - night_vision
+      - overlay
 
 #
 # Set up Communication Hardware
@@ -154,6 +164,7 @@ group:
     icon: mdi:thermometer
     entities:
       - camera.sf_radar
+      - camera.east_bay
       - group.Weather
       - group.Today
       - group.Indoors
@@ -164,6 +175,7 @@ group:
     entities:
       - group.Radio
       - media_player.roku_3__4124cg078650
+      - media_player.vlc_tts
       - group.Speakers
       - group.Downloads
   # MONITORING TAB
@@ -174,8 +186,8 @@ group:
       - group.Motion
       - group.Openings
       - camera.front_door
-      - camera.east_bay
       - camera.window
+      - camera.ip_webcam
   Information:
     view: yes
     icon: mdi:barley
@@ -376,7 +388,7 @@ group:
     - binary_sensor.entry_motion
     - binary_sensor.closet_motion
     - binary_sensor.bathroom_motion
-    - binary_sensor.kitchen_motion
+    - binary_sensor.kitchen_motion_meta
     - binary_sensor.dining_motion_meta
     - binary_sensor.living_room_motion
   Openings:

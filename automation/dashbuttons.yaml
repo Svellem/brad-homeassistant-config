@@ -7,25 +7,13 @@
 #
 
 
-- alias: 'Bed Button Pressed - Daytime'
+#
+# Too lazy to redo this trigger so this is it
+#
+- alias: 'Laundry Timer'
   trigger:
     platform: event
     event_type: bed_button_pressed
-  condition:
-    condition: state
-    entity_id: sun.sun
-    state: 'above_horizon'
   action:
-    - service: scene.turn_on
-      entity_id: scene.day_dim_lights
-- alias: 'Bed Button Pressed - Night'
-  trigger:
-    platform: event
-    event_type: bed_button_pressed
-  condition:
-    condition: state
-    entity_id: sun.sun
-    state: 'below_horizon'
-  action:
-    - service: scene.turn_on
-      entity_id: scene.all_lights_off
+    - service: script.turn_on
+      entity_id: script.laundry_timer

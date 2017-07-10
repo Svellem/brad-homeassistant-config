@@ -1,4 +1,17 @@
-# Combine Dining Motion into one sensor
+#
+# Binary Sensor from Android IP Cam
+#
+- platform: template
+  sensors:
+    fridge_motion:
+      value_template: '{{ states.sensor.ip_webcam_motion.state | float > 700 }}'
+      friendly_name: Fridge Motion
+      device_class: motion
+
+#
+# META MOTION SENSORS
+#
+
 - platform: template
   sensors:
     dining_motion_meta:
@@ -6,15 +19,26 @@
       device_class: motion
       value_template: >-
         {%- if is_state("binary_sensor.dining_motion", "on")
-          and is_state("binary_sensor.dining_motion_2", "on")
-        -%}
-          True
+        or is_state("binary_sensor.dining_motion_2", "on")
+          -%}
+        True
         {%- else -%}
-          False
+        False
         {%- endif %}
       entity_id:
         - binary_sensor.dining_motion
         - binary_sensor.dining_motion_2
+    kitchen_motion_meta:
+      friendly_name: 'Kitchen Motion'
+      device_class: motion
+      value_template: >-
+        {%- if is_state("binary_sensor.kitchen_motion", "on")
+        or is_state("binary_sensor.fridge_motion", "on")
+          -%}
+        True
+        {%- else -%}
+        False
+        {%- endif %}
 
 # Bruh Node Motion
 - platform: mqtt

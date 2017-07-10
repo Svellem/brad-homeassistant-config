@@ -13,3 +13,9 @@
   alarm_sound_doorchime: 'play --volume .15 /home/homeassistant/.homeassistant/media/sounds_alarm/door_open.wav'
   alarm_sound_pending: 'play --volume .15 /home/homeassistant/.homeassistant/media/sounds_alarm/alarm_pending_beep.wav'
 
+
+# 
+# FRIDGE KIOSK CONTROL
+#
+  fridgepanel_screensaveroff: "curl -X POST 'http://192.168.0.52:2323/?cmd=triggerMotion&password=thisisnot'"
+  fridgepanel_loaddefaultview: "curl -X POST 'http://192.168.0.52:2323/?cmd=loadStartURL&password=thisisnot'"
