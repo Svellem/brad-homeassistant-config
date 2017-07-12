@@ -13,6 +13,54 @@
   action:
     - service: python_script.are_any_lights_on
 
+
+#
+# NIGHT LIGHTS
+#
+
+- alias: Kitchen Night Light On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_motion_meta
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: sensor.are_any_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    # Turn on Night Light Mode
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.nightlight_kitchen
+    - service: light.turn_on
+      entity_id: light.fridge, light.stove
+      data:
+        brightness: 40
+        transition: 8
+        color_name: red
+- alias: Kitchen Night Light Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_motion_meta
+    to: 'off'
+    for:
+      minutes: 2
+  condition:
+    condition: state
+    entity_id: input_boolean.nightlight_kitchen
+    state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.stove, light.fridge
+      data:
+        transition: 5
+
+#
+# MOTION LIGHTS
+#
+
 # Closet Lights on when Motion Detected
 - alias: Closet Lights On
   trigger:
@@ -55,6 +103,7 @@
   action:
     service: homeassistant.turn_on
     entity_id: switch.bathroom_light
+
 # Bathroom Lights & Fan Turned Off After No Motion 5 minutes
 # Unless 'Last Motion' was Bathroom
 - alias: Bathroom Lights & Fan Off
@@ -63,11 +112,11 @@
     entity_id: binary_sensor.bathroom_motion
     to: 'off'
     for:
-      minutes: 5
+      minutes: 12
   # If the dog walks around while I'm showering, this won't work. hmm...
   condition:
     condition: template
-    value_template: '{%- if is_state("sensor.last_motion", "Bathroom Motion") -%}True{% else%}False{%endif%}'
+    value_template: "{{ states.sensor.last_motion.state != 'Bathroom Motion' }}"
   action:
     service: homeassistant.turn_off
     entity_id: switch.bathroom_light, switch.bathroom_fan

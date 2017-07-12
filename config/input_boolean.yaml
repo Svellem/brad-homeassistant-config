@@ -19,7 +19,21 @@ alarmweekday:
   initial: off
   icon: mdi:calendar
 
+
 # SabNZBD
 sabnzbd_turtle_mode:
   name: SabNZBD Turtle Mode
   initial: off 
+
+
+#
+# Automation Conditions
+#
+nightlight_kitchen:
+  name: Kitchen Nightlight
+  initial: off
+  icon: mdi:flashlight
+nightlight_livingroom:
+  name: Kitchen Nightlight
+  initial: off
+  icon: mdi:flashlight

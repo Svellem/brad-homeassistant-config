@@ -33,3 +33,45 @@
   action:
     - service: script.turn_on
       entity_id: script.alarm_clock
+
+
+#
+# Morning Announcements
+#
+# Detect morning routine, pause radio and do TTS, then turn on NPR
+#
+- alias: 'Alarm Clock Morning Announcements'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion_meta
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.dining_motion_meta
+      to: 'on'
+  condition:
+    # TIME if after alarm but before 10a
+    - condition: time
+      after: '04:00:00'
+    - condition: time
+      before: '10:00:00'
+    # IF alarm clock is on
+    - condition: state
+      entity_id: automation.alarm_clock
+      state: 'on'
+    # IF radio is on
+    - condition: state
+      entity_id: switch.mpd_pi
+      state: 'on'
+  action:
+    # TURN RADIO OFF, PLAY TTS ANNOUNCEMENTS
+    - service: switch.turn_off
+      entity_id: switch.radio_npr
+    - delay: 00:00:02
+    - service: script.tts_morning_info
+    - delay: 00:00:2
+#    - wait_template: "{{ states.media_player.vlc_tts.state == 'idle' }}"
+#      time_out: 00:00:50
+    - service: switch.turn_on
+      entity_id: switch.radio_npr
+    - service: homeassistant.turn_off
+      entity_id: automation.alarm_clock_morning_announcements

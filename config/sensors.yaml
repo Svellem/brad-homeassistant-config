@@ -65,12 +65,6 @@
     - sensor.entry_humidity
   type: mean
   name: indoor_mean_humidity
-#
-# Have I Been Pwned?
-#
-- platform: haveibeenpwned
-  email:
-    - !secret myemail
 
 #
 # Better Templates for Tracking Critical Smart Home Devices
@@ -362,17 +356,46 @@
   qos: 0
   unit_of_measurement: "??"
 
+#
+# JLS FERRY
+#
+- platform: gtfs
+  name: "Ferry to SF"
+  origin: 12030043
+  destination: 890001
+  # How long to bike to terminal
+  offset: 8
+  data: sfbayferry.zip
+
+# Make a sensor for Arrival time
+- platform: template
+  sensors:
+    ferry_to_sf_arrival:
+      value_template: "{{ as_timestamp(states.sensor.ferry_to_sf.attributes['Destination Stop Arrival Time']) | timestamp_custom('%k:%M') }}"
+      friendly_name: "SF Ferry Arrival"  
+ 
+
+# GOOGLE MAX REQUESTS 2500/DAY
+# EVERY 5M / 24H = 8 SENSORS MAX
+
 - platform: google_travel_time
   name: Current Location to Home
   api_key: !secret googletravel_key
-  origin: device_tracker.bradwenner_owntracks
+  origin: device_tracker.brad
   destination: zone.home
   options:
     mode: transit
 - platform: google_travel_time
+  name: Home to SF
+  api_key: !secret googletravel_key
+  origin: zone.home
+  destination: San Francisco, CA
+  options:
+    mode: driving
+- platform: google_travel_time
   name: Current Location to Studio
   api_key: !secret googletravel_key
-  origin: device_tracker.bradwenner_owntracks
+  origin: device_tracker.brad
   destination: zone.studio
 - platform: google_travel_time
   name: Home to 16th Mission BART

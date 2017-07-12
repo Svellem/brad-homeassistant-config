@@ -21,12 +21,14 @@
 #
 
 # Turn Visibility Off for These Groups at HA start
-- alias: 'UI Groups Off by Default'
-  trigger:
-    platform: homeassistant
-    event: start
-  action:
-    - service: group.set_visibility
-      entity_id: group.traveltimes, group.TodayWeather, group.TodayDefault
-      data:
-        visible: False
+#- alias: 'UI Groups Off by Default'
+#  trigger:
+#    platform: homeassistant
+#    event: start
+#  action:
+#    - service: group.set_visibility
+#      entity_id: group.traveltimes, group.TodayWeather, group.TodayDefault
+#      data:
+#        visible: False
+
+# FOR NOW: Showing in 'Tablet' tab

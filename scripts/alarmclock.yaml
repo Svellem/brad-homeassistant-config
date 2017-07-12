@@ -15,24 +15,6 @@ morning_coffee:
     - service: homeassistant.turn_on
       entity_id: switch.coffeemaker
 
-#
-# Reset default_view
-# 2 hours after alarm goes off
-#
-alarm_reset_ui:
-  alias: Alarm Reset UI
-  sequence:
-    - delay: "00:02:00"
-    - service: group.set_visibility
-      data:
-        entity_id: group.traveltimes,group.TodayDefault,group.TodayWeather
-        visible: false
-    # TURN OFF DEFAULT GROUPS
-    - service: group.set_visibility
-      data:
-        entity_id: group.alarmclock,group.scenes,group.alarm
-        visible: true
-
 # WORK IN PROGRESS
 # Does it need to be a loop? Probably
 # 
@@ -62,6 +44,8 @@ alarm_snooze_sequence:
 # 9.5M NPR at full volume
 # 10M Turn on all other lights
 #
+# Morning TTS notification triggered by separate automation
+#
 alarm_clock:
   alias: Alarm Sequence
   sequence:
@@ -83,21 +67,6 @@ alarm_clock:
     - service: homeassistant.turn_on
       entity_id: input_boolean.sabnzbd_turtle_mode
 
-    #
-    # RESET DEFAULT VIEW FOR MORNING
-    # Turn on Commute Time panel in default_view
-    # 
-    # TURN ON MORNING RELATED GROUPS
-    - service: group.set_visibility
-      data:
-        entity_id: group.traveltimes,group.TodayDefault,group.TodayWeather
-        visible: True
-    # TURN OFF DEFAULT GROUPS
-    - service: group.set_visibility
-      data:
-        entity_id: group.alarmclock,group.scenes,group.alarm
-        visible: false
-
     # Let lights fade in 3 minutes
     - delay: 00:03:00
 
@@ -106,8 +75,12 @@ alarm_clock:
     - service: light.turn_on
       data:
         entity_id: light.tradfri_bulb_e26_opal_1000lm
-        brightness: 125
+        brightness: 25
     - delay: 00:02:00
+    - service: light.turn_on
+      data:
+        entity_id: light.tradfri_bulb_e26_opal_1000lm
+        brightness: 75
 
     # 5 MINUTES INTO SEQUENCE
 
@@ -144,7 +117,7 @@ alarm_clock:
     - service: light.turn_on
       data:
         entity_id: light.tradfri_bulb_e26_opal_1000lm
-        brightness: 255
+        brightness: 125
     - service: input_slider.select_value
       data_template:
         entity_id: input_slider.radiovolume
@@ -160,28 +133,19 @@ alarm_clock:
         entity_id: input_slider.radiovolume
         value: 70
     - delay: 00:00:15
-
-    # TURN RADIO OFF, PLAY TTS ANNOUNCEMENTS
-    - service: switch.turn_off
-      entity_id: switch.radio_npr
-    - delay: 00:00:03
-    - service: script.tts_morning_info
-    - delay: 00:00:45
-#    - wait_template: "{{ states.media_player.vlc_tts.state == 'idle' }}"
-#      time_out: 00:00:50
-    - service: switch.turn_on
-      entity_id: switch.radio_npr
+    - service: light.turn_on
+      data:
+        entity_id: light.tradfri_bulb_e26_opal_1000lm
+        brightness: 255
 
     # 10 MINUTES INTO SEQUENCE
     #
     # Finish up, turn everything else on
     # Turn on closet/kitchen/bathroom
     - service: switch.turn_on
-      entity_id: switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights
+      entity_id: switch.kitchen_lights, switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights
     - service: light.turn_on
       entity_id: light.closet
-
-    # Timer to Reset UI 2 hours from now
-    - service: script.turn_on
-      entity_id: script.alarm_reset_ui
+    - service: homeassistant.turn_on
+      entity_id: automation.alarm_clock_morning_announcements
 

@@ -19,7 +19,6 @@
         - device_tracker.brad_ios
         - device_tracker.brad_owntracks
         - device_tracker.brad_ping
-        - device_tracker.brad_router
     group.pibadges:
       state_card_mode: badges
       badges_list:
@@ -44,6 +43,8 @@
       badges_list:
         - sensor.transmission_down_speed_kbps
         - sensor.transmission_up_speed_kbps
+    group.traveltimesbadges:
+      state_card_mode: badges
     group.sabnzbdbadges:
       state_card_mode: badges
       badges_list:
@@ -81,7 +82,6 @@
       badges_list:
         - sensor.dark_sky_precip_probability
         - sensor.dark_sky_cloud_coverage
-        - sensor.yr_fog
         - sensor.friendly_wind_direction
         - sensor.dark_sky_wind_speed
     group.weatherforecastbadges:

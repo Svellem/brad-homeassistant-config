@@ -143,10 +143,6 @@ group:
       - group.AlarmClock
       - camera.car_location
       - group.Alarm
-      # COMMUTE VIEW, HIDDEN BY DEFAULT
-      - group.traveltimes
-      - group.TodayDefault
-      - group.TodayWeather
   Lights:
     view: yes
     icon: mdi:flash
@@ -203,6 +199,15 @@ group:
       - group.SystemOptions
       - group.Devices
       - group.Pi
+  # WALL PANEL
+  WallPanel:
+    view: yes
+    icon: mdi:tablet-android
+    entities:
+      - group.traveltimes
+      - group.TodayWeather
+      - group.Radio
+      - group.Rooms
 
 # TRACKED USERS
   tracked_users:
@@ -336,6 +341,15 @@ group:
     - zone.sprouts_market
     - zone.grocery_outlet
     - zone.lucky_grocery
+  Rooms:
+    name: Lights
+    entities:
+    - group.Overheads
+    - group.Bedroom
+    - switch.kitchen_lights
+    - group.LivingRoom
+    - group.Office
+    - scene.all_lights_off
   Scenes:
     control: hidden
     entities:
@@ -428,12 +442,14 @@ group:
     name: Radio
     control: hidden
     entities:
+#      - sensor.nowplaying_pi
       - input_slider.radiovolume
-      - switch.radio_npr
-      - switch.radio_kalx
-      - switch.radio_jazz
-      - switch.radio_metal
-      - switch.radio_kzsc
+      - switch.mpd_pi
+      - script.tts_plant_info
+#      - switch.radio_kalx
+#      - switch.radio_jazz
+#      - switch.radio_metal
+#      - switch.radio_kzsc
   Weather:
     entities:
       - group.weatherbadges
@@ -445,7 +461,7 @@ group:
     entities:
       - group.weatherbadges
       - group.weatherconditionsbadges
-      - sensor.dark_sky_daily_summary
+#      - sensor.dark_sky_daily_summary
   weatherbadges:
     entities:
       - sensor.yr_symbol
@@ -456,7 +472,6 @@ group:
     entities:
       - sensor.dark_sky_precip_probability
       - sensor.dark_sky_cloud_coverage
-      - sensor.yr_fog
       - sensor.friendly_wind_direction
       - sensor.dark_sky_wind_speed
   weatherforecastbadges:
@@ -469,10 +484,14 @@ group:
   TravelTimes:
     name: Travel Times
     entities:
-      - sensor.current_location_to_home
-      - sensor.current_location_to_studio
+      - group.traveltimesbadges
+  traveltimesbadges:
+    entities:
+      - sensor.home_to_sf
       - sensor.home_to_16th_mission_bart
-      - sensor.home_to_richmond_Bart
+      - sensor.home_to_richmond_bart
+      - sensor.ferry_to_sf
+      - sensor.ferry_to_sf_arrival
   Downloads:
     entities:
       - sensor.transmission_status
