@@ -1,6 +1,8 @@
 # Home Assistant Configuration
 [Home Assistant](http://homeassistant.io) configuration files.
 
+Some detailed information about setting various parts of this up on [DIY Futurism](http://www.diyfuturism.com).
+
 * [Hardware](#hardware)
 * [Presence Detection](#presence)
 * [Automations](#automations)
@@ -99,6 +101,7 @@ Position in house is located using sensor.last_motion
   * Turn Crawl space light on/off by door sensor
   * Turn kitchen lamps on/off using wall switch
   * Turn on office lamps using switch
+  * Night Light - Kitchen on motion
 * Media
   * Dim house lights when Plex starts playing
   * Turn on bathroom lights & lamp when movie pausd
@@ -106,6 +109,7 @@ Position in house is located using sensor.last_motion
   * Turns off bandwidth throttling for Transmission/sabnzbd when I'm away from home
 * Python Scripts
   * are_any_lights_on.py - input_boolean for lights on/off, counts lights and switches on
+    * Does not count nightlights
   * meta_device_tracker.py - Consolidate device tracking into one entity, only use GPS platforms for 'not_home'
   * plant_problems.py - Count number of plants that need attention
 * Notifications
@@ -122,6 +126,7 @@ Position in house is located using sensor.last_motion
 
 # House Modes
 * Alarm Override - Turns off all alarm automations, sound effects, and alerts.
+* Night Light Override - Prevents red night lights from coming on
 * Vacation Mode
 * Guest Mode
  

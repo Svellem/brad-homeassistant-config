@@ -390,6 +390,8 @@ group:
     entities:
 #    - group.tracked_users
     - input_boolean.are_any_lights_on
+    - input_boolean.alarm_override
+    - input_boolean.nightlight_override
     - input_boolean.vacation_mode
     - input_boolean.guest_mode
     - switch.flux

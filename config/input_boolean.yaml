@@ -29,11 +29,19 @@ sabnzbd_turtle_mode:
 #
 # Automation Conditions
 #
+nightlight_override:
+  name: Nightlight Override
+  initial: off
+  icon: mdi:flashlight
 nightlight_kitchen:
   name: Kitchen Nightlight
   initial: off
   icon: mdi:flashlight
 nightlight_livingroom:
   name: Kitchen Nightlight
+  initial: off
+  icon: mdi:flashlight
+nightlight_bedroom:
+  name: Bedroom Nightlight
   initial: off
   icon: mdi:flashlight

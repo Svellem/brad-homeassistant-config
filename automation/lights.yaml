@@ -25,6 +25,9 @@
     to: 'on'
   condition:
     - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
       entity_id: sensor.are_any_lights_on
       state: 'off'
     - condition: state
@@ -46,14 +49,107 @@
     entity_id: binary_sensor.kitchen_motion_meta
     to: 'off'
     for:
-      minutes: 2
+      minutes: 1
   condition:
-    condition: state
-    entity_id: input_boolean.nightlight_kitchen
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.nightlight_kitchen
+      state: 'on'
   action:
     - service: light.turn_off
       entity_id: light.stove, light.fridge
+      data:
+        transition: 5
+
+- alias: Living Room Night Light On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_motion
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
+      entity_id: sensor.are_any_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    # Turn on Night Light Mode
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.nightlight_livingroom
+    - service: light.turn_on
+      entity_id: light.floor_lamp
+      data:
+        brightness: 60
+        transition: 4
+        color_name: red
+- alias: Living Room Night Light Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_motion
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+    - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.nightlight_livingroom
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.floor_lamp
+      data:
+        transition: 5
+
+- alias: Bedroom Night Light On
+  trigger:
+    platform: state
+    entity_id: binary_sensor.entry_motion, binary_sensor.bathroom_motion
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
+      entity_id: sensor.are_any_lights_on
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    # Turn on Night Light Mode
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.nightlight_bedroom
+    - service: light.turn_on
+      entity_id: light.entry
+      data:
+        brightness: 30
+        transition: 4
+        color_name: red
+- alias: Bedroom Night Light Off
+  trigger:
+    platform: state
+    entity_id: binary_sensor.entry_motion,binary_sensor.bathroom_motion
+    to: 'off'
+    for:
+      minutes: 1
+  condition:
+    - condition: state
+      entity_id: input_boolean.nightlight_override
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.nightlight_bedroom
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.floor_lamp
       data:
         transition: 5
 
