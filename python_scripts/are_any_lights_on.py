@@ -27,9 +27,9 @@ livingroomNightlightOn = hass.states.get('input_boolea.nightlight_livingroom')
 lights = hass.states.entity_ids('light')
 
 # Kitchen filtering if night light is on
-if kitchenNightlightOn == 'on': lights = [x for x in lights if x not in kitchenNightlight]
-if bedroomNightlightOn == 'on': lights = [y for y in lights if y not in bedroomNightlight]
-if livingroomNightlightOn == 'on': lights = [z for z in lights if z not in livingroomNightlight]
+if kitchenNightlightOn == 'on': lights = [x for x in lights.name if x not in kitchenNightlight]
+if bedroomNightlightOn == 'on': lights = [y for y in lights.name if y not in bedroomNightlight]
+if livingroomNightlightOn == 'on': lights = [z for z in lights.name if z not in livingroomNightlight]
 
 for entity_id in lights:
   state = hass.states.get(entity_id)

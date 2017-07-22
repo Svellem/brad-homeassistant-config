@@ -36,4 +36,4 @@
       brightness: 255
     switch.work_lamp: on
     switch.bathroom_light: on
-
+    switch.grow_light: on

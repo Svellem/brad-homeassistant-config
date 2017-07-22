@@ -1,3 +1,12 @@
+  window_container:
+    sensors:
+      moisture: sensor.window_container_moisture
+      temperature: sensor.window_air_temp
+      brightness: sensor.palm_light_intensity
+    min_moisture: 20
+    max_moisture: 1000
+    min_temperature: 45
+
   rubber_plant:
     sensors:
       moisture: sensor.rubber_plant_moisture

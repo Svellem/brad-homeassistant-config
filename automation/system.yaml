@@ -1,10 +1,25 @@
-
 #
+# Things related to keeping the smart home running smoothly
 # 
+
+# Run the are_any_lights_on script every 15s
+# To clean up after scenes - only if home otherwise don't bother
+- alias: 'Clean Up Are Any Lights On'
+  trigger:
+    platform: time
+    seconds: 15
+  condition:
+    condition: state
+    entity_id: group.trackedusers
+    state: 'home'
+  action:
+    service: python_script.are_any_lights_on
+
+# Use Input Boolean to trigger REST command for SAB
 - alias: 'Pause SabNZBD'
   trigger:
     - platform: state
-      entity_id: switch.transmission_turtle_mode
+      entity_id: input_boolean.sabnzbd_turtle_mode
       to: 'on'
   action:
     service: rest_command.sabnzbd_pause
@@ -17,18 +32,33 @@
     service: rest_command.sabnzbd_resume
 
 #
-# Turn on/off UI elements
+# DIY motion sensors get stuck sometimes
+# Turn off with HA until I get around to something better
+#
 #
 
-# Turn Visibility Off for These Groups at HA start
-#- alias: 'UI Groups Off by Default'
-#  trigger:
-#    platform: homeassistant
-#    event: start
-#  action:
-#    - service: group.set_visibility
-#      entity_id: group.traveltimes, group.TodayWeather, group.TodayDefault
-#      data:
-#        visible: False
+- alias: 'Fix Stuck Kitchen Motion'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      to: 'on'
+      for:
+        seconds: 10
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "KitchenNode/Motion/Switch"
+        payload: 0
 
-# FOR NOW: Showing in 'Tablet' tab
+- alias: 'Fix Stuck Entry Motion'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.entry_motion
+      to: 'on'
+      for:
+        seconds: 10
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "FrontDoorNode/Motion/Switch"
+        payload: 0

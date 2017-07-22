@@ -41,6 +41,7 @@
       transition: 8
     switch.string_lights: off
     switch.sink: off
+    switch.grow_light: off
     
 # If player goes from playing to pause, dim the lights for bathroom/kitchen
 - name: Movie Paused

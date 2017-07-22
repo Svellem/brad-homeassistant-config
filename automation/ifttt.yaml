@@ -111,7 +111,7 @@
       entity_id: automation.alarm_clock
       state: 'off'
     - condition: state
-      entity_id: group.tracked_users
+      entity_id: device_tracker.brad
       state: 'home'
   action:
     # Turn on lights

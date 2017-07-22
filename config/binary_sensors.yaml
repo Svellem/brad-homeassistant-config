@@ -39,16 +39,17 @@
         {%- else -%}
         False
         {%- endif %}
-
-# Bruh Node Motion
-- platform: mqtt
-  state_topic: "BruhNode/LivingRoom"
-  device_class: motion
-  value_template: '{{ value_json.motion }}'
-  payload_on: 'motion detected'
-  payload_off: 'standby'
-  name: "Dining Motion 2"
-
+    livingroom_motion_meta:
+      friendly_name: 'Living Room Motion'
+      device_class: motion
+      value_template: >-
+        {%- if is_state("binary_sensor.aquarium_motion", "on")
+        or is_state("binary_sensor.living_pi_motion", "on")
+          -%}
+        True
+        {%- else -%}
+        False
+        {%- endif %}
 
 #
 # Motion Sensor via RPI GPIO
@@ -59,7 +60,7 @@
   device_class: motion
   payload_on: "1"
   payload_off: "0"
-  name: "Living Room Motion"
+  name: "Living Pi Motion"
 - platform: mqtt
   state_topic: "PiNode/Motion/Dining/Switch"
   device_class: motion
@@ -70,6 +71,28 @@
 #
 # MOTION SENSORS VIA NODES
 #
+- platform: mqtt
+  state_topic: "AquariumNode/Motion/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Aquarium Motion"
+
+- platform: mqtt
+  state_topic: "BruhNode/LivingRoom"
+  device_class: motion
+  value_template: '{{ value_json.motion }}'
+  payload_on: 'motion detected'
+  payload_off: 'standby'
+  name: "Dining Motion 2"
+
+- platform: mqtt
+  state_topic: "OfficeNode/Motion/Switch"
+  device_class: motion
+  payload_on: "1"
+  payload_off: "0"
+  name: "Office Motion"
+
 - platform: mqtt
   state_topic: "ClosetNode/Motion/Switch"
   device_class: motion
@@ -97,6 +120,10 @@
   payload_on: "1"
   payload_off: "0"
   name: "Entry Motion"
+
+#
+# DOORS / WINDOWS
+#
 
 - platform: mqtt
   state_topic: "FrontDoorNode/Door/Switch"

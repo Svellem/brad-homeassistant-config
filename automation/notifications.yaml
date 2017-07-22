@@ -96,8 +96,8 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.bradhome
-        state: 'on'
+        entity_id: device_tracker.brad
+        state: 'home'
       - condition: state
         entity_id: automation.alarm_clock
         state: 'on'

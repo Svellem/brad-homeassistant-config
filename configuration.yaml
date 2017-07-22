@@ -295,6 +295,7 @@ group:
     entities:
       - sensor.plant_problems
       - script.tts_plant_info
+      - plant.window_container
       - plant.rubber_plant
       - plant.giant_pothos
       - plant.giant_philodendron
@@ -329,6 +330,7 @@ group:
     - light.floor_lamp
     - light.dining_floor_lamp
     - switch.aquarium
+    - switch.grow_light
   Office:
    entities:
     - switch.office
@@ -406,7 +408,8 @@ group:
     - binary_sensor.bathroom_motion
     - binary_sensor.kitchen_motion_meta
     - binary_sensor.dining_motion_meta
-    - binary_sensor.living_room_motion
+    - binary_sensor.office_motion
+    - binary_sensor.livingroom_motion_meta
   Openings:
     entities:
     - group.openingsbadges
@@ -423,7 +426,7 @@ group:
     - sensor.water_temperature
   Misc:
     - light.crawl_space
-    - switch.extra_plug
+    - switch.grow_light
     - light.notify_led
   Pi:
     name: HomeAssistant Pi

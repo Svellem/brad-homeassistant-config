@@ -39,6 +39,12 @@
       order: 2
 
 
+    sensor.home_to_sf:
+      friendly_name: Drive to SF
+    sensor.home_to_16th_mission_bart:
+      friendly_name: BART to 16th Mission
+    sensor.home_to_richmond_bart:
+      friendly_name: BART to Richmond
     camera.ip_webcam:
       friendly_name: Kitchen
     media_player.roku_3__4124cg078650:
@@ -141,6 +147,8 @@
       icon: mdi:thermometer
     sensor.front_humidity:
       icon: mdi:water-percent
+    plant.window_container:
+      friendly_name: Window Container
     plant.rubber_plant:
       friendly_name: Rubber Plant
     plant.giant_philodendron:
@@ -243,14 +251,6 @@
     sensor.battery_windowcam:
       friendly_name: Window Camera
       icon: mdi:cellphone-iphone
-    sensor.current_location_to_home:
-      icon: mdi:train
-    sensor.current_location_to_studio:
-      icon: mdi:car
-    sensor.home_to_16th_mission_bart:
-      icon: mdi:train
-    sensor.home_to_richmond_bart:
-      icon: mdi:train
     sensor.yr_fog:
       friendly_name: Fog
       icon: mdi:weather-fog
@@ -307,6 +307,11 @@
       icon: mdi:power
     switch.pi_reboot:
       icon: mdi:restart
+    switch.grow_light:
+      friendly_name: Grow Light
+      icon: mdi:leaf
+      emulated_hue: true
+      emulated_hue_name: Garden
     switch.aquarium:
       friendly_name: Aquarium Light
       icon: mdi:cube

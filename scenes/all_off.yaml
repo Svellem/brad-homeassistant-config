@@ -14,7 +14,6 @@
     light.fridge:
       state: off
       transition: 10
-    switch.aquarium: off
     light.stove:
       state: off
       transition: 10

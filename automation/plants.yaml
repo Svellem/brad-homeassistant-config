@@ -1,3 +1,32 @@
+#
+# HYDROPONIC GROW LIGHT AUTOMATIONS
+#
+
+- alias: Garden On at Dawn
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "-00:30:00"
+  action:
+    service: homeassistant.turn_on
+    entity_id: switch.grow_light
+# Turn off 1 hours after sunset
+# What's best way to automate this for winter? Fine for summer, for now
+- alias: Garden Off 1 Hour after Sunset
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "+01:00:00"
+#    - platform: time
+#      at: "22:00:00"
+  condition:
+    condition: state
+    entity_id: switch.aquarium
+    state: 'on'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.grow_light
+
 - alias: 'Update Plant Problems'
   trigger:
     - platform: state

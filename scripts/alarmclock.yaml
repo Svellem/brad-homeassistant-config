@@ -146,6 +146,7 @@ alarm_clock:
       entity_id: switch.kitchen_lights, switch.sink, switch.bathroom_light, switch.edison_pendants, switch.string_lights
     - service: light.turn_on
       entity_id: light.closet
+    # Turn on morning announcements, activated by motion in kitchen
     - service: homeassistant.turn_on
       entity_id: automation.alarm_clock_morning_announcements
 

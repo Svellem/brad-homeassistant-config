@@ -1,5 +1,6 @@
   exclude:
     entities:
+      - automation.clean_up_are_any_lights_on
       - media_player.mpd_pi
       - media_player.vlc_tts
       - group.Radio

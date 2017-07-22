@@ -129,18 +129,12 @@
 #
 # TP-LINK SWITCHES
 #
-#- platform: tplink
-#  host: 192.168.0.30
-#  name: Closet Lights
 - platform: tplink
   host: 192.168.0.31
-  name: Extra Plug
+  name: Grow Light
 - platform: tplink
   host: 192.168.0.32
   name: Aquarium
 - platform: tplink
   host: 192.168.0.33
   name: Office
-#- platform: tplink
-#  host: 192.168.0.34
-#  name: Extra Plug
