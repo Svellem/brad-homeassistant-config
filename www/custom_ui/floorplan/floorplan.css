@@ -5,13 +5,52 @@ svg, svg * {
   pointer-events: all !important;
 }
 
-/* Hover over */
+/* Motion Background */
+.motion-background {
+  fill: #f8f8f8;
+}
+.motion-none-background {
+  fill: #ffffff;
+  fill-opacity: 0.0;
+}
+
+/* Openings */
+.opening-open {
+  fill: #ff0000 !important;
+}
+.opening-closed {
+  fill: #ffffff;
+  fill-opacity: 0.0;
+}
+
+/* Fans */
+.fan-on {
+  stroke: #cbe960 !important;
+}
+.fan-off {
+  stroke: #b1b1b1;
+}
+
+/* Media Players */
+.media-idle {
+  stroke: #b1b1b1;
+}
+.media-playing {
+  stroke: #cbe960;
+}
+.media-paused {
+  stroke: #f05d32;
+}
+
+/* Hover over
+
 
 .entity:hover {
-  stroke: #03A9F4 !important;
-  stroke-width: 1px !important;
+  stroke: #000000 !important;
+  stroke-width: 3px !important;
   stroke-opacity: 1 !important;
 }
+*/
 
 /* Bootstrap succsss */
 
@@ -24,13 +63,6 @@ svg, svg * {
   fill-opacity: 1 !important;
   stroke: #d6e9c6 !important;
   stroke-width: 0px !important;
-}
-
-.opening-open {
-  fill: #ff0000 !important;
-}
-.opening-closed {
-  background-color: transparent;
 }
 
 
@@ -101,11 +133,13 @@ svg, svg * {
 /* Light */
 
 .light-off {
-  fill: #C3B7F4 !important;
+  fill: #ffffff !important;
+  stroke: #b1b1b1;
 }
 
 .light-on {
-  fill: #F8D2B9 !important;
+  fill: #f9e99e !important;
+  stroke: #b1b1b1 !important;
 }
 
 /* Temperature sensor */
@@ -129,4 +163,3 @@ svg, svg * {
   fill: #f2dede !important;
   fill-opacity: 1 !important;
 }
-

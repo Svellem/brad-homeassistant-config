@@ -88,15 +88,15 @@ tts:
     voice: Salli
     # English UK Female
     # voice: Amy
-android_ip_webcam:
-  - host: 192.168.0.52
-    scan_interval: 2
-    sensors:
-      - light
-      - motion
-    switches:
-      - night_vision
-      - overlay
+#android_ip_webcam:
+#  - host: 192.168.0.52
+#    scan_interval: 2
+#    sensors:
+#      - light
+#      - motion
+#    switches:
+#      - night_vision
+#      - overlay
 
 #
 # Set up Communication Hardware
@@ -181,9 +181,8 @@ group:
     entities:
       - group.Motion
       - group.Openings
-      - camera.front_door
-      - camera.window
-      - camera.ip_webcam
+#      - camera.front_door
+#      - camera.window
   Information:
     view: yes
     icon: mdi:barley
@@ -215,6 +214,13 @@ group:
     name: Tracked Users
     entities:
       - device_tracker.brad
+      - group.guestdevices
+  guestdevices:
+    view: no
+    name: Guest Devices
+    entities:
+      - device_tracker.jenny_oh_hatfields_iphone
+
 # SMALLER GROUPS FOR ABOVE TABS
 #
 
@@ -329,8 +335,6 @@ group:
     - light.globes
     - light.floor_lamp
     - light.dining_floor_lamp
-    - switch.aquarium
-    - switch.grow_light
   Office:
    entities:
     - switch.office
@@ -421,13 +425,13 @@ group:
   Aquarium:
     entities:
     - switch.aquarium
-    - binary_sensor.left_window 
+    - binary_sensor.left_window
     - sensor.window_air_temp
     - sensor.water_temperature
   Misc:
-    - light.crawl_space
+    - switch.aquarium
     - switch.grow_light
-    - light.notify_led
+    - light.crawl_space
   Pi:
     name: HomeAssistant Pi
     control: hidden

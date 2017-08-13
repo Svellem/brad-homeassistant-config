@@ -45,10 +45,6 @@
     - platform: state
       entity_id: binary_sensor.kitchen_motion_meta
       to: 'on'
-# Dog keeps setting this off, try with just kitchen
-#    - platform: state
-#      entity_id: binary_sensor.dining_motion_meta
-#      to: 'on'
   condition:
     # TIME if after alarm but before 10a
     - condition: time
@@ -71,7 +67,7 @@
     - service: script.tts_morning_info
     - delay: 00:00:20
 #    - wait_template: "{{ states.media_player.vlc_tts.state == 'idle' }}"
-#      time_out: 00:00:50
+#      timeout: 00:00:50
     - service: switch.turn_on
       entity_id: switch.radio_npr
     - service: homeassistant.turn_off

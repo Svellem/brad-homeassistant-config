@@ -2,24 +2,79 @@
       image: /local/custom_ui/floorplan/studio.svg
       stylesheet: /local/custom_ui/floorplan/floorplan.css
 
+      warnings:
+      pan_zoom:
+      hide_app_toolbar:
+
       last_motion_entity: sensor.last_motion
       last_motion_class: last-motion
 
       groups:
+        - name: Lights
+          entities:
+            - light.bedroom
+            - light.closet
+            - switch.bathroom_light
+            - light.entry
+            - switch.kitchen_lights
+            - switch.office
+            - group.livingroom
+            - switch.string_lights
+          states:
+            - state: 'on'
+              class: 'light-on'
+            - state: 'off'
+              class: 'light-off'
+          state_transitions:
+            - name: On to off
+              from_state: 'on'
+              to_state: 'off'
+              duration: 2
+          action:
+            domain: homeassistant
+            service: toggle
+        - name: Media Players
+          entities:
+            - media_player.roku_3__4124cg078650
+            - media_player.vlc_tts
+          states:
+            - state: 'idle'
+              class: 'media-idle'
+            - state: 'unknown'
+              clsss: 'media-idle'
+            - state: 'off'
+              class: 'media-idle'
+            - state: 'playing'
+              class: 'media-playing'
+            - state: 'paused'
+              class: 'media-paused'
+        - name: Switches
+          entities:
+            - switch.aquarium
+            - switch.grow_light
+            - switch.bedroom_fan
+          states:
+            - state: 'on'
+              class: 'fan-on'
+            - state: 'off'
+              class: 'fan-off'
+          action:
+            domain: homeassistant
+            service: toggle
         - name: Motion
           entities:
-            - binary_sensor.front_motion
-            - binary_sensor.kitchen_motion
+            - binary_sensor.entry_motion
+            - binary_sensor.kitchen_motion_meta
             - binary_sensor.closet_motion
-            - binary_sensor.dining_motion
-            - binary_sensor.left_window
-            - binary_sensor.front_door
-            - binary_sensor.ecolink_motion_sensor_sensor_14_0
+            - binary_sensor.dining_motion_meta
+            - binary_sensor.livingroom_motion_meta
+            - binary_sensor.office_motion
+            - binary_sensor.bathroom_motion
           states:
             - state: 'off'
-              class: 'info-background'
+              class: 'motion-none-background'
             - state: 'on'
-              class: 'warning-background'
+              class: 'motion-background'
           state_transitions:
             - name: On to off
               from_state: 'on'
@@ -29,8 +84,8 @@
           entities:
             - binary_sensor.left_window
             - binary_sensor.front_door
-          states: 
+          states:
             - state: 'off'
               class: 'opening-closed'
             - state: 'on'
-              class: 'opening-open'               
+              class: 'opening-open'

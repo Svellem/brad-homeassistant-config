@@ -13,7 +13,7 @@
 - alias: 'Laundry Timer'
   trigger:
     platform: event
-    event_type: bed_button_pressed
+    event_type: laundry_timer
   action:
     - service: script.turn_on
       entity_id: script.laundry_timer

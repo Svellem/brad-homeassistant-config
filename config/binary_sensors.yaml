@@ -1,12 +1,12 @@
 #
 # Binary Sensor from Android IP Cam
 #
-- platform: template
-  sensors:
-    fridge_motion:
-      value_template: '{{ states.sensor.ip_webcam_motion.state | float > 700 }}'
-      friendly_name: Fridge Motion
-      device_class: motion
+#- platform: template
+#  sensors:
+#    fridge_motion:
+#      value_template: '{{ states.sensor.ip_webcam_motion.state | float > 700 }}'
+#      friendly_name: Fridge Motion
+#      device_class: motion
 
 #
 # META MOTION SENSORS
@@ -71,12 +71,6 @@
 #
 # MOTION SENSORS VIA NODES
 #
-- platform: mqtt
-  state_topic: "AquariumNode/Motion/Switch"
-  device_class: motion
-  payload_on: "1"
-  payload_off: "0"
-  name: "Aquarium Motion"
 
 - platform: mqtt
   state_topic: "BruhNode/LivingRoom"
@@ -85,13 +79,6 @@
   payload_on: 'motion detected'
   payload_off: 'standby'
   name: "Dining Motion 2"
-
-- platform: mqtt
-  state_topic: "OfficeNode/Motion/Switch"
-  device_class: motion
-  payload_on: "1"
-  payload_off: "0"
-  name: "Office Motion"
 
 - platform: mqtt
   state_topic: "ClosetNode/Motion/Switch"
@@ -108,13 +95,6 @@
   name: "Kitchen Motion"
 
 - platform: mqtt
-  state_topic: "KitchenNode/Door/Switch"
-  device_class: opening
-  payload_on: "1"
-  payload_off: "0"
-  name: "Crawl Space Door"
-
-- platform: mqtt
   state_topic: "FrontDoorNode/Motion/Switch"
   device_class: motion
   payload_on: "1"
@@ -124,6 +104,12 @@
 #
 # DOORS / WINDOWS
 #
+- platform: mqtt
+  state_topic: "KitchenNode/Door/Switch"
+  device_class: opening
+  payload_on: "1"
+  payload_off: "0"
+  name: "Crawl Space Door"
 
 - platform: mqtt
   state_topic: "FrontDoorNode/Door/Switch"

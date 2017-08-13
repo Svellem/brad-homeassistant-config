@@ -83,8 +83,6 @@ Position in house is located using sensor.last_motion
   * Turn on 1 hour before sunset, turn off 4 hours after or at 10PM (whichever is first)
 * Climate
   * Indoor Temperature & Humidity is a mean of all available sensors (using min_max component)
-* Dash Buttons
-  * Laundry Timer - iOS Notification & TTS notification for timer 
 * IFTT Integration
   * When plants need to be watered, add them to my Todoist todo list
   * If Fitbit logs new sleep but no alarm is set, wake house up
@@ -98,6 +96,7 @@ Position in house is located using sensor.last_motion
   * Turn everything off when no one's home
   * Turn Closet lights on/off by motion detector
   * Turn Bathroom lights on/off by motion detector (off 12a-8:30a)
+  * Turn Office Lights on/off by motion detector
   * Turn Crawl space light on/off by door sensor
   * Turn kitchen lamps on/off using wall switch
   * Turn on office lamps using switch
@@ -117,7 +116,7 @@ Position in house is located using sensor.last_motion
   * Alarm Clock - send weather summary and image from window camera when alarm goes off
   * Security - send image from front door camera if no one's home and door opens
   * Reminder - If I'm home at 10:30pm and coffee isn't ready but alarm is set, remind me
-  * Reminder - Full moon 
+  * Reminder - Full moon
   * Plants - Once a day reminder to water plants if more than 3 are thirsty
   * System - Notify if disk use gets high
   * System - Notify if new HA version available
@@ -129,7 +128,7 @@ Position in house is located using sensor.last_motion
 * Night Light Override - Prevents red night lights from coming on
 * Vacation Mode
 * Guest Mode
- 
+
 # Other Projects Used
 * esp8266 related
   * [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant)
@@ -143,10 +142,8 @@ Position in house is located using sensor.last_motion
   * [dasher](https://github.com/maddox/dasher)
 * [forever-service](https://github.com/zapty/forever-service) For Python scripts as services
 * My Scripts
-  * [raspi-pir-mqtt-homeassistant](https://github.com/oakbrad/raspi-pir-mqtt-homeassistant) Publish connected PIR sensor to MQTT on a Raspberry Pi 
-* Media Software 
+  * [raspi-pir-mqtt-homeassistant](https://github.com/oakbrad/raspi-pir-mqtt-homeassistant) Publish connected PIR sensor to MQTT on a Raspberry Pi
+* Media Software
   * [Transmission](http://transmissionbt.com) torrent manager
   * [sabnzbd](http://sabnzbd.org) NZB queue manager
   * [Plex](http://plex.tv) Media management & server
-
-
