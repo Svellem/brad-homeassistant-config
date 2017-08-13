@@ -11,7 +11,9 @@ Some detailed information about setting various parts of this up on [DIY Futuris
 
 My HA is an Hassbian install on a Raspberry Pi 3 with an [GoControl Z-Wave/Zigbee USB stick](http://amzn.to/2u8XVGm).
 
-Running HA version: 0.47.1
+Running HA version: 0.50.1
+
+![Floorplan](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/floorplan.png)
 
 ![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
 
