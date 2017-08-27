@@ -34,7 +34,7 @@ Floorplan UI for tablet.
   * Fitbit
 * Switches
   * [TP-Link HS100 Smart Switch](http://amzn.to/2sq1bQb)
-  * [Sonoff Switches](https://www.itead.cc/sonoff-wifi-wireless-switch.html) running [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant) firmware
+  * [Sonoff Switches](http://amzn.to/2viAsXB) running [Sonoff-HomeAssistant](https://github.com/KmanOz/Sonoff-HomeAssistant) firmware
 * Media Players
   * [Volumio](https://volumio.org/) Raspberry Pi streaming player for stereo
   * Plex (Roku)
