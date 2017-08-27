@@ -15,7 +15,9 @@ Running HA version: 0.50.1
 
 ![Floorplan](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/floorplan.png)
 
-![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-1-homepage.png)
+Floorplan UI for tablet.
+
+![Screenshot](https://github.com/oakbrad/brad-homeassistant-config/blob/master/screenshots/ha-2-device-control.png)
 
 # Hardware
 * Lights
