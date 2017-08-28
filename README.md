@@ -43,7 +43,8 @@ Floorplan UI for tablet.
 * Sensors
   * [Wemos D1 Mini](http://amzn.to/2sydVU8) (esp8266) nodes with sensors for motion, temps, etc. via MQTT
   * Mi Flora plant sensors x9
-  * [Z-Wave Motion Sensor](http://amzn.to/2symNta) (battery powered)
+  * [Ecolink Z-Wave Motion Sensor](http://amzn.to/2symNta)
+  * [Ecolink Z-Wave Door/Window Sensor](http://amzn.to/2wBFT3q)
 * Other Hardware
   * [Echo Dot](http://amzn.to/2ubdoVC) Voice control
   * [Bluetooth iBeacons](http://amzn.to/2slTOIF)
